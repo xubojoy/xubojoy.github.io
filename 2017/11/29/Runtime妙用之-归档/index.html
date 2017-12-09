@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ios," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="ios">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Runtime妙用之-归档">
+<meta property="og:url" content="http://xubojoy.github.io/2017/11/29/Runtime妙用之-归档/index.html">
+<meta property="og:site_name" content="xubojoy">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://xubojoy.github.io/2017/11/29/Runtime妙用之-归档/archive.jpg">
+<meta property="og:updated_time" content="2017-12-09T16:07:27.106Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Runtime妙用之-归档">
+<meta name="twitter:image" content="http://xubojoy.github.io/2017/11/29/Runtime妙用之-归档/archive.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '6281786317999179000',
+      author: '主编大人'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xubojoy.github.io/2017/11/29/Runtime妙用之-归档/"/>
+
+
+
+
+
+  <title>Runtime妙用之-归档 | xubojoy</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?231ead9ca2b848e1646a6794cc4e7530";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xubojoy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成事不说，遂事不谏，既往不咎!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2017/11/29/Runtime妙用之-归档/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xubojoy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xubojoy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Runtime妙用之-归档</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-29T18:29:00+08:00">
+                2017-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2017/11/29/Runtime妙用之-归档/archive.jpg" alt="1"></p>
+<a id="more"></a>    
+<h4 id="对于数据存储的归档方式，实现NSCoding协议"><a href="#对于数据存储的归档方式，实现NSCoding协议" class="headerlink" title="对于数据存储的归档方式，实现NSCoding协议"></a>对于数据存储的归档方式，实现NSCoding协议</h4><pre>
+- (void)encodeWithCoder:(NSCoder *)aCoder
+- (id)initWithCoder:(NSCoder *)aDecoder
+</pre>
+
+<p>直接上代码以UserModel说明，该类有定义两个属性name，gender。</p>
+<pre>
+@interface UserModel : NSObject\<nscoding>
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *gender;
+@end
+</nscoding></pre>
+
+<p>.m文件中文件中用常见方法实现NSCoding协议</p>
+<pre>
+- (void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeObject:self.gender forKey:@"gender"];   
+}
+</pre>
+<pre>
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    self = [super init];
+    if (self) {
+        self.name = [aDecoder decodeObjectForKey:@"name"];
+        self.gender = [aDecoder decodeObjectForKey:@"gender"];
+    }
+    return self;
+}
+</pre>
+
+<h4 id="对于有少量属性的这样写还凑合，但是对于拥有大量属性的类来说，这样就要做很多体力活了，费时费力！！！然鹅—-苹果daddy还是给了更方便的实现方法，那就是Runtime登场了！见证奇迹的时刻到了！——————"><a href="#对于有少量属性的这样写还凑合，但是对于拥有大量属性的类来说，这样就要做很多体力活了，费时费力！！！然鹅—-苹果daddy还是给了更方便的实现方法，那就是Runtime登场了！见证奇迹的时刻到了！——————" class="headerlink" title="对于有少量属性的这样写还凑合，但是对于拥有大量属性的类来说，这样就要做很多体力活了，费时费力！！！然鹅—-苹果daddy还是给了更方便的实现方法，那就是Runtime登场了！见证奇迹的时刻到了！——————-"></a>对于有少量属性的这样写还凑合，但是对于拥有大量属性的类来说，这样就要做很多体力活了，费时费力！！！然鹅—-苹果daddy还是给了更方便的实现方法，那就是Runtime登场了！见证奇迹的时刻到了！——————-</h4><p>对于归档咱可以这样来写：</p>
+<pre>
+/**
+ *  归档 */
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    unsigned int count;
+    // 获得指向当前类的所有属性的指针
+    objc_property_t *properties = class_copyPropertyList([self class], &count);
+    for (int i = 0; i < count; i++) {
+        // 获取指向当前类的一个属性的指针
+        objc_property_t property = properties[i];
+        // 获取C字符串属性名
+        const char *name = property_getName(property);
+        // C字符串转OC字符串
+        NSString *propertyName = [NSString stringWithUTF8String:name];
+        // 通过关键词取值
+        NSString *propertyValue = [self valueForKeyPath:propertyName];
+        // 编码属性
+        [aCoder encodeObject:propertyValue forKey:propertyName];
+    }
+    free(properties);
+}
+</pre>
+
+
+<p>对于解档咱可以这样来写：</p>
+<pre>
+/**
+ 解档
+ */
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if(self = [super init])
+    {
+        unsigned int count;
+        // 获得指向当前类的所有属性的指针
+        objc_property_t *properties = class_copyPropertyList([self class], &count);
+        for (int i = 0; i < count; i++) {
+            // 获取指向当前类的一个属性的指针
+            objc_property_t property = properties[i];
+            // 获取C字符串的属性名
+            const char *name = property_getName(property);
+            // C字符串转OC字符串
+            NSString *propertyName = [NSString stringWithUTF8String:name];
+            // 解码属性值
+            NSString *propertyValue = [aDecoder decodeObjectForKey:propertyName];
+            [self setValue:propertyValue forKey:propertyName];
+        }
+        // 记得释放
+        free(properties);
+    }
+    return self;
+}
+</pre>
+对于相同的部分也可以再提取，这里就不整了--🙃🙃🙃🙃🙃🙃
+#### 接下来就是测试了：
+<pre>
+    UserModel *model = [[UserModel alloc] init];
+    model.name = @"haha";
+    model.gender = @"未知";
+    //获取文件目录
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+    NSLog(@"documentDirectory = %@",documentDirectory);
+    documentDirectory = [documentDirectory stringByAppendingPathComponent:@"userModel.archive"];
+    //自定义对象归档存到文件中
+    [NSKeyedArchiver archiveRootObject:model toFile:documentDirectory];
+    //解档：
+    UserModel* p = [NSKeyedUnarchiver unarchiveObjectWithFile:documentDirectory];
+    NSLog(@"name = %@,gender = %@",p.name,p.gender);
+</pre>
+
+<p>完毕！😑😑😑😑😑😑😑😑</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/xubojoy.jpg" alt="xubojoy wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信订阅号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/wechat-reward-image.png" alt="xubojoy 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/alipay-reward-image.jpg" alt="xubojoy 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ios/" rel="tag"># ios</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/17/多设备更新博客/" rel="next" title="多设备更新博客">
+                <i class="fa fa-chevron-left"></i> 多设备更新博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/30/iOS判断手机是否越狱/" rel="prev" title="iOS判断手机是否越狱">
+                iOS判断手机是否越狱 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDIwOS82NzY0"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/avatar.jpg"
+                alt="xubojoy" />
+            
+              <p class="site-author-name" itemprop="name">xubojoy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xubojoy" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/2365508481/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.devtang.com/" title="唐巧的技术博客" target="_blank">唐巧的技术博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://onevcat.com/" title="OneV's Den" target="_blank">OneV's Den</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.haomwei.com/" title="屠城" target="_blank">屠城</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/deng2012web" title="老邓's Blog" target="_blank">老邓's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#对于数据存储的归档方式，实现NSCoding协议"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5BF9;&#x4E8E;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x7684;&#x5F52;&#x6863;&#x65B9;&#x5F0F;&#xFF0C;&#x5B9E;&#x73B0;NSCoding&#x534F;&#x8BAE;" class="headerlink" title="&#x5BF9;&#x4E8E;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x7684;&#x5F52;&#x6863;&#x65B9;&#x5F0F;&#xFF0C;&#x5B9E;&#x73B0;NSCoding&#x534F;&#x8BAE;"></a>&#x5BF9;&#x4E8E;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x7684;&#x5F52;&#x6863;&#x65B9;&#x5F0F;&#xFF0C;&#x5B9E;&#x73B0;NSCoding&#x534F;&#x8BAE;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对于有少量属性的这样写还凑合，但是对于拥有大量属性的类来说，这样就要做很多体力活了，费时费力！！！然鹅—-苹果daddy还是给了更方便的实现方法，那就是Runtime登场了！见证奇迹的时刻到了！——————"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5BF9;&#x4E8E;&#x6709;&#x5C11;&#x91CF;&#x5C5E;&#x6027;&#x7684;&#x8FD9;&#x6837;&#x5199;&#x8FD8;&#x51D1;&#x5408;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;&#x4E8E;&#x62E5;&#x6709;&#x5927;&#x91CF;&#x5C5E;&#x6027;&#x7684;&#x7C7B;&#x6765;&#x8BF4;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x8981;&#x505A;&#x5F88;&#x591A;&#x4F53;&#x529B;&#x6D3B;&#x4E86;&#xFF0C;&#x8D39;&#x65F6;&#x8D39;&#x529B;&#xFF01;&#xFF01;&#xFF01;&#x7136;&#x9E45;&#x2014;-&#x82F9;&#x679C;daddy&#x8FD8;&#x662F;&#x7ED9;&#x4E86;&#x66F4;&#x65B9;&#x4FBF;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x5C31;&#x662F;Runtime&#x767B;&#x573A;&#x4E86;&#xFF01;&#x89C1;&#x8BC1;&#x5947;&#x8FF9;&#x7684;&#x65F6;&#x523B;&#x5230;&#x4E86;&#xFF01;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;" class="headerlink" title="&#x5BF9;&#x4E8E;&#x6709;&#x5C11;&#x91CF;&#x5C5E;&#x6027;&#x7684;&#x8FD9;&#x6837;&#x5199;&#x8FD8;&#x51D1;&#x5408;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;&#x4E8E;&#x62E5;&#x6709;&#x5927;&#x91CF;&#x5C5E;&#x6027;&#x7684;&#x7C7B;&#x6765;&#x8BF4;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x8981;&#x505A;&#x5F88;&#x591A;&#x4F53;&#x529B;&#x6D3B;&#x4E86;&#xFF0C;&#x8D39;&#x65F6;&#x8D39;&#x529B;&#xFF01;&#xFF01;&#xFF01;&#x7136;&#x9E45;&#x2014;-&#x82F9;&#x679C;daddy&#x8FD8;&#x662F;&#x7ED9;&#x4E86;&#x66F4;&#x65B9;&#x4FBF;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x5C31;&#x662F;Runtime&#x767B;&#x573A;&#x4E86;&#xFF01;&#x89C1;&#x8BC1;&#x5947;&#x8FF9;&#x7684;&#x65F6;&#x523B;&#x5230;&#x4E86;&#xFF01;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;-"></a>&#x5BF9;&#x4E8E;&#x6709;&#x5C11;&#x91CF;&#x5C5E;&#x6027;&#x7684;&#x8FD9;&#x6837;&#x5199;&#x8FD8;&#x51D1;&#x5408;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;&#x4E8E;&#x62E5;&#x6709;&#x5927;&#x91CF;&#x5C5E;&#x6027;&#x7684;&#x7C7B;&#x6765;&#x8BF4;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x8981;&#x505A;&#x5F88;&#x591A;&#x4F53;&#x529B;&#x6D3B;&#x4E86;&#xFF0C;&#x8D39;&#x65F6;&#x8D39;&#x529B;&#xFF01;&#xFF01;&#xFF01;&#x7136;&#x9E45;&#x2014;-&#x82F9;&#x679C;daddy&#x8FD8;&#x662F;&#x7ED9;&#x4E86;&#x66F4;&#x65B9;&#x4FBF;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x5C31;&#x662F;Runtime&#x767B;&#x573A;&#x4E86;&#xFF01;&#x89C1;&#x8BC1;&#x5947;&#x8FF9;&#x7684;&#x65F6;&#x523B;&#x5230;&#x4E86;&#xFF01;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;-</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xubojoy</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
