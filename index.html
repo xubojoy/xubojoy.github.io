@@ -342,6 +342,199 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xubojoy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xubojoy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/" itemprop="url">浅析DES与AES、RSA三种典型加密算法的比较</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-11T18:06:57+08:00">
+                2017-12-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  777
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="DES与AES的比较"><a href="#DES与AES的比较" class="headerlink" title="DES与AES的比较"></a>DES与AES的比较</h4><p>自DES 算法公诸于世以来，学术界围绕它的安全性等方面进行了研究并展开了激烈的争论。在技术上，对DES的批评主要集中在以下几个方面：</p>
+<p>1、作为分组密码，DES 的加密单位仅有64 位二进制，这对于数据传输来说太小，因为每个分组仅含8 个字符，而且其中某些位还要用于奇偶校验或其他通讯开销。</p>
+<p>2、DES 的密钥的位数太短，只有56 比特，而且各次迭代中使用的密钥是递推产生的，这种相关必然降低密码体制的安全性，在现有技术下用穷举法寻找密钥已趋于可行。</p>
+<p>3、DES 不能对抗差分和线性密码分析。</p>
+<p>4、DES 用户实际使用的密钥长度为56bit，理论上最大加密强度为256。DES 算法要提高加密强度（例如增加密钥长度），则系统开销呈指数增长。除采用提高硬件功能和增加并行处理功能外，从算法本身和软件技术方面都无法提高DES 算法的加密强度。<br><img src="/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/21306-1.png" alt="DES"></p>
+<p>相对DES算法来说，AES算法无疑解决了上述问题，主要表现在以下几个方面：<br><img src="/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/AES.png" alt="AES"></p>
+<p>1、运算速度快，在有反馈模式、无反馈模式的软硬件中，Rijndael都表现出非常好的性能。</p>
+<p>2、对内存的需求非常低,适合于受限环境。</p>
+<p>3、Rijndael 是一个分组迭代密码， 分组长度和密钥长度设计灵活。</p>
+<p>4、AES标准支持可变分组长度，分组长度可设定为32 比特的任意倍数，最小值为128 比特，最大值为256 比特。</p>
+<p>5、AES的密钥长度比DES大， 它也可设定为32 比特的任意倍数，最小值为</p>
+<p>6、12 比特，最大值为256 比特，所以用穷举法是不可能破解的。</p>
+<p>7、AES算法的设计策略是WTS。WTS 是针对差分分析和线性分析提出的，可对抗差分密码分析和线性密码分析。</p>
+<p>DES与RSA的比较</p>
+<p>RSA算法的密钥很长，具有较好的安全性，但加密的计算量很大，加密速度较慢限制了其应用范围。为减少计算量，在传送信息时，常采用传统加密方法与公开密钥加密方法相结合的方式，即信息采用改进的DES对话密钥加密，然后使用RSA密钥加密对话密钥和信息摘要。对方收到信息后，用不同的密钥解密并可核对信息摘要。<br><img src="/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/21306-3.jpg" alt=""></p>
+<p>采用DES与RSA相结合的应用，使它们的优缺点正好互补，即DES加密速度快，适合加密较长的报文，可用其加密明文；RSA加密速度慢，安全性好，应用于DES 密钥的加密，可解决DES 密钥分配的问题。</p>
+<p>目前这种RSA和DES结合的方法已成为EMAIL保密通信标准。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+        
+    </div>
+    
+
+    
+
+    
+
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2017/11/30/iOS判断手机是否越狱/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1962,187 +2155,6 @@ age = input('age:')</pre>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2017/02/19/GitHub-上排名前-100-的-Objective-C-项目简介/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xubojoy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xubojoy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/19/GitHub-上排名前-100-的-Objective-C-项目简介/" itemprop="url">GitHub 上排名前 100 的 Objective-C 项目简介</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-19T17:49:38+08:00">
-                2017-02-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  4,015
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  15
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>项目名称项目信息<br>1.AFNetworking作者是 NSHipster 的博主, iOS 开发界的大神级人物, 毕业于卡内基·梅隆大学, 开源了许多牛逼的项目, 这个便是其中之一, AFNetworking 采用 NSURLConnection + NSOperation, 主要方便与服务端 API 进行数据交换, 操作简单, 功能强大, 现在许多人都用它取代 ASIHTTPRequest<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/02/19/GitHub-上排名前-100-的-Objective-C-项目简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    <div>
-        
-    </div>
-    
-
-    
-
-    
-
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2197,7 +2209,7 @@ age = input('age:')</pre>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2313,7 +2325,7 @@ age = input('age:')</pre>
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">22.8k字</span>
+    <span title="博客全站共">23.5k字</span>
   
 </div>
 
