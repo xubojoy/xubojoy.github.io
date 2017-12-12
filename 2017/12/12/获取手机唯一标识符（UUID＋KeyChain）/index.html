@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="xubojoy">
 <meta property="og:description" content="UDID的唯一性使得许多开发者可以从多个应用收集用户的许多隐私数据。这是苹果不允许的，在iOS 5的时候，废除掉相关信息。现在应用试图获取UDID被禁止且不允许上架。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-12T11:09:43.475Z">
+<meta property="og:updated_time" content="2017-12-12T11:14:05.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="获取手机唯一标识符（UUID＋KeyChain）">
 <meta name="twitter:description" content="UDID的唯一性使得许多开发者可以从多个应用收集用户的许多隐私数据。这是苹果不允许的，在iOS 5的时候，废除掉相关信息。现在应用试图获取UDID被禁止且不允许上架。">
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  445
+                  462
                 </span>
               
 
@@ -469,6 +469,10 @@
         <p><code>UDID</code>的唯一性使得许多开发者可以从多个应用收集用户的许多隐私数据。这是苹果不允许的，在<code>iOS 5</code>的时候，废除掉相关信息。现在应用试图获取<code>UDID</code>被禁止且不允许上架。</p>
 <a id="more"></a>
 <p>这时候就需要另一种标识来替代这种唯一性，这就是接下来要讲的<code>UUID</code><br>使用<code>UUID</code>来作为设备的唯一标识。获取到<code>UUID</code>后，如果用<code>NSUserDefaults</code>存储，当程序被卸载后重装时，再获得的UUID和之前就不同了。使用keychain存储可以保证程序卸载重装时，UUID不变。但当刷机或者升级系统后，UUID还是会改变的。但这也是目前为止最佳的替代方法。</p>
+<blockquote>
+<p>新建 <code>DeviceInfoObject</code>类，实现如下方法：</p>
+<p>宏定义 define KEY_UUID  @”com.xxxxx”</p>
+</blockquote>
 <pre>
 + (NSString*)getDeviceUuid
 {
@@ -854,7 +858,7 @@
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">28.1k字</span>
+    <span title="博客全站共">28.2k字</span>
   
 </div>
 
