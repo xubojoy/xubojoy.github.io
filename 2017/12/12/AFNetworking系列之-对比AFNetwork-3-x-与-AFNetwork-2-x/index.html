@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ios," />
 
 
 
@@ -86,13 +86,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="xubojoy">
-<meta property="og:url" content="http://xubojoy.github.io/archives/2017/12/index.html">
+<meta name="description" content="AFNetworking支持HTTP请求和基于REST的网络服务（包括GET、POST、 PUT以及DELETE等），支持ARC。AFNetworking项目中还包含一些列单元测试。  AFNetworking 2.0开始使用NSURLConnection的基础API ，以及较新基于NSURLSession的API的选项。AFNetworking 3.0现已完全基于NSURLSession的AP">
+<meta name="keywords" content="ios">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AFNetworking系列之--对比AFNetwork 3.x 与 AFNetwork 2.x">
+<meta property="og:url" content="http://xubojoy.github.io/2017/12/12/AFNetworking系列之-对比AFNetwork-3-x-与-AFNetwork-2-x/index.html">
 <meta property="og:site_name" content="xubojoy">
+<meta property="og:description" content="AFNetworking支持HTTP请求和基于REST的网络服务（包括GET、POST、 PUT以及DELETE等），支持ARC。AFNetworking项目中还包含一些列单元测试。  AFNetworking 2.0开始使用NSURLConnection的基础API ，以及较新基于NSURLSession的API的选项。AFNetworking 3.0现已完全基于NSURLSession的AP">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-12T10:45:40.203Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xubojoy">
+<meta name="twitter:title" content="AFNetworking系列之--对比AFNetwork 3.x 与 AFNetwork 2.x">
+<meta name="twitter:description" content="AFNetworking支持HTTP请求和基于REST的网络服务（包括GET、POST、 PUT以及DELETE等），支持ARC。AFNetworking项目中还包含一些列单元测试。  AFNetworking 2.0开始使用NSURLConnection的基础API ，以及较新基于NSURLSession的API的选项。AFNetworking 3.0现已完全基于NSURLSession的AP">
 
 
 
@@ -122,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://xubojoy.github.io/archives/2017/12/"/>
+  <link rel="canonical" href="http://xubojoy.github.io/2017/12/12/AFNetworking系列之-对比AFNetwork-3-x-与-AFNetwork-2-x/"/>
 
 
 
 
 
-  <title>归档 | xubojoy</title>
+  <title>AFNetworking系列之--对比AFNetwork 3.x 与 AFNetwork 2.x | xubojoy</title>
   
 
 
@@ -157,7 +162,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <a href="https://github.com/xubojoy"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
@@ -327,148 +332,415 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2017/12/12/AFNetworking系列之-对比AFNetwork-3-x-与-AFNetwork-2-x/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xubojoy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xubojoy">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">AFNetworking系列之--对比AFNetwork 3.x 与 AFNetwork 2.x</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-12T18:18:54+08:00">
+                2017-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 27 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/12/AFNetworking系列之-对比AFNetwork-3-x-与-AFNetwork-2-x/" itemprop="url">
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">AFNetworking系列之--对比AFNetwork 3.x 与 AFNetwork 2.x</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,157
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-12T18:18:54+08:00"
-              content="2017-12-12" >
-          12-12
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/11/HTTPS如何保护数据传输安全/" itemprop="url">
-              
-                <span itemprop="name">HTTPS如何保护数据传输安全</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-11T18:55:17+08:00"
-              content="2017-12-11" >
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/" itemprop="url">
-              
-                <span itemprop="name">浅析DES与AES、RSA三种典型加密算法的比较</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-11T18:06:57+08:00"
-              content="2017-12-11" >
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
+        <blockquote>
+<p>AFNetworking支持HTTP请求和基于REST的网络服务（包括GET、POST、 PUT以及DELETE等），支持ARC。AFNetworking项目中还包含一些列单元测试。</p>
+</blockquote>
+<p>AFNetworking 2.0开始使用NSURLConnection的基础API ，以及较新基于NSURLSession的API的选项。<br>AFNetworking 3.0现已完全基于NSURLSession的API，删除了对 NSURLConnection的封装内容,这是因为NSURLSession能够完全替代NSURLConnection，并且具有很多优点:</p>
+<ul>
+<li>支持后台运行的网络任务</li>
+<li>暂停、停止、重启网络任务，不需要自己封装NSOperation</li>
+<li>支持断点续传，异步下载</li>
+<li>支持上传，异步上传</li>
+<li>获取下载、上传的进度</li>
+</ul>
+<blockquote>
+<p>注意:3.0版本最低支持版本是从iOS7</p>
+</blockquote>
+<h4 id="1-废弃的类"><a href="#1-废弃的类" class="headerlink" title="1.废弃的类"></a>1.废弃的类</h4><p>废弃对NSURLConnection的支持 </p>
+<p>被删除的类：</p>
+<ul>
+<li>AFURLConnectionOperation</li>
+<li>AFHTTPRequestOperation</li>
+<li>AFHTTPRequestOperationManager</li>
+</ul>
+<p>用以替代的是下面的类:</p>
+<ul>
+<li>AFURLSessionManager</li>
+<li>AFHTTPSessionManager</li>
+</ul>
+<p>进行修改的类：</p>
+<ul>
+<li>UIImageView+AFNetworking</li>
+<li>UIWebView+AFNetworking.h</li>
+<li>UIButton+AFNetworking.h</li>
+</ul>
+<p>如果你之前的开发是基于AFHTTPRequestOperationManager的网络请求现在你应该转到AFHTTPSessionManager下去进行</p>
+<h4 id="UIKit的迁移"><a href="#UIKit的迁移" class="headerlink" title="UIKit的迁移"></a>UIKit的迁移</h4><p>图片下载已经被重构，以遵循AlamofireImage架构与新的AFImageDownloader类。这个类的图片下载职责的代理人是UIButton与UIImageView的类目，并且提供了一些方法，在必要时可以自定义。类别中，下载远程图片的实际方法没有改变。</p>
+<h4 id="UIWebView的类目被重构为使用AFHTTPSessionManager作为其网络请求。"><a href="#UIWebView的类目被重构为使用AFHTTPSessionManager作为其网络请求。" class="headerlink" title="UIWebView的类目被重构为使用AFHTTPSessionManager作为其网络请求。"></a>UIWebView的类目被重构为使用AFHTTPSessionManager作为其网络请求。</h4><h4 id="UIAlertView的类目被废弃"><a href="#UIAlertView的类目被废弃" class="headerlink" title="UIAlertView的类目被废弃"></a>UIAlertView的类目被废弃</h4><p>从AFNetworking 3.0之后UIAlertView的类目因过时而被废弃。并没有提供UIAlertController类目的计划，因为这是应用程序应处理的逻辑，而不是这个库。</p>
+<h4 id="下面进行新旧对比："><a href="#下面进行新旧对比：" class="headerlink" title="下面进行新旧对比："></a>下面进行新旧对比：</h4><h5 id="AFNetwork-2-x"><a href="#AFNetwork-2-x" class="headerlink" title="AFNetwork 2.x"></a>AFNetwork 2.x</h5><pre>
+AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+  //设置网络请求超时时间
+  [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+  manager.requestSerializer.timeoutInterval = 30.0f;
+  [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+  [manager.requestSerializer setValue:@"application/x-www-form-urlencoded;" forHTTPHeaderField:@"Content-Type"];
+  [self addHeaderParams:manager];
+  manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",nil];
+  [manager POST:self.requestURL
+     parameters:self.requestParams
+        success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
+           (@"success-POST:%@",responseObject);
+
+        }
+        failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+          DebugLog(@"failurePOST:%@",error.description)             
+        }];
+        </pre>
+##### AFNetworking 3.x
+<pre>
+AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+[manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+manager.requestSerializer.timeoutInterval = 30.0f;//30.0f
+[manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+[manager.requestSerializer setValue:@"application/x-www-form-urlencoded;" forHTTPHeaderField:@"Content-Type"];
+[self addHeaderParams:manager];    
+manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",nil];
+[manager POST:self.requestURL parameters:self.requestParams progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+    NSLog(@"success-POST:%@",responseObject);
+
+} failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+}];
+</pre>
+即：每次开启一个网络请求时，首先新建一个AFHTTPSessionManager，然后将相关的requestSerializer和reponseSerializer赋值；最后发起相应的GET/POST等请求。
+
+如果是直接采用NSURLSession来请求网络，写法如下：
+<pre>
+NSURLSession *session =  [NSURLSession 
+    sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+     delegate:nil
+      delegateQueue:[NSOperationQueue mainQueue]];
+NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+      completionHandler:completionHandler];
+[dataTask resume];
+</pre>
+即：新建一个Session（多个请求要用共享的SessionManager/Session），然后新建task，激活task，完成网络请求。
+共享原因： 
+共享的Session将会复用TCP的连接，而每次都新建Session的操作将导致每次的网络请求都开启一个TCP的三次握手,共享会提升网络速度
+AFNetworking 3.x 提供的post方法：
+<pre>[manager POST: parameters: constructingBodyWithBlock: progress: success: failure:]</pre>
+<pre>[manager POST: parameters: progress: success: failure:]</pre>
+
+<p>不建议使用的方法：</p>
+<pre>[manager POST: parameters: success: failure:];</pre>
+<pre>[manager POST: parameters: constructingBodyWithBlock: success: failure:]</pre>
+
+<h4 id="AFNetworking缓存"><a href="#AFNetworking缓存" class="headerlink" title="AFNetworking缓存"></a>AFNetworking缓存</h4><p>AFNetworking实际上使用了两个独立的缓存机制：<br>(1)<code>AFImagecache</code>：一个提供图片内存缓存的类，2.x时继承自<code>NSCache</code>，3.x不再使用NSCache。<code>AFImagecache</code>3.x之前存在于<code>UIImageView+AFNetwork</code>，之后存在于<code>AFAutoPurgingImageCache中</code>。</p>
+<p>(2)<code>NSURLCache</code>：仍使用原生缓存机制：<code>NSURLCache</code>。<code>NSURLConnection’s</code>默认的URL缓存机制，用于存储<code>NSURLResponse</code>对象：一个默认缓存在内存，通过配置可以缓存到磁盘的类。<code>NSURLCache</code>对每个<code>NSURLRequest</code>对象都会遵守缓存策略（NSURLRequestCachePolicy）。</p>
+<h5 id="注意：NSCache与NSURLCache没有任何关系"><a href="#注意：NSCache与NSURLCache没有任何关系" class="headerlink" title="注意：NSCache与NSURLCache没有任何关系"></a>注意：NSCache与NSURLCache没有任何关系</h5><p>3.0之前的缓存方法：存在于<code>AFURLConnectionOperation</code>类文件中。</p>
+<pre>
+- (void)setCacheResponseBlock:(NSCachedURLResponse * (^)(NSURLConnection *connection, NSCachedURLResponse *cachedResponse))block;
+</pre>
+
+<p>3.0之后：在类<code>AFURLSessionManager</code>中</p>
+<pre>
+- (void)setDataTaskWillCacheResponseBlock:(nullable NSCachedURLResponse * (^)(NSURLSession *session,NSURLSessionDataTask *dataTask, NSCachedURLResponse *proposedResponse))block;</pre>
+
+<p>描述：</p>
+<blockquote>
+<p>Sets a block to be executed to determine the caching behavior of a data task, as handled by the NSURLSessionDataDelegate method URLSession:dataTask:willCacheResponse:completionHandler:. </p>
+<p>@param block A block object to be executed to determine the caching behavior of a data task. The block returns the response to cache, and takes three arguments: the session, the data task, and the proposed cached URL response. </p>
+</blockquote>
+<p>苹果系统缓存存储策略：</p>
+<pre><code>{   
+NSURLCacheStorageAllowed,  //默认，可以存在内存（重启设备清除），可以存储磁盘（代码清除）
+NSURLCacheStorageAllowedInMemoryOnly,
+NSURLCacheStorageNotAllowed,
+} NSURLCacheStoragePolicy;
+</code></pre><p>请求缓存策略：</p>
+<pre>
+{
+  NSURLRequestUseProtocolCachePolicy = 0, //默认策略
+  NSURLRequestReloadIgnoringLocalCacheData = 1,//忽略本地缓存，从源加载
+  NSURLRequestReloadIgnoringLocalAndRemoteCacheData = 4, // 忽略本地&服务器缓存，从源加载
+  NSURLRequestReloadIgnoringCacheData = NSURLRequestReloadIgnoringLocalCacheData,
+  NSURLRequestReturnCacheDataElseLoad = 2,  //先从缓存加载，如果没有缓存，从源加载
+  NSURLRequestReturnCacheDataDontLoad = 3,  //离线模式，加载缓存数据（无论是否过期），不从源加载
+  NSURLRequestReloadRevalidatingCacheData = 5 // 存在的缓存数据先确认有效性，无效的话从源加载 
+};
+ typedef NSUInteger NSURLRequestCachePolicy;
+ </pre>
+#### 清除所有的URL缓存Response：
+
+<pre>[[NSURLCache sharedURLCache] removeAllCachedResponses];</pre>
+      
     </div>
+    
+    
+    
+    <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+        
+    </div>
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/xubojoy.jpg" alt="xubojoy wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信订阅号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/wechat-reward-image.png" alt="xubojoy 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/alipay-reward-image.jpg" alt="xubojoy 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ios/" rel="tag"><i class="fa fa-tag"></i> ios</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/11/HTTPS如何保护数据传输安全/" rel="next" title="HTTPS如何保护数据传输安全">
+                <i class="fa fa-chevron-left"></i> HTTPS如何保护数据传输安全
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -476,6 +748,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDIwOS82NzY0"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -496,8 +777,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -603,6 +893,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-废弃的类"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-&#x5E9F;&#x5F03;&#x7684;&#x7C7B;" class="headerlink" title="1.&#x5E9F;&#x5F03;&#x7684;&#x7C7B;"></a>1.&#x5E9F;&#x5F03;&#x7684;&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIKit的迁移"><span class="nav-number">2.</span> <span class="nav-text"><a href="#UIKit&#x7684;&#x8FC1;&#x79FB;" class="headerlink" title="UIKit&#x7684;&#x8FC1;&#x79FB;"></a>UIKit&#x7684;&#x8FC1;&#x79FB;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIWebView的类目被重构为使用AFHTTPSessionManager作为其网络请求。"><span class="nav-number">3.</span> <span class="nav-text"><a href="#UIWebView&#x7684;&#x7C7B;&#x76EE;&#x88AB;&#x91CD;&#x6784;&#x4E3A;&#x4F7F;&#x7528;AFHTTPSessionManager&#x4F5C;&#x4E3A;&#x5176;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x3002;" class="headerlink" title="UIWebView&#x7684;&#x7C7B;&#x76EE;&#x88AB;&#x91CD;&#x6784;&#x4E3A;&#x4F7F;&#x7528;AFHTTPSessionManager&#x4F5C;&#x4E3A;&#x5176;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x3002;"></a>UIWebView&#x7684;&#x7C7B;&#x76EE;&#x88AB;&#x91CD;&#x6784;&#x4E3A;&#x4F7F;&#x7528;AFHTTPSessionManager&#x4F5C;&#x4E3A;&#x5176;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x3002;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIAlertView的类目被废弃"><span class="nav-number">4.</span> <span class="nav-text"><a href="#UIAlertView&#x7684;&#x7C7B;&#x76EE;&#x88AB;&#x5E9F;&#x5F03;" class="headerlink" title="UIAlertView&#x7684;&#x7C7B;&#x76EE;&#x88AB;&#x5E9F;&#x5F03;"></a>UIAlertView&#x7684;&#x7C7B;&#x76EE;&#x88AB;&#x5E9F;&#x5F03;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下面进行新旧对比："><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x4E0B;&#x9762;&#x8FDB;&#x884C;&#x65B0;&#x65E7;&#x5BF9;&#x6BD4;&#xFF1A;" class="headerlink" title="&#x4E0B;&#x9762;&#x8FDB;&#x884C;&#x65B0;&#x65E7;&#x5BF9;&#x6BD4;&#xFF1A;"></a>&#x4E0B;&#x9762;&#x8FDB;&#x884C;&#x65B0;&#x65E7;&#x5BF9;&#x6BD4;&#xFF1A;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AFNetwork-2-x"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#AFNetwork-2-x" class="headerlink" title="AFNetwork 2.x"></a>AFNetwork 2.x</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AFNetworking缓存"><span class="nav-number">6.</span> <span class="nav-text"><a href="#AFNetworking&#x7F13;&#x5B58;" class="headerlink" title="AFNetworking&#x7F13;&#x5B58;"></a>AFNetworking&#x7F13;&#x5B58;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注意：NSCache与NSURLCache没有任何关系"><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#&#x6CE8;&#x610F;&#xFF1A;NSCache&#x4E0E;NSURLCache&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x5173;&#x7CFB;" class="headerlink" title="&#x6CE8;&#x610F;&#xFF1A;NSCache&#x4E0E;NSURLCache&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x5173;&#x7CFB;"></a>&#x6CE8;&#x610F;&#xFF1A;NSCache&#x4E0E;NSURLCache&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x5173;&#x7CFB;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -760,6 +1066,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -788,6 +1098,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
