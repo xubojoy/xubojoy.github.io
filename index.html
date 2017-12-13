@@ -443,105 +443,14 @@
 
       
         
-          
-            <p> iOS9为我们提供了两种屏幕标签，分别是静态标签和动态标签。</p>
-<p> 1、静态标签</p>
-<p>必填项（下面两个键值是必须设置的）：</p>
-<p><code>UIApplicationShortcutItemType</code> 这个键值设置一个快捷通道类型的字符串 </p>
-<p><code>UIApplicationShortcutItemTitle</code> 这个键值设置标签的标题</p>
-<p>选填项（下面这些键值不是必须设置的）：</p>
-<p><code>UIApplicationShortcutItemSubtitle</code> 设置标签的副标题</p>
-<p><code>UIApplicationShortcutItemIconType</code> 设置标签Icon类型</p>
-<p><code>UIApplicationShortcutItemIconFile</code>  设置标签的Icon文件</p>
-<p><code>UIApplicationShortcutItemUserInfo</code> 设置信息字典(用于传值)</p>
-<p>2、动态标签</p>
-<p>动态标签是我们在程序中，通过代码添加的，与之相关的类，主要有三个：</p>
-<p><code>UIApplicationShortcutItem</code> 创建3DTouch标签的类</p>
-<p><code>UIMutableApplicationShortcutItem</code> 创建可变的3DTouch标签的类</p>
-<p><code>UIApplicationShortcutIcon</code> 创建标签中图片Icon的类</p>
-<h4 id="plist文件中需要做如下配置："><a href="#plist文件中需要做如下配置：" class="headerlink" title="plist文件中需要做如下配置："></a>plist文件中需要做如下配置：</h4><p><img src="/2017/12/13/iOS-3D-Touch使用/plist.jpg" alt=""></p>
-<h4 id="对于UIApplicationShortcutIconType苹果给了如下几种类型"><a href="#对于UIApplicationShortcutIconType苹果给了如下几种类型" class="headerlink" title="对于UIApplicationShortcutIconType苹果给了如下几种类型"></a>对于<code>UIApplicationShortcutIconType</code>苹果给了如下几种类型</h4><pre>
-typedef enum UIApplicationShortcutIconType : NSInteger {
-   UIApplicationShortcutIconTypeCompose,
-   UIApplicationShortcutIconTypePlay,
-   UIApplicationShortcutIconTypePause,
-   UIApplicationShortcutIconTypeAdd,
-   UIApplicationShortcutIconTypeLocation,
-   UIApplicationShortcutIconTypeSearch,
-   UIApplicationShortcutIconTypeShare,
-   UIApplicationShortcutIconTypeProhibit,
-   UIApplicationShortcutIconTypeContact,
-   UIApplicationShortcutIconTypeHome,
-   UIApplicationShortcutIconTypeMarkLocation,
-   UIApplicationShortcutIconTypeFavorite,
-   UIApplicationShortcutIconTypeLove,
-   UIApplicationShortcutIconTypeCloud,
-   UIApplicationShortcutIconTypeInvitation,
-   UIApplicationShortcutIconTypeConfirmation,
-   UIApplicationShortcutIconTypeMail,
-   UIApplicationShortcutIconTypeMessage,
-   UIApplicationShortcutIconTypeDate,
-   UIApplicationShortcutIconTypeTime,
-   UIApplicationShortcutIconTypeCapturePhoto,
-   UIApplicationShortcutIconTypeCaptureVideo,
-   UIApplicationShortcutIconTypeTask,
-   UIApplicationShortcutIconTypeTaskCompleted,
-   UIApplicationShortcutIconTypeAlarm,
-   UIApplicationShortcutIconTypeBookmark,
-   UIApplicationShortcutIconTypeShuffle,
-   UIApplicationShortcutIconTypeAudio,
-   UIApplicationShortcutIconTypeUpdate
-} UIApplicationShortcutIconType;</pre>
-
-
-<p>之后就是代码实现了：</p>
-<p>入口类<code>AppDelegate</code> 里方法<br><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code>实现如下：</p>
-<pre>
- if ([self respondsToSelector:@selector(traitCollection)])
-    {
-        if ([self.traitCollection respondsToSelector:@selector(forceTouchCapability)])
-        {
-            if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable)
-            {
-                // 支持3D Touch
-                [self creatShortCutItem];
-            }
-            else
-            {
-                // 不支持3D Touch
-            }
-        }
-    }
-</pre>
-接着实现方法
-<pre>
-- (void)creatShortCutItem{
-    UIApplicationShortcutIcon *searchIcon = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeSearch];
-    UIApplicationShortcutItem *searchItem = [[UIApplicationShortcutItem alloc] initWithType:@"com.xubojoy.search" localizedTitle:@"搜索" localizedSubtitle:@"subtitle" icon:searchIcon userInfo:nil];
-    UIApplicationShortcutIcon *playIcon = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypePlay];
-    UIApplicationShortcutItem *playItem = [[UIApplicationShortcutItem alloc] initWithType:@"com.xubojoy.play" localizedTitle:@"播放" localizedSubtitle:@"subtitle" icon:playIcon userInfo:nil];
-    [UIApplication sharedApplication].shortcutItems = @[searchItem,playItem];  
-}
-</pre>
-
-<p>最后是</p>
-<p><code>- (void)application:(UIApplication *)application performActionForShortcutItem:(nonnull UIApplicationShortcutItem *)shortcutItem completionHandler:(nonnull void (^)(BOOL))completionHandler</code>代理方法中实现：</p>
-<pre>
-- (void)application:(UIApplication *)application performActionForShortcutItem:(nonnull UIApplicationShortcutItem *)shortcutItem completionHandler:(nonnull void (^)(BOOL))completionHandler{
-    if (shortcutItem) {
-        if ([shortcutItem.type isEqualToString:@"com.xubojoy.search"]) {
-            NSLog(@"APP没被杀死-- 进入搜索");
-        }else if([shortcutItem.type isEqualToString:@"com.xubojoy.play"]){
-            NSLog(@"APP没被杀死-- 进入播放"); 
-        }
-    }
-    if (completionHandler) {
-        completionHandler(YES);
-    }
-}
-</pre>
-
-          
+          <p> iOS9为我们提供了两种屏幕标签，分别是静态标签和动态标签。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/13/iOS-3D-Touch使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
