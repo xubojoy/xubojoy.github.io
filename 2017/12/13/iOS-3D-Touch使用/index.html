@@ -95,7 +95,7 @@
 <meta property="og:description" content="iOS9为我们提供了两种屏幕标签，分别是静态标签和动态标签。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xubojoy.github.io/2017/12/13/iOS-3D-Touch使用/plist.jpg">
-<meta property="og:updated_time" content="2017-12-13T11:06:10.682Z">
+<meta property="og:updated_time" content="2017-12-13T11:09:05.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 3D Touch使用">
 <meta name="twitter:description" content="iOS9为我们提供了两种屏幕标签，分别是静态标签和动态标签。">
@@ -520,7 +520,8 @@ typedef enum UIApplicationShortcutIconType : NSInteger {
 
 
 <p>之后就是代码实现了：</p>
-<p>入口类<code>AppDelegate</code> 里方法<br><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code>实现如下：</p>
+<p>入口类<code>AppDelegate</code> 里方法</p>
+<pre>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</pre>实现如下：
 <pre>
  if ([self respondsToSelector:@selector(traitCollection)])
     {
@@ -550,7 +551,7 @@ typedef enum UIApplicationShortcutIconType : NSInteger {
 </pre>
 
 <p>最后是</p>
-<p><code>- (void)application:(UIApplication *)application performActionForShortcutItem:(nonnull UIApplicationShortcutItem *)shortcutItem completionHandler:(nonnull void (^)(BOOL))completionHandler</code>代理方法中实现：</p>
+<pre>- (void)application:(UIApplication *)application performActionForShortcutItem:(nonnull UIApplicationShortcutItem *)shortcutItem completionHandler:(nonnull void (^)(BOOL))completionHandler</pre>代理方法中实现：
 <pre>
 - (void)application:(UIApplication *)application performActionForShortcutItem:(nonnull UIApplicationShortcutItem *)shortcutItem completionHandler:(nonnull void (^)(BOOL))completionHandler{
     if (shortcutItem) {
