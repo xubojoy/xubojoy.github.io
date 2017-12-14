@@ -96,7 +96,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xubojoy.github.io/2017/12/13/iOS-3D-Touch使用/效果.jpeg">
 <meta property="og:image" content="http://xubojoy.github.io/2017/12/13/iOS-3D-Touch使用/plist.jpg">
-<meta property="og:updated_time" content="2017-12-14T00:56:11.379Z">
+<meta property="og:updated_time" content="2017-12-14T04:26:37.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 3D Touch使用">
 <meta name="twitter:description" content="iOS9为我们提供了两种屏幕标签，分别是静态标签和动态标签。">
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  440
+                  464
                 </span>
               
 
@@ -485,8 +485,8 @@
 <p><code>UIApplicationShortcutItem</code> 创建3DTouch标签的类</p>
 <p><code>UIMutableApplicationShortcutItem</code> 创建可变的3DTouch标签的类</p>
 <p><code>UIApplicationShortcutIcon</code> 创建标签中图片Icon的类</p>
-<h4 id="plist文件中需要做如下配置："><a href="#plist文件中需要做如下配置：" class="headerlink" title="plist文件中需要做如下配置："></a>plist文件中需要做如下配置：</h4><p><img src="/2017/12/13/iOS-3D-Touch使用/plist.jpg" alt=""></p>
-<h4 id="对于UIApplicationShortcutIconType苹果给了如下几种类型"><a href="#对于UIApplicationShortcutIconType苹果给了如下几种类型" class="headerlink" title="对于UIApplicationShortcutIconType苹果给了如下几种类型"></a>对于<code>UIApplicationShortcutIconType</code>苹果给了如下几种类型</h4><pre>
+<h4 id="两种实现方式："><a href="#两种实现方式：" class="headerlink" title="两种实现方式："></a>两种实现方式：</h4><h5 id="一、-info-plist文件实现，需要做如下配置："><a href="#一、-info-plist文件实现，需要做如下配置：" class="headerlink" title="一、 info.plist文件实现，需要做如下配置："></a>一、 info.plist文件实现，需要做如下配置：</h5><p><img src="/2017/12/13/iOS-3D-Touch使用/plist.jpg" alt=""></p>
+<h5 id="对于UIApplicationShortcutIconType苹果给了如下几种类型"><a href="#对于UIApplicationShortcutIconType苹果给了如下几种类型" class="headerlink" title="对于UIApplicationShortcutIconType苹果给了如下几种类型"></a>对于<code>UIApplicationShortcutIconType</code>苹果给了如下几种类型</h5><pre>
 typedef enum UIApplicationShortcutIconType : NSInteger {
    UIApplicationShortcutIconTypeCompose,
    UIApplicationShortcutIconTypePlay,
@@ -519,9 +519,7 @@ typedef enum UIApplicationShortcutIconType : NSInteger {
    UIApplicationShortcutIconTypeUpdate
 } UIApplicationShortcutIconType;</pre>
 
-
-<p>之后就是代码实现了：</p>
-<p>入口类<code>AppDelegate</code> 里方法</p>
+<h5 id="二、代码动态实现："><a href="#二、代码动态实现：" class="headerlink" title="二、代码动态实现："></a>二、代码动态实现：</h5><p>入口类<code>AppDelegate</code> 里方法</p>
 <pre>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</pre>实现如下：
 <pre>
  if ([self respondsToSelector:@selector(traitCollection)])
@@ -551,8 +549,7 @@ typedef enum UIApplicationShortcutIconType : NSInteger {
 }
 </pre>
 
-<p>最后是</p>
-<pre>- (void)application:(UIApplication *)application performActionForShortcutItem:(nonnull UIApplicationShortcutItem *)shortcutItem completionHandler:(nonnull void (^)(BOOL))completionHandler</pre>代理方法中实现：
+<h5 id="两种方式都要实现点击进入APP的处理代理方法："><a href="#两种方式都要实现点击进入APP的处理代理方法：" class="headerlink" title="两种方式都要实现点击进入APP的处理代理方法："></a>两种方式都要实现点击进入APP的处理代理方法：</h5><pre>- (void)application:(UIApplication *)application performActionForShortcutItem:(nonnull UIApplicationShortcutItem *)shortcutItem completionHandler:(nonnull void (^)(BOOL))completionHandler</pre>代理方法中实现：
 <pre>
 - (void)application:(UIApplication *)application performActionForShortcutItem:(nonnull UIApplicationShortcutItem *)shortcutItem completionHandler:(nonnull void (^)(BOOL))completionHandler{
     if (shortcutItem) {
@@ -872,7 +869,7 @@ typedef enum UIApplicationShortcutIconType : NSInteger {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#plist文件中需要做如下配置："><span class="nav-number">1.</span> <span class="nav-text"><a href="#plist&#x6587;&#x4EF6;&#x4E2D;&#x9700;&#x8981;&#x505A;&#x5982;&#x4E0B;&#x914D;&#x7F6E;&#xFF1A;" class="headerlink" title="plist&#x6587;&#x4EF6;&#x4E2D;&#x9700;&#x8981;&#x505A;&#x5982;&#x4E0B;&#x914D;&#x7F6E;&#xFF1A;"></a>plist&#x6587;&#x4EF6;&#x4E2D;&#x9700;&#x8981;&#x505A;&#x5982;&#x4E0B;&#x914D;&#x7F6E;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对于UIApplicationShortcutIconType苹果给了如下几种类型"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5BF9;&#x4E8E;UIApplicationShortcutIconType&#x82F9;&#x679C;&#x7ED9;&#x4E86;&#x5982;&#x4E0B;&#x51E0;&#x79CD;&#x7C7B;&#x578B;" class="headerlink" title="&#x5BF9;&#x4E8E;UIApplicationShortcutIconType&#x82F9;&#x679C;&#x7ED9;&#x4E86;&#x5982;&#x4E0B;&#x51E0;&#x79CD;&#x7C7B;&#x578B;"></a>&#x5BF9;&#x4E8E;<code>UIApplicationShortcutIconType</code>&#x82F9;&#x679C;&#x7ED9;&#x4E86;&#x5982;&#x4E0B;&#x51E0;&#x79CD;&#x7C7B;&#x578B;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#两种实现方式："><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E24;&#x79CD;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#xFF1A;" class="headerlink" title="&#x4E24;&#x79CD;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#xFF1A;"></a>&#x4E24;&#x79CD;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#xFF1A;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一、-info-plist文件实现，需要做如下配置："><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;-info-plist&#x6587;&#x4EF6;&#x5B9E;&#x73B0;&#xFF0C;&#x9700;&#x8981;&#x505A;&#x5982;&#x4E0B;&#x914D;&#x7F6E;&#xFF1A;" class="headerlink" title="&#x4E00;&#x3001; info.plist&#x6587;&#x4EF6;&#x5B9E;&#x73B0;&#xFF0C;&#x9700;&#x8981;&#x505A;&#x5982;&#x4E0B;&#x914D;&#x7F6E;&#xFF1A;"></a>&#x4E00;&#x3001; info.plist&#x6587;&#x4EF6;&#x5B9E;&#x73B0;&#xFF0C;&#x9700;&#x8981;&#x505A;&#x5982;&#x4E0B;&#x914D;&#x7F6E;&#xFF1A;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对于UIApplicationShortcutIconType苹果给了如下几种类型"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x5BF9;&#x4E8E;UIApplicationShortcutIconType&#x82F9;&#x679C;&#x7ED9;&#x4E86;&#x5982;&#x4E0B;&#x51E0;&#x79CD;&#x7C7B;&#x578B;" class="headerlink" title="&#x5BF9;&#x4E8E;UIApplicationShortcutIconType&#x82F9;&#x679C;&#x7ED9;&#x4E86;&#x5982;&#x4E0B;&#x51E0;&#x79CD;&#x7C7B;&#x578B;"></a>&#x5BF9;&#x4E8E;<code>UIApplicationShortcutIconType</code>&#x82F9;&#x679C;&#x7ED9;&#x4E86;&#x5982;&#x4E0B;&#x51E0;&#x79CD;&#x7C7B;&#x578B;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二、代码动态实现："><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;&#x4EE3;&#x7801;&#x52A8;&#x6001;&#x5B9E;&#x73B0;&#xFF1A;" class="headerlink" title="&#x4E8C;&#x3001;&#x4EE3;&#x7801;&#x52A8;&#x6001;&#x5B9E;&#x73B0;&#xFF1A;"></a>&#x4E8C;&#x3001;&#x4EE3;&#x7801;&#x52A8;&#x6001;&#x5B9E;&#x73B0;&#xFF1A;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#两种方式都要实现点击进入APP的处理代理方法："><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x90FD;&#x8981;&#x5B9E;&#x73B0;&#x70B9;&#x51FB;&#x8FDB;&#x5165;APP&#x7684;&#x5904;&#x7406;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#xFF1A;" class="headerlink" title="&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x90FD;&#x8981;&#x5B9E;&#x73B0;&#x70B9;&#x51FB;&#x8FDB;&#x5165;APP&#x7684;&#x5904;&#x7406;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#xFF1A;"></a>&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x90FD;&#x8981;&#x5B9E;&#x73B0;&#x70B9;&#x51FB;&#x8FDB;&#x5165;APP&#x7684;&#x5904;&#x7406;&#x4EE3;&#x7406;&#x65B9;&#x6CD5;&#xFF1A;</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -907,7 +904,7 @@ typedef enum UIApplicationShortcutIconType : NSInteger {
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">28.9k字</span>
+    <span title="博客全站共">29.0k字</span>
   
 </div>
 
