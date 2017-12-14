@@ -96,7 +96,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xubojoy.github.io/2017/12/13/iOS-3D-Touch使用/效果.jpeg">
 <meta property="og:image" content="http://xubojoy.github.io/2017/12/13/iOS-3D-Touch使用/plist.jpg">
-<meta property="og:updated_time" content="2017-12-14T04:26:37.353Z">
+<meta property="og:updated_time" content="2017-12-14T04:30:02.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 3D Touch使用">
 <meta name="twitter:description" content="iOS9为我们提供了两种屏幕标签，分别是静态标签和动态标签。">
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  464
+                  473
                 </span>
               
 
@@ -519,7 +519,7 @@ typedef enum UIApplicationShortcutIconType : NSInteger {
    UIApplicationShortcutIconTypeUpdate
 } UIApplicationShortcutIconType;</pre>
 
-<h5 id="二、代码动态实现："><a href="#二、代码动态实现：" class="headerlink" title="二、代码动态实现："></a>二、代码动态实现：</h5><p>入口类<code>AppDelegate</code> 里方法</p>
+<h5 id="二、代码动态实现："><a href="#二、代码动态实现：" class="headerlink" title="二、代码动态实现："></a>二、代码动态实现：</h5><p>入口类<code>AppDelegate</code> 里方法<br>定义对象<pre>@property (nonatomic, strong) UITraitCollection *traitCollection;</pre></p>
 <pre>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</pre>实现如下：
 <pre>
  if ([self respondsToSelector:@selector(traitCollection)])
