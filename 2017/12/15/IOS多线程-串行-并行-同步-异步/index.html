@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="xubojoy">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xubojoy.github.io/2017/12/15/IOS多线程-串行-并行-同步-异步/GCD.jpg">
-<meta property="og:updated_time" content="2017-12-15T14:19:09.666Z">
+<meta property="og:updated_time" content="2017-12-15T14:23:33.943Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS多线程&#x2F;串行&#x2F;并行&#x2F;同步&#x2F;异步">
 <meta name="twitter:image" content="http://xubojoy.github.io/2017/12/15/IOS多线程-串行-并行-同步-异步/GCD.jpg">
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,756
+                  1,755
                 </span>
               
 
@@ -471,10 +471,12 @@
 <p><code>线程</code>:线程是进程中一个独立的执行路径(控制单元);一个进程中至少包含一条线程，即主线程。</p>
 <p><code>队列</code>：<code>dispatch_queue_t</code>，一种先进先出的数据结构，线程的创建和回收不需要程序员操作，由队列负责。</p>
 <ul>
-<li><code>串行队列</code>：队列中的任务只会顺序执行(<code>类似跑步</code>)<br>　　　<pre>dispatch_queue_t q = dispatch_queue_create(“….”, dispatch_queue_serial);</pre></li>
-<li><code>并行队列</code>：队列中的任务通常会并发执行(<code>类似赛跑</code>)<br>　　<pre>dispatch_queue_t q = dispatch_queue_create(“……”, dispatch_queue_concurrent);</pre></li>
-<li><code>全局队列</code>：是系统开发的，直接拿过来（get）用就可以；与并行队列类似，但调试时，无法确认操作所在队列<br>　　<pre>dispatch_queue_t q = dispatch_get_global_queue(dispatch_queue_priority_default, 0);</pre></li>
-<li><code>主队列</code>：每一个应用程序对应唯一一个主队列，直接get即可；在多线程开发中，使用主队列更新UI<br>　　<pre>dispatch_queue_t q = dispatch_get_main_queue();</pre></li>
+<li><code>串行队列</code>：队列中的任务只会顺序执行(<code>类似跑步</code>)<pre>dispatch_queue_t q = dispatch_queue_create(“....”, dispatch_queue_serial);</pre></li>
+<li><code>并行队列</code>：队列中的任务通常会并发执行(<code>类似赛跑</code>)<pre>dispatch_queue_t q = dispatch_queue_create("......", dispatch_queue_concurrent);</pre></li>
+<li><code>全局队列</code>：是系统开发的，直接拿过来（get）用就可以；与并行队列类似，但调试时，无法确认操作所在队列<pre>dispatch_queue_t q = dispatch_get_global_queue(dispatch_queue_priority_default, 0);</pre></li>
+<li><code>主队列</code>：每一个应用程序对应唯一一个主队列，直接get即可；在多线程开发中，使用主队列更新UI<pre>dispatch_queue_t q = dispatch_get_main_queue();</pre>
+
+</li>
 </ul>
 <p><code>操作</code></p>
 <ul>
