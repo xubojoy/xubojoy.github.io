@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="xubojoy">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xubojoy.github.io/2017/12/15/IOS多线程-串行-并行-同步-异步/GCD.jpg">
-<meta property="og:updated_time" content="2017-12-15T14:23:33.943Z">
+<meta property="og:updated_time" content="2017-12-15T14:48:06.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS多线程&#x2F;串行&#x2F;并行&#x2F;同步&#x2F;异步">
 <meta name="twitter:image" content="http://xubojoy.github.io/2017/12/15/IOS多线程-串行-并行-同步-异步/GCD.jpg">
@@ -504,7 +504,7 @@
 </blockquote>
 <p><code>dispatch_get_main_queue()</code><br> <pre>dispatch_queue_t q = dispatch_get_main_queue();</pre></p>
 <p><code>dispatch_sync</code>同步应用开发场景,阻塞并行队列的执行，要求某一操作执行后再进行后续操作，如用户登录,确保块代码之外的局部变量确实被修改</p>
-<p><pre>dispatch_queue_t q = dispatch_queue_create(“cn.itcast.gcddemo”, dispatch_queue_concurrent);<br>__block bool login = no;<br>dispatch_sync(q, ^{<br>nslog(@”模拟耗时操作 %@”, [NSThread currentthread]);<br>[nsthread sleepfortimeinterval:2.0f];<br>nslog(@”模拟耗时完成 %@”, [NSThread currentthread]);<br>login = yes;<br> });<br>dispatch_async(q, ^{<br>nslog(@”登录完成的处理 %@”, [NSThread currentthread]);<br>});</pre></p>
+<p><pre> __block BOOL login = NO;<br> dispatch_queue_t concurrentQueue = dispatch_queue_create(“cn.xubojoy.gcdtest”, DISPATCH_QUEUE_CONCURRENT);<br> dispatch_sync(concurrentQueue, ^{<br>        NSLog(@”模拟耗时操作 %@”,[NSThread currentThread]);<br>        [NSThread sleepForTimeInterval:2.0];<br>        NSLog(@”模拟耗时完成 %@”, [NSThread currentThread]);<br>        login = YES;<br>    });<br> dispatch_async(concurrentQueue, ^{<br>         NSLog(@”登录完成的处理 %@”, [NSThread currentThread]);<br>    });</pre></p>
 <h4 id="iOS三种多线程技术："><a href="#iOS三种多线程技术：" class="headerlink" title="iOS三种多线程技术："></a>iOS三种多线程技术：</h4><p>1.<code>NSThread</code></p>
 <p> (1)使用NSThread对象建立一个线程非常方便</p>
 <p> (2)但是！要使用NSThread管理多个线程非常困难，不推荐使用
