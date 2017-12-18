@@ -4,6 +4,12 @@
     <title><![CDATA[iOS获取图片Color]]></title>
     <url>%2F2017%2F12%2F18%2FiOS%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87Color%2F</url>
     <content type="text"><![CDATA[本文介绍三种获取图片颜色方法： 1.获取图片某一点的颜色- (UIColor *)colorAtPixel:(CGPoint)point withImage:(UIImage *)image{ if (!CGRectContainsPoint(CGRectMake(0.0f, 0.0f, image.size.width, image.size.height), point)) { return nil; } NSInteger pointX = trunc(point.x); NSInteger pointY = trunc(point.y); CGImageRef cgImage = image.CGImage; NSUInteger width = image.size.width; NSUInteger height = image.size.height; CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); int bytesPerPixel = 4; int bytesPerRow = bytesPerPixel * 1; NSUInteger bitsPerComponent = 8; unsigned char pixelData[4] = { 0, 0, 0, 0 }; CGContextRef context = CGBitmapContextCreate(pixelData, 1, 1, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big); CGColorSpaceRelease(colorSpace); CGContextSetBlendMode(context, kCGBlendModeCopy); CGContextTranslateCTM(context, -pointX, pointY-(CGFloat)height); CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), cgImage); CGContextRelease(context); CGFloat red = (CGFloat)pixelData[0] / 255.0f; CGFloat green = (CGFloat)pixelData[1] / 255.0f; CGFloat blue = (CGFloat)pixelData[2] / 255.0f; CGFloat alpha = (CGFloat)pixelData[3] / 255.0f; return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } 2.获取图片的主色调- (UIColor*)mostColor:(UIImage*)image{ //#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1 int bitmapInfo = kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast; //#else int bitmapInfo = kCGImageAlphaPremultipliedLast; //#endif //第一步 先把图片缩小 加快计算速度. 但越小结果误差可能越大 CGSize thumbSize=CGSizeMake(image.size.width/2, image.size.height/2); CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); CGContextRef context = CGBitmapContextCreate(NULL, thumbSize.width, thumbSize.height, 8,//bits per component thumbSize.width*4, colorSpace, bitmapInfo); CGRect drawRect = CGRectMake(0, 0, thumbSize.width, thumbSize.height); CGContextDrawImage(context, drawRect, image.CGImage); CGColorSpaceRelease(colorSpace); //第二步 取每个点的像素值 unsigned char* data = CGBitmapContextGetData (context); if (data == NULL) return nil; NSCountedSet *cls=[NSCountedSet setWithCapacity:thumbSize.width*thumbSize.height]; for (int x=0; x]]></content>
+      <categories>
+        <category>ios</category>
+      </categories>
+      <tags>
+        <tag>ios</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[IOS多线程/串行/并行/同步/异步]]></title>
