@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="xubojoy">
 <meta property="og:description" content="首先引入第三方库 ZipArchive 导入头文件 #import &amp;quot;ZipArchive.h&amp;quot;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-20T11:07:38.386Z">
+<meta property="og:updated_time" content="2017-12-20T11:12:46.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用ZipArchive对文件压缩">
 <meta name="twitter:description" content="首先引入第三方库 ZipArchive 导入头文件 #import &amp;quot;ZipArchive.h&amp;quot;">
@@ -406,7 +406,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  159
+                  157
                 </span>
               
 
@@ -460,7 +460,7 @@
     NSData * imgData = UIImageJPEGRepresentation(imageK, 0.6);
     if([imageK isKindOfClass:[UIImage class]])
     {
-        [za addDataToZip:imgData fileAttributes:nil newname:[NSString stringWithFormat:@"%ld_%tu.png",(long)timeSp,i]];
+        [za addDataToZip:imgData fileAttributes:nil newname:[NSString stringWithFormat:@"%ld.png",(long)timeSp]];
     }
 
     //关闭zip文件操作
