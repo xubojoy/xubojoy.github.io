@@ -342,6 +342,308 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2017/12/23/iOS-常用正则表达式-二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xubojoy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xubojoy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/23/iOS-常用正则表达式-二/" itemprop="url">iOS 常用正则表达式(二)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T17:40:03+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  643
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="匹配正则表达式的一些简单封装"><a href="#匹配正则表达式的一些简单封装" class="headerlink" title="匹配正则表达式的一些简单封装"></a>匹配正则表达式的一些简单封装</h4><pre>
+- (BOOL)isValidateByRegex:(NSString *)regex {  
+    NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];  
+    return [pre evaluateWithObject:self];  
+} 
+</pre>
+
+<pre>
+/** 
+ 是否能够匹配正则表达式 
+
+ @param regex  正则表达式 
+ @param options     普配方式. 
+ @return YES：如果可以匹配正则表达式; 否则,NO. 
+ */  
+- (BOOL)matchesRegex:(NSString *)regex options:(NSRegularExpressionOptions)options {  
+    NSRegularExpression *pattern = [NSRegularExpression regularExpressionWithPattern:regex options:options error:NULL];  
+    if (!pattern) return NO;  
+    return ([pattern numberOfMatchesInString:self options:0 range:NSMakeRange(0, self.length)] > 0);  
+} 
+</pre>
+
+<pre>
+
+/** 
+ 匹配正则表达式，并使用匹配的每个对象执行给定的块。 
+
+ @param regex    正则表达式 
+ @param options  上报的匹配选项. 
+ @param block    应用于在数组元素中匹配的块. 
+ 该块需要四个参数: 
+ match: 匹配的子串. 
+ matchRange: 匹配选项. 
+ stop: 一个布尔值的引用。块可以设置YES来停止处理阵列。stop参数是一个唯一的输出。你应该给块设置YES。 
+ */  
+- (void)enumerateRegexMatches:(NSString *)regex  
+                         options:(NSRegularExpressionOptions)options  
+                      usingBlock:(void (^)(NSString *match, NSRange matchRange, BOOLBOOL *stop))block {  
+    if (regex.length == 0 || !block) return;  
+    NSRegularExpression *pattern = [NSRegularExpression regularExpressionWithPattern:regex options:options error:nil];  
+    if (!regex) return;  
+    [pattern enumerateMatchesInString:self options:kNilOptions range:NSMakeRange(0, self.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOLBOOL *stop) {  
+        block([self substringWithRange:result.range], result.range, stop);  
+    }];  
+} 
+</pre>
+
+<pre>
+
+/** 
+ 返回一个包含匹配正则表达式的新字符串替换为模版字符串。 
+
+ @param regex       正则表达式 
+ @param options     上报的匹配选项. 
+ @param replacement 用来替换匹配到的内容. 
+
+ @return 返回一个用指定字符串替换匹配字符串后的字符串. 
+ */  
+- (NSString *)stringByReplacingRegex:(NSString *)regex  
+                                options:(NSRegularExpressionOptions)options  
+                             withString:(NSString *)replacement {  
+    NSRegularExpression *pattern = [NSRegularExpression regularExpressionWithPattern:regex options:options error:nil];  
+    if (!pattern) return self;  
+    return [pattern stringByReplacingMatchesInString:self options:0 range:NSMakeRange(0, [self length]) withTemplate:replacement];  
+} 
+</pre>
+
+<h4 id="银行卡号有效性问题Luhn算法"><a href="#银行卡号有效性问题Luhn算法" class="headerlink" title="银行卡号有效性问题Luhn算法"></a>银行卡号有效性问题Luhn算法</h4><pre>
+/** 银行卡号有效性问题Luhn算法 
+ *  现行 16 位银联卡现行卡号开头 6 位是 622126～622925 之间的，7 到 15 位是银行自定义的， 
+ *  可能是发卡分行，发卡网点，发卡序号，第 16 位是校验码。 
+ *  16 位卡号校验位采用 Luhm 校验方法计算： 
+ *  1，将未带校验位的 15 位卡号从右依次编号 1 到 15，位于奇数位号上的数字乘以 2 
+ *  2，将奇位乘积的个十位全部相加，再加上所有偶数位上的数字 
+ *  3，将加法和加上校验位能被 10 整除。 
+ */  
+- (BOOL)wl_bankCardluhmCheck{  
+    NSString * lastNum = [[self substringFromIndex:(self.length-1)] copy];//取出最后一位  
+    NSString * forwardNum = [[self substringToIndex:(self.length -1)] copy];//前15或18位  
+
+    NSMutableArray * forwardArr = [[NSMutableArray alloc] initWithCapacity:0];  
+    for (int i=0; i<forwardnum.length; i++)="" {="" nsstring="" *="" substr="[forwardNum" substringwithrange:nsmakerange(i,="" 1)];="" [forwardarr="" addobject:substr];="" }="" nsmutablearray="" forwarddescarr="[[NSMutableArray" alloc]="" initwithcapacity:0];="" for="" (int="" i="(int)(forwardArr.count-1);"> -1; i--) {//前15位或者前18位倒序存进数组  
+        [forwardDescArr addObject:forwardArr[i]];  
+    }  
+
+    NSMutableArray * arrOddNum = [[NSMutableArray alloc] initWithCapacity:0];//奇数位*2的积 < 9  
+    NSMutableArray * arrOddNum2 = [[NSMutableArray alloc] initWithCapacity:0];//奇数位*2的积 > 9  
+    NSMutableArray * arrEvenNum = [[NSMutableArray alloc] initWithCapacity:0];//偶数位数组  
+
+    for (int i=0; i< forwardDescArr.count; i++) {  
+        NSInteger num = [forwardDescArr[i] intValue];  
+        if (i%2) {//偶数位  
+            [arrEvenNum addObject:[NSNumber numberWithInteger:num]];  
+        }else{//奇数位  
+            if (num * 2 < 9) {  
+                [arrOddNum addObject:[NSNumber numberWithInteger:num * 2]];  
+            }else{  
+                NSInteger decadeNum = (num * 2) / 10;  
+                NSInteger unitNum = (num * 2) % 10;  
+                [arrOddNum2 addObject:[NSNumber numberWithInteger:unitNum]];  
+                [arrOddNum2 addObject:[NSNumber numberWithInteger:decadeNum]];  
+            }  
+        }  
+    }  
+
+    __block  NSInteger sumOddNumTotal = 0;  
+    [arrOddNum enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOLBOOL *stop) {  
+        sumOddNumTotal += [obj integerValue];  
+    }];  
+
+    __block NSInteger sumOddNum2Total = 0;  
+    [arrOddNum2 enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOLBOOL *stop) {  
+        sumOddNum2Total += [obj integerValue];  
+    }];  
+
+    __block NSInteger sumEvenNumTotal =0 ;  
+    [arrEvenNum enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOLBOOL *stop) {  
+        sumEvenNumTotal += [obj integerValue];  
+    }];  
+
+    NSInteger lastNumber = [lastNum integerValue];  
+
+    NSInteger luhmTotal = lastNumber + sumEvenNumTotal + sumOddNum2Total + sumOddNumTotal;  
+
+    return (luhmTotal%10 ==0)?YES:NO;  
+}
+</forwardnum.length;></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+        
+    </div>
+    
+
+    
+
+    
+
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2017/12/23/iOS-常用正则表达式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2471,187 +2773,6 @@ func isTrueIDNumber(text:String) -> Bool{
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xubojoy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xubojoy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/" itemprop="url">浅析DES与AES、RSA三种典型加密算法的比较</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-11T18:06:57+08:00">
-                2017-12-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/服务器/" itemprop="url" rel="index">
-                    <span itemprop="name">服务器</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  794
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="DES与AES的比较"><a href="#DES与AES的比较" class="headerlink" title="DES与AES的比较"></a>DES与AES的比较</h4><p>自DES 算法公诸于世以来，学术界围绕它的安全性等方面进行了研究并展开了激烈的争论。在技术上，对DES的批评主要集中在以下几个方面：<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    <div>
-        
-    </div>
-    
-
-    
-
-    
-
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2706,7 +2827,7 @@ func isTrueIDNumber(text:String) -> Bool{
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2822,7 +2943,7 @@ func isTrueIDNumber(text:String) -> Bool{
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">34.4k字</span>
+    <span title="博客全站共">35.0k字</span>
   
 </div>
 
