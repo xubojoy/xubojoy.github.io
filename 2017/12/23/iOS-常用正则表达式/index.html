@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="xubojoy">
 <meta property="og:description" content="正则的知识常常用到，有用的东西就要记录下来，现在做下整理！  /**   *  正则表达式简单说明   *  语法：   .       匹配除换行符以外的任意字符   \\w      匹配字母或数字或下划线或汉字   \\s      匹配任意的空白符   \\d      匹配数字   \\b      匹配单词的开始或结束   ^       匹配字符串的开始   $       匹配字符">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-23T09:30:03.495Z">
+<meta property="og:updated_time" content="2017-12-23T09:31:02.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 常用正则表达式">
 <meta name="twitter:description" content="正则的知识常常用到，有用的东西就要记录下来，现在做下整理！  /**   *  正则表达式简单说明   *  语法：   .       匹配除换行符以外的任意字符   \\w      匹配字母或数字或下划线或汉字   \\s      匹配任意的空白符   \\d      匹配数字   \\b      匹配单词的开始或结束   ^       匹配字符串的开始   $       匹配字符">
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,088
+                  3,142
                 </span>
               
 
@@ -925,7 +925,31 @@ func isTrueIDNumber(text:String) -> Bool{
     NSString *carRegex = @"^[\\u4e00-\\u9fff]{1}[a-zA-Z]{1}[-][a-zA-Z_0-9]{4}[a-zA-Z_0-9_\\u4e00-\\u9fff]$";//其中\\u4e00-\\u9fa5表示unicode编码中汉字已编码部分，\\u9fa5-\\u9fff是保留部分，将来可能会添加  
     return [self isValidateByRegex:carRegex];  
 }  
-</pre></=exp)></name></y></x></pre>
+</pre>
+
+<h4 id="IP地址有效性"><a href="#IP地址有效性" class="headerlink" title="IP地址有效性"></a>IP地址有效性</h4><pre>
+- (BOOL)isIPAddress {  
+    NSString *regex = [NSString stringWithFormat:@"^(\\\\d{1,3})\\\\.(\\\\d{1,3})\\\\.(\\\\d{1,3})\\\\.(\\\\d{1,3})$"];  
+    BOOL rc = [self isValidateByRegex:regex];  
+
+    if (rc) {  
+        NSArray *componds = [self componentsSeparatedByString:@","];  
+
+        BOOL v = YES;  
+        for (NSString *s in componds) {  
+            if (s.integerValue > 255) {  
+                v = NO;  
+                break;  
+            }  
+        }  
+
+        return v;  
+    }  
+
+    return NO;  
+} 
+</pre>
+</=exp)></name></y></x></pre>
       
     </div>
     
@@ -1230,7 +1254,7 @@ func isTrueIDNumber(text:String) -> Bool{
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#手机号正则"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x624B;&#x673A;&#x53F7;&#x6B63;&#x5219;" class="headerlink" title="&#x624B;&#x673A;&#x53F7;&#x6B63;&#x5219;"></a>&#x624B;&#x673A;&#x53F7;&#x6B63;&#x5219;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#邮箱的有效性验证"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x90AE;&#x7BB1;&#x7684;&#x6709;&#x6548;&#x6027;&#x9A8C;&#x8BC1;" class="headerlink" title="&#x90AE;&#x7BB1;&#x7684;&#x6709;&#x6548;&#x6027;&#x9A8C;&#x8BC1;"></a>&#x90AE;&#x7BB1;&#x7684;&#x6709;&#x6548;&#x6027;&#x9A8C;&#x8BC1;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网页地址的有效性"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x7F51;&#x9875;&#x5730;&#x5740;&#x7684;&#x6709;&#x6548;&#x6027;" class="headerlink" title="&#x7F51;&#x9875;&#x5730;&#x5740;&#x7684;&#x6709;&#x6548;&#x6027;"></a>&#x7F51;&#x9875;&#x5730;&#x5740;&#x7684;&#x6709;&#x6548;&#x6027;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单的身份证有效性"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x7B80;&#x5355;&#x7684;&#x8EAB;&#x4EFD;&#x8BC1;&#x6709;&#x6548;&#x6027;" class="headerlink" title="&#x7B80;&#x5355;&#x7684;&#x8EAB;&#x4EFD;&#x8BC1;&#x6709;&#x6548;&#x6027;"></a>&#x7B80;&#x5355;&#x7684;&#x8EAB;&#x4EFD;&#x8BC1;&#x6709;&#x6548;&#x6027;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#版本一"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x7248;&#x672C;&#x4E00;" class="headerlink" title="&#x7248;&#x672C;&#x4E00;"></a>&#x7248;&#x672C;&#x4E00;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#版本二（OC）"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#&#x7248;&#x672C;&#x4E8C;&#xFF08;OC&#xFF09;" class="headerlink" title="&#x7248;&#x672C;&#x4E8C;&#xFF08;OC&#xFF09;"></a>&#x7248;&#x672C;&#x4E8C;&#xFF08;OC&#xFF09;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#版本三-（swift）"><span class="nav-number">4.3.</span> <span class="nav-text"><a href="#&#x7248;&#x672C;&#x4E09;-&#xFF08;swift&#xFF09;" class="headerlink" title="&#x7248;&#x672C;&#x4E09; &#xFF08;swift&#xFF09;"></a>&#x7248;&#x672C;&#x4E09; &#xFF08;swift&#xFF09;</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#车型"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x8F66;&#x578B;" class="headerlink" title="&#x8F66;&#x578B;"></a>&#x8F66;&#x578B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断是否有特殊符号"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5224;&#x65AD;&#x662F;&#x5426;&#x6709;&#x7279;&#x6B8A;&#x7B26;&#x53F7;" class="headerlink" title="&#x5224;&#x65AD;&#x662F;&#x5426;&#x6709;&#x7279;&#x6B8A;&#x7B26;&#x53F7;"></a>&#x5224;&#x65AD;&#x662F;&#x5426;&#x6709;&#x7279;&#x6B8A;&#x7B26;&#x53F7;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#密码是否有效"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x5BC6;&#x7801;&#x662F;&#x5426;&#x6709;&#x6548;" class="headerlink" title="&#x5BC6;&#x7801;&#x662F;&#x5426;&#x6709;&#x6548;"></a>&#x5BC6;&#x7801;&#x662F;&#x5426;&#x6709;&#x6548;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#车牌号的有效性验证"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x8F66;&#x724C;&#x53F7;&#x7684;&#x6709;&#x6548;&#x6027;&#x9A8C;&#x8BC1;" class="headerlink" title="&#x8F66;&#x724C;&#x53F7;&#x7684;&#x6709;&#x6548;&#x6027;&#x9A8C;&#x8BC1;"></a>&#x8F66;&#x724C;&#x53F7;&#x7684;&#x6709;&#x6548;&#x6027;&#x9A8C;&#x8BC1;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#手机号正则"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x624B;&#x673A;&#x53F7;&#x6B63;&#x5219;" class="headerlink" title="&#x624B;&#x673A;&#x53F7;&#x6B63;&#x5219;"></a>&#x624B;&#x673A;&#x53F7;&#x6B63;&#x5219;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#邮箱的有效性验证"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x90AE;&#x7BB1;&#x7684;&#x6709;&#x6548;&#x6027;&#x9A8C;&#x8BC1;" class="headerlink" title="&#x90AE;&#x7BB1;&#x7684;&#x6709;&#x6548;&#x6027;&#x9A8C;&#x8BC1;"></a>&#x90AE;&#x7BB1;&#x7684;&#x6709;&#x6548;&#x6027;&#x9A8C;&#x8BC1;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网页地址的有效性"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x7F51;&#x9875;&#x5730;&#x5740;&#x7684;&#x6709;&#x6548;&#x6027;" class="headerlink" title="&#x7F51;&#x9875;&#x5730;&#x5740;&#x7684;&#x6709;&#x6548;&#x6027;"></a>&#x7F51;&#x9875;&#x5730;&#x5740;&#x7684;&#x6709;&#x6548;&#x6027;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单的身份证有效性"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x7B80;&#x5355;&#x7684;&#x8EAB;&#x4EFD;&#x8BC1;&#x6709;&#x6548;&#x6027;" class="headerlink" title="&#x7B80;&#x5355;&#x7684;&#x8EAB;&#x4EFD;&#x8BC1;&#x6709;&#x6548;&#x6027;"></a>&#x7B80;&#x5355;&#x7684;&#x8EAB;&#x4EFD;&#x8BC1;&#x6709;&#x6548;&#x6027;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#版本一"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x7248;&#x672C;&#x4E00;" class="headerlink" title="&#x7248;&#x672C;&#x4E00;"></a>&#x7248;&#x672C;&#x4E00;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#版本二（OC）"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#&#x7248;&#x672C;&#x4E8C;&#xFF08;OC&#xFF09;" class="headerlink" title="&#x7248;&#x672C;&#x4E8C;&#xFF08;OC&#xFF09;"></a>&#x7248;&#x672C;&#x4E8C;&#xFF08;OC&#xFF09;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#版本三-（swift）"><span class="nav-number">4.3.</span> <span class="nav-text"><a href="#&#x7248;&#x672C;&#x4E09;-&#xFF08;swift&#xFF09;" class="headerlink" title="&#x7248;&#x672C;&#x4E09; &#xFF08;swift&#xFF09;"></a>&#x7248;&#x672C;&#x4E09; &#xFF08;swift&#xFF09;</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#车型"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x8F66;&#x578B;" class="headerlink" title="&#x8F66;&#x578B;"></a>&#x8F66;&#x578B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断是否有特殊符号"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5224;&#x65AD;&#x662F;&#x5426;&#x6709;&#x7279;&#x6B8A;&#x7B26;&#x53F7;" class="headerlink" title="&#x5224;&#x65AD;&#x662F;&#x5426;&#x6709;&#x7279;&#x6B8A;&#x7B26;&#x53F7;"></a>&#x5224;&#x65AD;&#x662F;&#x5426;&#x6709;&#x7279;&#x6B8A;&#x7B26;&#x53F7;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#密码是否有效"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x5BC6;&#x7801;&#x662F;&#x5426;&#x6709;&#x6548;" class="headerlink" title="&#x5BC6;&#x7801;&#x662F;&#x5426;&#x6709;&#x6548;"></a>&#x5BC6;&#x7801;&#x662F;&#x5426;&#x6709;&#x6548;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#车牌号的有效性验证"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x8F66;&#x724C;&#x53F7;&#x7684;&#x6709;&#x6548;&#x6027;&#x9A8C;&#x8BC1;" class="headerlink" title="&#x8F66;&#x724C;&#x53F7;&#x7684;&#x6709;&#x6548;&#x6027;&#x9A8C;&#x8BC1;"></a>&#x8F66;&#x724C;&#x53F7;&#x7684;&#x6709;&#x6548;&#x6027;&#x9A8C;&#x8BC1;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IP地址有效性"><span class="nav-number">9.</span> <span class="nav-text"><a href="#IP&#x5730;&#x5740;&#x6709;&#x6548;&#x6027;" class="headerlink" title="IP&#x5730;&#x5740;&#x6709;&#x6548;&#x6027;"></a>IP&#x5730;&#x5740;&#x6709;&#x6548;&#x6027;</span></a></li></ol></div>
             
 
           </div>
