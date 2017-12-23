@@ -427,7 +427,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,182
+                  3,222
                 </span>
               
 
@@ -443,7 +443,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  16
+                  17
                 </span>
               
             </div>
@@ -962,6 +962,20 @@ func isTrueIDNumber(text:String) -> Bool{
     NSString *chineseRegex = @"^[\\u4e00-\\u9fa5]+$";  
     return [self isValidateByRegex:chineseRegex];  
 } 
+</pre>
+
+<h4 id="是否邮政编码"><a href="#是否邮政编码" class="headerlink" title="是否邮政编码"></a>是否邮政编码</h4><pre>
+- (BOOL)isValidPostalcode {  
+    NSString *postalRegex = @"^[0-8]\\\\d{5}(?!\\\\d)$";  
+    return [self isValidateByRegex:postalRegex];  
+}  
+</pre>
+
+<h4 id="是否工商税号"><a href="#是否工商税号" class="headerlink" title="是否工商税号"></a>是否工商税号</h4><pre>
+- (BOOL)isValidTaxNo {  
+    NSString *taxNoRegex = @"[0-9]\\\\d{13}([0-9]|X)$";  
+    return [self isValidateByRegex:taxNoRegex];  
+}  
 </pre></=exp)></name></y></x></pre>
           
         
@@ -2805,7 +2819,7 @@ func isTrueIDNumber(text:String) -> Bool{
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">34.3k字</span>
+    <span title="博客全站共">34.4k字</span>
   
 </div>
 
