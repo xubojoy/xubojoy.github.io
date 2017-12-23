@@ -427,7 +427,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,142
+                  3,182
                 </span>
               
 
@@ -949,7 +949,20 @@ func isTrueIDNumber(text:String) -> Bool{
     return NO;  
 } 
 </pre>
-</=exp)></name></y></x></pre>
+
+<h4 id="Mac地址有效性"><a href="#Mac地址有效性" class="headerlink" title="Mac地址有效性"></a>Mac地址有效性</h4><pre>
+- (BOOL)isMacAddress {  
+    NSString * macAddRegex = @"([A-Fa-f\\\\d]{2}:){5}[A-Fa-f\\\\d]{2}";  
+    return  [self isValidateByRegex:macAddRegex];  
+}
+</pre>
+
+<h4 id="是否纯汉字"><a href="#是否纯汉字" class="headerlink" title="是否纯汉字"></a>是否纯汉字</h4><pre>
+- (BOOL)isValidChinese {  
+    NSString *chineseRegex = @"^[\\u4e00-\\u9fa5]+$";  
+    return [self isValidateByRegex:chineseRegex];  
+} 
+</pre></=exp)></name></y></x></pre>
           
         
       
