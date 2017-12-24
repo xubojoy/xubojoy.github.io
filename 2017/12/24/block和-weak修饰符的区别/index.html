@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ios," />
 
 
 
@@ -86,13 +86,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="xubojoy">
-<meta property="og:url" content="http://xubojoy.github.io/archives/index.html">
+<meta name="description" content="今儿要整理的是有关于__block和__weak知识点！ block下循环引用的问题 __block本身并不能避免循环引用，避免循环引用需要在block内部把__block修饰的obj置为nil  __weak可以避免循环引用，但是其会导致外部对象释放了之后，block 内部也访问不到这个对象的问题，我们可以通过在 block 内部声明一个 __strong的变量来指向 weakObj，使外部对">
+<meta name="keywords" content="ios">
+<meta property="og:type" content="article">
+<meta property="og:title" content="__block和__weak修饰符的区别">
+<meta property="og:url" content="http://xubojoy.github.io/2017/12/24/block和-weak修饰符的区别/index.html">
 <meta property="og:site_name" content="xubojoy">
+<meta property="og:description" content="今儿要整理的是有关于__block和__weak知识点！ block下循环引用的问题 __block本身并不能避免循环引用，避免循环引用需要在block内部把__block修饰的obj置为nil  __weak可以避免循环引用，但是其会导致外部对象释放了之后，block 内部也访问不到这个对象的问题，我们可以通过在 block 内部声明一个 __strong的变量来指向 weakObj，使外部对">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://xubojoy.github.io/2017/12/24/block和-weak修饰符的区别/yingyong.jpeg">
+<meta property="og:updated_time" content="2017-12-24T12:35:42.749Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xubojoy">
+<meta name="twitter:title" content="__block和__weak修饰符的区别">
+<meta name="twitter:description" content="今儿要整理的是有关于__block和__weak知识点！ block下循环引用的问题 __block本身并不能避免循环引用，避免循环引用需要在block内部把__block修饰的obj置为nil  __weak可以避免循环引用，但是其会导致外部对象释放了之后，block 内部也访问不到这个对象的问题，我们可以通过在 block 内部声明一个 __strong的变量来指向 weakObj，使外部对">
+<meta name="twitter:image" content="http://xubojoy.github.io/2017/12/24/block和-weak修饰符的区别/yingyong.jpeg">
 
 
 
@@ -122,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://xubojoy.github.io/archives/"/>
+  <link rel="canonical" href="http://xubojoy.github.io/2017/12/24/block和-weak修饰符的区别/"/>
 
 
 
 
 
-  <title>归档 | xubojoy</title>
+  <title>__block和__weak修饰符的区别 | xubojoy</title>
   
 
 
@@ -157,7 +164,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <a href="https://github.com/xubojoy"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
@@ -327,780 +334,313 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 目前共计 36 篇日志。 继续努力。
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2017/12/24/block和-weak修饰符的区别/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xubojoy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xubojoy">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">__block和__weak修饰符的区别</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-24T20:14:32+08:00">
+                2017-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/24/block和-weak修饰符的区别/" itemprop="url">
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="name">__block和__weak修饰符的区别</span>
+                <span class="post-meta-item-text">分类于</span>
               
-            </a>
-        
-      </h2>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-24T20:14:32+08:00"
-              content="2017-12-24" >
-          12-24
-        </time>
-      </div>
+                
+                
+              
+            </span>
+          
 
-    </header>
-  </article>
+          
+            
+          
 
+          
+          
 
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  726
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/23/iOS-常用正则表达式-二/" itemprop="url">
-              
-                <span itemprop="name">iOS 常用正则表达式(二)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-23T17:40:03+08:00"
-              content="2017-12-23" >
-          12-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <p><img src="/2017/12/24/block和-weak修饰符的区别/yingyong.jpeg" alt=""></p>
+<p>今儿要整理的是有关于<code>__block</code>和<code>__weak</code>知识点！</p>
+<h5 id="block下循环引用的问题"><a href="#block下循环引用的问题" class="headerlink" title="block下循环引用的问题"></a><code>block</code>下循环引用的问题</h5><ul>
+<li><p><code>__block</code>本身并不能避免循环引用，避免循环引用需要在block内部把<code>__block</code>修饰的obj置为<code>nil</code></p>
+</li>
+<li><p><code>__weak</code>可以避免循环引用，但是其会导致外部对象释放了之后，<code>block</code> 内部也访问不到这个对象的问题，我们可以通过在 <code>block</code> 内部声明一个 <code>__strong</code>的变量来指向 <code>weakObj</code>，使外部对象既能在 <code>block</code> 内部保持住，又能避免循环引用的问题</p>
+</li>
+</ul>
+<h5 id="block与-weak功能上的区别。"><a href="#block与-weak功能上的区别。" class="headerlink" title="__block与__weak功能上的区别。"></a><code>__block</code>与<code>__weak</code>功能上的区别。</h5><ul>
+<li><code>__block</code>会持有该对象，即使超出了该对象的作用域，该对象还是会存在的，直到block对象从堆上销毁；而<code>__weak</code>仅仅是将该对象赋值给weak对象，当该对象销毁时，weak对象将指向nil；</li>
+<li><code>__block</code>可以让<code>block</code>修改局部变量，而<code>__weak</code>不能。<br>另外，<code>MRC</code>中<code>__block</code>是不会引起<code>retain</code>；但在<code>ARC</code>中<code>__block</code>则会引起<code>retain</code>。所以ARC中应该使用<code>__weak</code>。</li>
+</ul>
+<p>因此，<code>__block</code>和<code>__weak</code>修饰符的区别其实是挺明显的： </p>
+<p>1.<code>__block</code>不管是<code>ARC</code>还是<code>MRC</code>模式下都可以使用，可以修饰对象，还可以修饰基本数据类型。 </p>
+<p>2.<code>__weak</code>只能在<code>ARC</code>模式下使用，也只能修饰对象（NSString），不能修饰基本数据类型（int）。 </p>
+<p>3.<code>__block</code>对象可以在<code>block</code>中被重新赋值，<code>__weak</code>不可以。 </p>
+<p>4.<code>__block</code>对象在<code>AR</code>C下可能会导致循环引用，<code>非ARC</code>下会避免循环引用，<code>__weak</code>只在<code>ARC</code>下使用，可以避免循环引用。</p>
+<p><code>Block</code>外部使用：</p>
+<pre>__weak typeof(self) weakSelf = self;</pre>
 
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/23/iOS-常用正则表达式/" itemprop="url">
-              
-                <span itemprop="name">iOS 常用正则表达式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-23T15:22:30+08:00"
-              content="2017-12-23" >
-          12-23
-        </time>
-      </div>
-
-    </header>
-  </article>
+<p><code>Block</code>内部使用：</p>
+<pre>
+__strong typeof(weakSelf) strongSelf = weakSelf; </pre>
 
 
+<h5 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h5><p><code>block</code>中为什么会用到<code>weakself</code>是因为要避免循环引用，一旦出现循环引用那么对象就会常驻内存。如果一个应用程序里面你有很多循环引用，那么内存占用就会比较大，这当然是谁都不想看到的结果。那么问题的重点就是：什么时候会出现循环引用？先来看一个例子：</p>
+<p><pre><br>NSArray <em>anArray = @[@”1”, @”2”, @”3”];<br>[anArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL </em>stop) {<br>    [self doSomething:idx];<br>}];</pre><br>这种情况下，<code>block</code>中<code>retain</code>了<code>self</code>，当<code>block</code>中的代码被执行完后，<code>self</code>就会被<code>ARC</code>释放。所以不需要处理<code>weakself</code>的情况。</p>
+<p>再来看一个例子：</p>
+<p><pre><br>@interface ViewController ()<br>@property (nonatomic, strong) void(^Block)(id obj, NSUInteger idx, BOOL *stop);<br>@end<br></pre></p>
+<p><pre><br><strong> weak ViewController<code>*</code>weakSelf = self;<br>self.Block = ^(id obj, NSUInteger idx, BOOL *stop) {<br>    [weakSelf doSomething:idx];<br>}</strong></pre><br>这个例子的区别在于：<code>block</code>被<code>self strong</code>引用。所以结果就是<code>block</code>中引用了<code>self</code>，<code>self</code>引用了<code>block</code>。那么这个时候，如果你不使用<code>weakself</code>，则<code>self</code>和<code>block</code>永远都不会被释放。<br>那么是不是遇到<code>block</code>都要使用<code>weakself</code>呢？当然不是，而且如果全部使用<code>weakself</code>，会出现你想执行<code>block</code>中的代码时，<code>self</code>已经被释放掉了的情况。另外，在处理<code>weakself</code>时，有两种做法：`weak<code>和</code>__unsafe_unretained`两种做法各有推荐。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/20/使用ZipArchive对文件压缩/" itemprop="url">
-              
-                <span itemprop="name">使用ZipArchive对文件压缩</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-20T18:22:08+08:00"
-              content="2017-12-20" >
-          12-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/18/iOS获取图片Color/" itemprop="url">
-              
-                <span itemprop="name">iOS获取图片Color</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-18T17:32:50+08:00"
-              content="2017-12-18" >
-          12-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/15/IOS多线程-串行-并行-同步-异步/" itemprop="url">
-              
-                <span itemprop="name">IOS多线程/串行/并行/同步/异步</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-15T21:40:59+08:00"
-              content="2017-12-15" >
-          12-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/13/iOS-3D-Touch使用/" itemprop="url">
-              
-                <span itemprop="name">iOS 3D Touch使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-13T18:50:33+08:00"
-              content="2017-12-13" >
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/13/iOS-Touch-ID-使用/" itemprop="url">
-              
-                <span itemprop="name">iOS Touch ID 使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-13T18:09:12+08:00"
-              content="2017-12-13" >
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/12/获取手机唯一标识符（UUID＋KeyChain）/" itemprop="url">
-              
-                <span itemprop="name">获取手机唯一标识符（UUID＋KeyChain）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-12T18:56:06+08:00"
-              content="2017-12-12" >
-          12-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/12/AFNetworking系列之-对比AFNetwork-3-x-与-AFNetwork-2-x/" itemprop="url">
-              
-                <span itemprop="name">AFNetworking系列之--对比AFNetwork 3.x 与 AFNetwork 2.x</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-12T18:18:54+08:00"
-              content="2017-12-12" >
-          12-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/11/HTTPS如何保护数据传输安全/" itemprop="url">
-              
-                <span itemprop="name">HTTPS如何保护数据传输安全</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-11T18:55:17+08:00"
-              content="2017-12-11" >
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/" itemprop="url">
-              
-                <span itemprop="name">浅析DES与AES、RSA三种典型加密算法的比较</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-11T18:06:57+08:00"
-              content="2017-12-11" >
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/30/iOS判断手机是否越狱/" itemprop="url">
-              
-                <span itemprop="name">iOS判断手机是否越狱</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-30T17:29:18+08:00"
-              content="2017-11-30" >
-          11-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/29/Runtime妙用之-归档/" itemprop="url">
-              
-                <span itemprop="name">Runtime妙用之-归档</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-29T18:29:00+08:00"
-              content="2017-11-29" >
-          11-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/17/多设备更新博客/" itemprop="url">
-              
-                <span itemprop="name">多设备更新博客</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-17T00:12:17+08:00"
-              content="2017-08-17" >
-          08-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/01/Mac本地搭建IPv6环境/" itemprop="url">
-              
-                <span itemprop="name">Mac本地搭建IPv6环境</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-01T00:08:49+08:00"
-              content="2017-05-01" >
-          05-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/23/Python猜数小游戏/" itemprop="url">
-              
-                <span itemprop="name">Python猜数小游戏</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-23T10:57:15+08:00"
-              content="2017-04-23" >
-          04-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/21/Python几种格式化输出/" itemprop="url">
-              
-                <span itemprop="name">Python几种格式化输出</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-21T22:38:23+08:00"
-              content="2017-04-21" >
-          04-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/19/清明桂林之旅/" itemprop="url">
-              
-                <span itemprop="name">清明桂林之旅</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-19T21:16:09+08:00"
-              content="2017-04-19" >
-          04-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/12/ios数据存储/" itemprop="url">
-              
-                <span itemprop="name">ios数据存储</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-12T21:43:15+08:00"
-              content="2017-04-12" >
-          04-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+    <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+        
+    </div>
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/xubojoy.jpg" alt="xubojoy wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信订阅号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/wechat-reward-image.png" alt="xubojoy 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/alipay-reward-image.jpg" alt="xubojoy 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ios/" rel="tag"><i class="fa fa-tag"></i> ios</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/23/iOS-常用正则表达式-二/" rel="next" title="iOS 常用正则表达式(二)">
+                <i class="fa fa-chevron-left"></i> iOS 常用正则表达式(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -1108,6 +648,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDIwOS82NzY0"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -1128,8 +677,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1235,6 +793,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#block下循环引用的问题"><span class="nav-number">1.</span> <span class="nav-text"><a href="#block&#x4E0B;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="block&#x4E0B;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x7684;&#x95EE;&#x9898;"></a><code>block</code>&#x4E0B;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x7684;&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#block与-weak功能上的区别。"><span class="nav-number">2.</span> <span class="nav-text"><a href="#block&#x4E0E;-weak&#x529F;&#x80FD;&#x4E0A;&#x7684;&#x533A;&#x522B;&#x3002;" class="headerlink" title="__block&#x4E0E;__weak&#x529F;&#x80FD;&#x4E0A;&#x7684;&#x533A;&#x522B;&#x3002;"></a><code>__block</code>&#x4E0E;<code>__weak</code>&#x529F;&#x80FD;&#x4E0A;&#x7684;&#x533A;&#x522B;&#x3002;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#补充："><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x8865;&#x5145;&#xFF1A;" class="headerlink" title="&#x8865;&#x5145;&#xFF1A;"></a>&#x8865;&#x5145;&#xFF1A;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1392,6 +966,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -1420,6 +998,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
