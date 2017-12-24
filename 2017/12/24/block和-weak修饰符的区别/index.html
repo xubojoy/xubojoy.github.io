@@ -86,19 +86,19 @@
 
 
 
-<meta name="description" content="今儿要整理的是有关于__block和__weak知识点！ block下循环引用的问题 __block本身并不能避免循环引用，避免循环引用需要在block内部把__block修饰的obj置为nil  __weak可以避免循环引用，但是其会导致外部对象释放了之后，block 内部也访问不到这个对象的问题，我们可以通过在 block 内部声明一个 __strong的变量来指向 weakObj，使外部对">
+<meta name="description" content="今儿要整理的是有关于__block和__weak知识点！">
 <meta name="keywords" content="ios">
 <meta property="og:type" content="article">
 <meta property="og:title" content="__block和__weak修饰符的区别">
 <meta property="og:url" content="http://xubojoy.github.io/2017/12/24/block和-weak修饰符的区别/index.html">
 <meta property="og:site_name" content="xubojoy">
-<meta property="og:description" content="今儿要整理的是有关于__block和__weak知识点！ block下循环引用的问题 __block本身并不能避免循环引用，避免循环引用需要在block内部把__block修饰的obj置为nil  __weak可以避免循环引用，但是其会导致外部对象释放了之后，block 内部也访问不到这个对象的问题，我们可以通过在 block 内部声明一个 __strong的变量来指向 weakObj，使外部对">
+<meta property="og:description" content="今儿要整理的是有关于__block和__weak知识点！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xubojoy.github.io/2017/12/24/block和-weak修饰符的区别/yingyong.jpeg">
-<meta property="og:updated_time" content="2017-12-24T12:35:42.749Z">
+<meta property="og:updated_time" content="2017-12-24T12:36:32.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="__block和__weak修饰符的区别">
-<meta name="twitter:description" content="今儿要整理的是有关于__block和__weak知识点！ block下循环引用的问题 __block本身并不能避免循环引用，避免循环引用需要在block内部把__block修饰的obj置为nil  __weak可以避免循环引用，但是其会导致外部对象释放了之后，block 内部也访问不到这个对象的问题，我们可以通过在 block 内部声明一个 __strong的变量来指向 weakObj，使外部对">
+<meta name="twitter:description" content="今儿要整理的是有关于__block和__weak知识点！">
 <meta name="twitter:image" content="http://xubojoy.github.io/2017/12/24/block和-weak修饰符的区别/yingyong.jpeg">
 
 
@@ -470,6 +470,7 @@
       
         <p><img src="/2017/12/24/block和-weak修饰符的区别/yingyong.jpeg" alt=""></p>
 <p>今儿要整理的是有关于<code>__block</code>和<code>__weak</code>知识点！</p>
+<a id="more"></a>
 <h5 id="block下循环引用的问题"><a href="#block下循环引用的问题" class="headerlink" title="block下循环引用的问题"></a><code>block</code>下循环引用的问题</h5><ul>
 <li><p><code>__block</code>本身并不能避免循环引用，避免循环引用需要在block内部把<code>__block</code>修饰的obj置为<code>nil</code></p>
 </li>
