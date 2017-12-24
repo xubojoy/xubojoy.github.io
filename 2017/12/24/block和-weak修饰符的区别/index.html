@@ -95,7 +95,7 @@
 <meta property="og:description" content="今儿要整理的是有关于__block和__weak知识点！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xubojoy.github.io/2017/12/24/block和-weak修饰符的区别/yingyong.jpeg">
-<meta property="og:updated_time" content="2017-12-24T12:36:32.576Z">
+<meta property="og:updated_time" content="2017-12-24T12:39:57.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="__block和__weak修饰符的区别">
 <meta name="twitter:description" content="今儿要整理的是有关于__block和__weak知识点！">
@@ -431,7 +431,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  726
+                  729
                 </span>
               
 
@@ -495,10 +495,21 @@ __strong typeof(weakSelf) strongSelf = weakSelf; </pre>
 
 
 <h5 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h5><p><code>block</code>中为什么会用到<code>weakself</code>是因为要避免循环引用，一旦出现循环引用那么对象就会常驻内存。如果一个应用程序里面你有很多循环引用，那么内存占用就会比较大，这当然是谁都不想看到的结果。那么问题的重点就是：什么时候会出现循环引用？先来看一个例子：</p>
-<p><pre><br>NSArray <em>anArray = @[@”1”, @”2”, @”3”];<br>[anArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL </em>stop) {<br>    [self doSomething:idx];<br>}];</pre><br>这种情况下，<code>block</code>中<code>retain</code>了<code>self</code>，当<code>block</code>中的代码被执行完后，<code>self</code>就会被<code>ARC</code>释放。所以不需要处理<code>weakself</code>的情况。</p>
-<p>再来看一个例子：</p>
-<p><pre><br>@interface ViewController ()<br>@property (nonatomic, strong) void(^Block)(id obj, NSUInteger idx, BOOL *stop);<br>@end<br></pre></p>
-<p><pre><br><strong> weak ViewController<code>*</code>weakSelf = self;<br>self.Block = ^(id obj, NSUInteger idx, BOOL *stop) {<br>    [weakSelf doSomething:idx];<br>}</strong></pre><br>这个例子的区别在于：<code>block</code>被<code>self strong</code>引用。所以结果就是<code>block</code>中引用了<code>self</code>，<code>self</code>引用了<code>block</code>。那么这个时候，如果你不使用<code>weakself</code>，则<code>self</code>和<code>block</code>永远都不会被释放。<br>那么是不是遇到<code>block</code>都要使用<code>weakself</code>呢？当然不是，而且如果全部使用<code>weakself</code>，会出现你想执行<code>block</code>中的代码时，<code>self</code>已经被释放掉了的情况。另外，在处理<code>weakself</code>时，有两种做法：`weak<code>和</code>__unsafe_unretained`两种做法各有推荐。</p>
+<pre>
+NSArray *anArray = @[@"1", @"2", @"3"];
+[anArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [self doSomething:idx];
+}];</pre>
+这种情况下，`block`中`retain`了`self`，当`block`中的代码被执行完后，`self`就会被`ARC`释放。所以不需要处理`weakself`的情况。
+
+再来看一个例子：
+<pre>
+@interface ViewController ()
+@property (nonatomic, strong) void(^Block)(id obj, NSUInteger idx, BOOL *stop);
+@end
+</pre>
+
+<p><pre><br><strong>weak ViewController<code>*</code>weakSelf = self;<br>self.Block = ^(id obj, NSUInteger idx, BOOL *stop) {<br>    [weakSelf doSomething:idx];<br>}</strong></pre><br>这个例子的区别在于：<code>block</code>被<code>self strong</code>引用。所以结果就是<code>block</code>中引用了<code>self</code>，<code>self</code>引用了<code>block</code>。那么这个时候，如果你不使用<code>weakself</code>，则<code>self</code>和<code>block</code>永远都不会被释放。<br>那么是不是遇到<code>block</code>都要使用<code>weakself</code>呢？当然不是，而且如果全部使用<code>weakself</code>，会出现你想执行<code>block</code>中的代码时，<code>self</code>已经被释放掉了的情况。另外，在处理<code>weakself</code>时，有两种做法`weak<code>和</code>__unsafe_unretained`,两种做法各有推荐。</p>
 
       
     </div>
