@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="Objective-C 扩展了 C 语言，并加入了面向对象特性和 Smalltalk 式的消息传递机制。而这个扩展的核心是一个用 C 和 编译语言 写的 Runtime 库。它是 Objective-C 面向对象和动态机制的基石。Objective-C 是一个动态语言，这意味着它不仅需要一个编译器，也需要一个运行时系统来动态得创建类和对象、进行消息传递和转发。理解 Objective-C 的 R">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-28T11:07:34.920Z">
+<meta property="og:updated_time" content="2017-12-28T11:10:18.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime知识总结">
 <meta name="twitter:description" content="Objective-C 扩展了 C 语言，并加入了面向对象特性和 Smalltalk 式的消息传递机制。而这个扩展的核心是一个用 C 和 编译语言 写的 Runtime 库。它是 Objective-C 面向对象和动态机制的基石。Objective-C 是一个动态语言，这意味着它不仅需要一个编译器，也需要一个运行时系统来动态得创建类和对象、进行消息传递和转发。理解 Objective-C 的 R">
@@ -534,17 +534,23 @@ objc_setAssociatedObject(array,
 
 </li>
 </ul>
-<p>eg:关联UIButton的选中状态<br> <pre><br> 关联BOOL方法 需转NSNumber对象</pre></p>
-<ul>
-<li><p>(void)protocolBtnClick:(UIButton <em>)sender{<br>  sender.selected = !sender.selected;<br>  NSNumber </em>num = [NSNumber numberWithBool:sender.selected];<br>  //关联选中状态<br>  objc_setAssociatedObject(sender, @”protocolBtn”, num, OBJC_ASSOCIATION_RETAIN_NONATOMIC);<br>}<br></p>
+<p>eg:关联UIButton的选中状态</p>
 <pre>
+关联BOOL方法 需转NSNumber对象
+- (void)protocolBtnClick:(UIButton *)sender{
+  sender.selected = !sender.selected;
+  NSNumber *num = [NSNumber numberWithBool:sender.selected];
+  //关联选中状态
+  objc_setAssociatedObject(sender, @"protocolBtn", num, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+ </pre>
+
+ <pre>
 //获取关联值
 NSNumber *select = objc_getAssociatedObject(sender, @"protocolBtn");
 NSLog(@"____________当前状态___________%d",[select boolValue]);
-</pre>
+ </pre>
 
-</li>
-</ul>
 
       
     </div>
