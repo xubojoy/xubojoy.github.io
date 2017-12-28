@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[SVN命令行操作]]></title>
+    <url>%2F2017%2F12%2F28%2FSVN%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[从主干新建分支：svn cp [主干仓库地址] [分支地址] -m &quot;测试分支” eg: 克隆分支到本地 (svn checkout 简写 co):svn co [分支地址] 分支名 eg: 查看提交历史记录：svn log 或者 (svn log --stop-on-copy -q [分支地址]) 不同之处： 前者能够显示出历史提交的message信息 后者只能显示出提交的历史版本 检查更改及冲突：svn status 如果有解决冲突，没有就svn commit命令就可以完成提交 更新：提交前养成更新的习惯，可尽量避免冲突 svn update 提交：svn commit -m “更改说明&quot;]]></content>
+      <categories>
+        <category>服务器</category>
+      </categories>
+      <tags>
+        <tag>服务器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[平安夜的生日礼物！]]></title>
     <url>%2F2017%2F12%2F24%2F%E5%B9%B3%E5%AE%89%E5%A4%9C%E7%9A%84%E7%94%9F%E6%97%A5%E7%A4%BC%E7%89%A9%EF%BC%81%2F</url>
     <content type="text"><![CDATA[生日与我来说，从来都是安静的过了，或许忙了自己也不会记得，然而今年的生日却被提前收到了生日礼物，还是在这个平安夜，某人整理了一些照片做成了一本相册寄了过来，有些照片连我自己都没有，还是很令人意外的，毕业三年多了，虽然这些都是学生时代的礼物方式，但还是有点儿surprise，毕竟自己是个很怀旧的人！ 封面 《致青春》]]></content>

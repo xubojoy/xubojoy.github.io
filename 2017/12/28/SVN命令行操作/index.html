@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="ios," />
+  <meta name="keywords" content="服务器," />
 
 
 
@@ -86,20 +86,21 @@
 
 
 
-<meta name="description" content="清理Xcodebuild setting多余的证书路径：~/Library/MobileDevice/Provisioning Profiles">
-<meta name="keywords" content="ios">
+<meta name="description" content="从主干新建分支：svn cp [主干仓库地址] [分支地址] -m &amp;quot;测试分支” eg: 克隆分支到本地 (svn checkout 简写 co):svn co [分支地址] 分支名 eg: 查看提交历史记录：svn log  或者 (svn log --stop-on-copy -q [分支地址]) 不同之处： 前者能够显示出历史提交的message信息 后者只能显示出提交的历史版本">
+<meta name="keywords" content="服务器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="清理Xcode多余的证书">
-<meta property="og:url" content="http://xubojoy.github.io/2016/07/18/清理Xcode多余的证书/index.html">
+<meta property="og:title" content="SVN命令行操作">
+<meta property="og:url" content="http://xubojoy.github.io/2017/12/28/SVN命令行操作/index.html">
 <meta property="og:site_name" content="枫林飘雪">
-<meta property="og:description" content="清理Xcodebuild setting多余的证书路径：~/Library/MobileDevice/Provisioning Profiles">
+<meta property="og:description" content="从主干新建分支：svn cp [主干仓库地址] [分支地址] -m &amp;quot;测试分支” eg: 克隆分支到本地 (svn checkout 简写 co):svn co [分支地址] 分支名 eg: 查看提交历史记录：svn log  或者 (svn log --stop-on-copy -q [分支地址]) 不同之处： 前者能够显示出历史提交的message信息 后者只能显示出提交的历史版本">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://xubojoy.github.io/2016/07/18/清理Xcode多余的证书/profile.png">
-<meta property="og:updated_time" content="2017-12-09T16:02:53.542Z">
+<meta property="og:image" content="http://xubojoy.github.io/2017/12/28/SVN命令行操作/1.png">
+<meta property="og:image" content="http://xubojoy.github.io/2017/12/28/SVN命令行操作/2.png">
+<meta property="og:updated_time" content="2017-12-28T07:47:20.190Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="清理Xcode多余的证书">
-<meta name="twitter:description" content="清理Xcodebuild setting多余的证书路径：~/Library/MobileDevice/Provisioning Profiles">
-<meta name="twitter:image" content="http://xubojoy.github.io/2016/07/18/清理Xcode多余的证书/profile.png">
+<meta name="twitter:title" content="SVN命令行操作">
+<meta name="twitter:description" content="从主干新建分支：svn cp [主干仓库地址] [分支地址] -m &amp;quot;测试分支” eg: 克隆分支到本地 (svn checkout 简写 co):svn co [分支地址] 分支名 eg: 查看提交历史记录：svn log  或者 (svn log --stop-on-copy -q [分支地址]) 不同之处： 前者能够显示出历史提交的message信息 后者只能显示出提交的历史版本">
+<meta name="twitter:image" content="http://xubojoy.github.io/2017/12/28/SVN命令行操作/1.png">
 
 
 
@@ -129,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://xubojoy.github.io/2016/07/18/清理Xcode多余的证书/"/>
+  <link rel="canonical" href="http://xubojoy.github.io/2017/12/28/SVN命令行操作/"/>
 
 
 
 
 
-  <title>清理Xcode多余的证书 | 枫林飘雪</title>
+  <title>SVN命令行操作 | 枫林飘雪</title>
   
 
 
@@ -348,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2016/07/18/清理Xcode多余的证书/">
+    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2017/12/28/SVN命令行操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="枫林飘雪">
@@ -365,7 +366,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">清理Xcode多余的证书</h1>
+          <h1 class="post-title" itemprop="name headline">SVN命令行操作</h1>
         
 
         <div class="post-meta">
@@ -377,8 +378,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-18T22:17:16+08:00">
-                2016-07-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-28T15:34:46+08:00">
+                2017-12-28
               </time>
             
 
@@ -400,8 +401,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
                   </a>
                 </span>
 
@@ -431,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  15
+                  162
                 </span>
               
 
@@ -468,8 +469,20 @@
       
 
       
-        <h4 id="清理Xcodebuild-setting多余的证书路径：-Library-MobileDevice-Provisioning-Profiles"><a href="#清理Xcodebuild-setting多余的证书路径：-Library-MobileDevice-Provisioning-Profiles" class="headerlink" title="清理Xcodebuild setting多余的证书路径：~/Library/MobileDevice/Provisioning Profiles"></a>清理Xcodebuild setting多余的证书路径：~/Library/MobileDevice/Provisioning Profiles</h4><a id="more"></a>
-<p><img src="/2016/07/18/清理Xcode多余的证书/profile.png" alt="1"></p>
+        <h4 id="从主干新建分支："><a href="#从主干新建分支：" class="headerlink" title="从主干新建分支："></a>从主干新建分支：</h4><p><code>svn cp [主干仓库地址] [分支地址] -m &quot;测试分支”</code></p>
+<p>eg:<br><img src="/2017/12/28/SVN命令行操作/1.png" alt=""></p>
+<h4 id="克隆分支到本地-svn-checkout-简写-co"><a href="#克隆分支到本地-svn-checkout-简写-co" class="headerlink" title="克隆分支到本地 (svn checkout 简写 co):"></a>克隆分支到本地 (<code>svn checkout</code> 简写 <code>co</code>):</h4><p><code>svn co [分支地址] 分支名</code></p>
+<p>eg:<br><img src="/2017/12/28/SVN命令行操作/2.png" alt=""></p>
+<h4 id="查看提交历史记录："><a href="#查看提交历史记录：" class="headerlink" title="查看提交历史记录："></a>查看提交历史记录：</h4><p><code>svn log</code>  或者 (<code>svn log --stop-on-copy -q [分支地址]</code>)</p>
+<h5 id="不同之处："><a href="#不同之处：" class="headerlink" title="不同之处："></a>不同之处：</h5><ul>
+<li>前者能够显示出历史提交的message信息</li>
+<li>后者只能显示出提交的历史版本</li>
+</ul>
+<h4 id="检查更改及冲突："><a href="#检查更改及冲突：" class="headerlink" title="检查更改及冲突："></a>检查更改及冲突：</h4><p><code>svn status</code></p>
+<p>如果有解决冲突，没有就svn commit命令就可以完成提交</p>
+<h4 id="更新："><a href="#更新：" class="headerlink" title="更新："></a>更新：</h4><p>提交前养成更新的习惯，可尽量避免冲突</p>
+<p><code>svn update</code></p>
+<h4 id="提交："><a href="#提交：" class="headerlink" title="提交："></a>提交：</h4><p><code>svn commit -m “更改说明&quot;</code></p>
 
       
     </div>
@@ -533,7 +546,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ios/" rel="tag"><i class="fa fa-tag"></i> ios</a>
+            <a href="/tags/服务器/" rel="tag"><i class="fa fa-tag"></i> 服务器</a>
           
         </div>
       
@@ -546,8 +559,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/14/ios限制小数点后只能输入两位/" rel="next" title="ios限制小数点后只能输入两位">
-                <i class="fa fa-chevron-left"></i> ios限制小数点后只能输入两位
+              <a href="/2017/12/24/平安夜的生日礼物！/" rel="next" title="平安夜的生日礼物！">
+                <i class="fa fa-chevron-left"></i> 平安夜的生日礼物！
               </a>
             
           </div>
@@ -555,10 +568,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/25/计算两日期相差天数/" rel="prev" title="计算两日期相差天数">
-                计算两日期相差天数 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -779,7 +788,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#清理Xcodebuild-setting多余的证书路径：-Library-MobileDevice-Provisioning-Profiles"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x6E05;&#x7406;Xcodebuild-setting&#x591A;&#x4F59;&#x7684;&#x8BC1;&#x4E66;&#x8DEF;&#x5F84;&#xFF1A;-Library-MobileDevice-Provisioning-Profiles" class="headerlink" title="&#x6E05;&#x7406;Xcodebuild setting&#x591A;&#x4F59;&#x7684;&#x8BC1;&#x4E66;&#x8DEF;&#x5F84;&#xFF1A;~/Library/MobileDevice/Provisioning Profiles"></a>&#x6E05;&#x7406;Xcodebuild setting&#x591A;&#x4F59;&#x7684;&#x8BC1;&#x4E66;&#x8DEF;&#x5F84;&#xFF1A;~/Library/MobileDevice/Provisioning Profiles</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#从主干新建分支："><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4ECE;&#x4E3B;&#x5E72;&#x65B0;&#x5EFA;&#x5206;&#x652F;&#xFF1A;" class="headerlink" title="&#x4ECE;&#x4E3B;&#x5E72;&#x65B0;&#x5EFA;&#x5206;&#x652F;&#xFF1A;"></a>&#x4ECE;&#x4E3B;&#x5E72;&#x65B0;&#x5EFA;&#x5206;&#x652F;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#克隆分支到本地-svn-checkout-简写-co"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x514B;&#x9686;&#x5206;&#x652F;&#x5230;&#x672C;&#x5730;-svn-checkout-&#x7B80;&#x5199;-co" class="headerlink" title="&#x514B;&#x9686;&#x5206;&#x652F;&#x5230;&#x672C;&#x5730; (svn checkout &#x7B80;&#x5199; co):"></a>&#x514B;&#x9686;&#x5206;&#x652F;&#x5230;&#x672C;&#x5730; (<code>svn checkout</code> &#x7B80;&#x5199; <code>co</code>):</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看提交历史记录："><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x67E5;&#x770B;&#x63D0;&#x4EA4;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#xFF1A;" class="headerlink" title="&#x67E5;&#x770B;&#x63D0;&#x4EA4;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#xFF1A;"></a>&#x67E5;&#x770B;&#x63D0;&#x4EA4;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#xFF1A;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#不同之处："><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x4E0D;&#x540C;&#x4E4B;&#x5904;&#xFF1A;" class="headerlink" title="&#x4E0D;&#x540C;&#x4E4B;&#x5904;&#xFF1A;"></a>&#x4E0D;&#x540C;&#x4E4B;&#x5904;&#xFF1A;</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查更改及冲突："><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x68C0;&#x67E5;&#x66F4;&#x6539;&#x53CA;&#x51B2;&#x7A81;&#xFF1A;" class="headerlink" title="&#x68C0;&#x67E5;&#x66F4;&#x6539;&#x53CA;&#x51B2;&#x7A81;&#xFF1A;"></a>&#x68C0;&#x67E5;&#x66F4;&#x6539;&#x53CA;&#x51B2;&#x7A81;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新："><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x66F4;&#x65B0;&#xFF1A;" class="headerlink" title="&#x66F4;&#x65B0;&#xFF1A;"></a>&#x66F4;&#x65B0;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提交："><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x63D0;&#x4EA4;&#xFF1A;" class="headerlink" title="&#x63D0;&#x4EA4;&#xFF1A;"></a>&#x63D0;&#x4EA4;&#xFF1A;</span></a></li></ol></div>
             
 
           </div>
