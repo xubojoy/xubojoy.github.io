@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Runtime知识总结]]></title>
+    <url>%2F2017%2F12%2F28%2FRuntime%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[————-持续更新中————- 首先引入#import &lt;objc/runtime.h&gt; 获取类中的所有成员变量class_copyIvarList unsigned int count; //获取类中的所有成员变量 Ivar *ivarList = class_copyIvarList(self, &count); for (NSInteger i = 0; i < count; i ++) { Ivar ivar = ivarList[i]; //获得成员属性名 NSString *name = [NSString stringWithUTF8String:ivar_getName(ivar)]; NSLog(@">>>>>propertyofSelf>>name>>>>>>%@",name); } 获取父类class_getSuperclass Class current = self.class; id nw = class_getSuperclass(current); NSLog(@"---------当前-------%@",nw); 对象操作 关联对象 /** 关联 @param object#> 源对象 @param key#> 关键字 @param value#> 关联的对象 @param policy#> 关联策略 */ objc_setAssociatedObject(, , , ) 获取对象 /** 获取关联对象 @param object#> 被关联对象 @param key#> 关键字（属性） */ objc_getAssociatedObject(, ) 断开关联 /* 断开关联：直接传nil即可 */ objc_setAssociatedObject(array, &associatedKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC) eg:关联UIButton的选中状态 关联BOOL方法 需转NSNumber对象 (void)protocolBtnClick:(UIButton )sender{ sender.selected = !sender.selected; NSNumber num = [NSNumber numberWithBool:sender.selected]; //关联选中状态 objc_setAssociatedObject(sender, @”protocolBtn”, num, OBJC_ASSOCIATION_RETAIN_NONATOMIC);} //获取关联值 NSNumber *select = objc_getAssociatedObject(sender, @"protocolBtn"); NSLog(@"____________当前状态___________%d",[select boolValue]);]]></content>
+      <categories>
+        <category>ios</category>
+      </categories>
+      <tags>
+        <tag>ios</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[SVN命令行操作]]></title>
     <url>%2F2017%2F12%2F28%2FSVN%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C%2F</url>
     <content type="text"><![CDATA[从主干新建分支：svn cp [主干仓库地址] [分支地址] -m &quot;测试分支” eg: 克隆分支到本地 (svn checkout 简写 co):svn co [分支地址] 分支名 eg: 查看提交历史记录：svn log 或者 (svn log --stop-on-copy -q [分支地址]) 不同之处： 前者能够显示出历史提交的message信息 后者只能显示出提交的历史版本 更新：提交前养成更新的习惯，可尽量避免冲突 svn update 检查更改及冲突：svn status 如果有解决冲突，没有就svn commit命令就可以完成提交 添加更改文件 添加单个文件 svn add [文件] eg: $ svn add update_plist 添加批量文件 svn add * 提交：svn commit -m “更改说明&quot; ———————–未完待续———————–]]></content>
