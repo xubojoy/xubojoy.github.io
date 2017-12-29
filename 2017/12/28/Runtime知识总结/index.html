@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="Objective-C 扩展了 C 语言，并加入了面向对象特性和 Smalltalk 式的消息传递机制。而这个扩展的核心是一个用 C 和 编译语言 写的 Runtime 库。它是 Objective-C 面向对象和动态机制的基石。Objective-C 是一个动态语言，这意味着它不仅需要一个编译器，也需要一个运行时系统来动态得创建类和对象、进行消息传递和转发。理解 Objective-C 的 R">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-29T01:11:02.493Z">
+<meta property="og:updated_time" content="2017-12-29T07:02:19.369Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime知识总结">
 <meta name="twitter:description" content="Objective-C 扩展了 C 语言，并加入了面向对象特性和 Smalltalk 式的消息传递机制。而这个扩展的核心是一个用 C 和 编译语言 写的 Runtime 库。它是 Objective-C 面向对象和动态机制的基石。Objective-C 是一个动态语言，这意味着它不仅需要一个编译器，也需要一个运行时系统来动态得创建类和对象、进行消息传递和转发。理解 Objective-C 的 R">
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  399
+                  584
                 </span>
               
 
@@ -445,7 +445,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -548,8 +548,58 @@ objc_setAssociatedObject(array,
 //获取关联值
 NSNumber *select = objc_getAssociatedObject(sender, @"protocolBtn");
 NSLog(@"____________当前状态___________%d",[select boolValue]);
- </pre>
+</pre>
 
+<h5 id="给category增加属性"><a href="#给category增加属性" class="headerlink" title="给category增加属性"></a>给category增加属性</h5><p>默认情况下category不能增加属性，只能添加方法。</p>
+<p>eg: 定义类<code>UserModel</code></p>
+<pre>
+@interface UserModel : NSObject<nscoding>
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *gender;
+@end
+</nscoding></pre>
+
+<p>定义<code>UserModel</code>的category：<code>UserModel (cate)</code></p>
+<p>eg : 想给category增加一个属性remark</p>
+<pre>
+ #import "UserModel.h"
+@interface UserModel (cate)
+@property (nonatomic, strong) NSString *remark;
+@end
+</pre>
+
+<p>这样直接增加是错误的，若要增加属性，可使用<code>runtime来增加伪属性</code>：</p>
+<pre>
+ #import "UserModel.h"
+@interface UserModel (cate)
+- (NSString *)remark;
+- (void)setRemark:(NSString *)remark;
+@end
+</pre>
+
+<pre>
+#import <\objc runtime.h="">
+#import "UserModel+cate.h"
+@implementation UserModel (cate)
+/*
+ * 使用关联对象模拟实例变量
+ * 使用objc_getAssociatedObject、objc_setAssociatedObject模拟『属性』的存取方法
+ */
+- (NSString *)remark{
+    return objc_getAssociatedObject(self, _cmd);
+}
+- (void)setRemark:(NSString *)remark{
+    objc_setAssociatedObject(self, @selector(remark), remark, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+@end
+</\objc></pre>
+
+<p>输出：</p>
+<pre>UserModel *model = [[UserModel alloc] init];
+model.name = @"xubojoy";
+model.gender = @"男";
+model.remark = @"hello world !!!!";
+NSLog(@"-UserModel----%@--%@--%@",model.name,model.gender,model.remark);</pre>
 
       
     </div>
@@ -855,7 +905,7 @@ NSLog(@"____________当前状态___________%d",[select boolValue]);
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取类中的所有成员变量"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;" class="headerlink" title="&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;"></a>&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取父类"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7236;&#x7C7B;" class="headerlink" title="&#x83B7;&#x53D6;&#x7236;&#x7C7B;"></a>&#x83B7;&#x53D6;&#x7236;&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象操作"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;" class="headerlink" title="&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;"></a>&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取类中的所有成员变量"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;" class="headerlink" title="&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;"></a>&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取父类"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7236;&#x7C7B;" class="headerlink" title="&#x83B7;&#x53D6;&#x7236;&#x7C7B;"></a>&#x83B7;&#x53D6;&#x7236;&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象操作"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;" class="headerlink" title="&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;"></a>&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#给category增加属性"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;" class="headerlink" title="&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;"></a>&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -890,7 +940,7 @@ NSLog(@"____________当前状态___________%d",[select boolValue]);
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">36.5k字</span>
+    <span title="博客全站共">36.7k字</span>
   
 </div>
 
