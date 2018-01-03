@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="Objective-C 扩展了 C 语言，并加入了面向对象特性和 Smalltalk 式的消息传递机制。而这个扩展的核心是一个用 C 和 编译语言 写的 Runtime 库。它是 Objective-C 面向对象和动态机制的基石。Objective-C 是一个动态语言，这意味着它不仅需要一个编译器，也需要一个运行时系统来动态得创建类和对象、进行消息传递和转发。理解 Objective-C 的 R">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-29T07:02:19.369Z">
+<meta property="og:updated_time" content="2018-01-03T01:45:56.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime知识总结">
 <meta name="twitter:description" content="Objective-C 扩展了 C 语言，并加入了面向对象特性和 Smalltalk 式的消息传递机制。而这个扩展的核心是一个用 C 和 编译语言 写的 Runtime 库。它是 Objective-C 面向对象和动态机制的基石。Objective-C 是一个动态语言，这意味着它不仅需要一个编译器，也需要一个运行时系统来动态得创建类和对象、进行消息传递和转发。理解 Objective-C 的 R">
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  584
+                  1,153
                 </span>
               
 
@@ -445,7 +445,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  5
                 </span>
               
             </div>
@@ -486,6 +486,143 @@
         NSString *name = [NSString stringWithUTF8String:ivar_getName(ivar)];
       NSLog(@">>>>>propertyofSelf>>name>>>>>>%@",name);  
     }
+</pre>
+
+<p>eg:获取UILabel类的实例变量列表</p>
+<pre>
+- (NSArray *)ivarArray:(Class)cls {
+    unsigned int count = 0;
+    Ivar *ivarsA = class_copyIvarList(cls, &count);
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:count];
+    for (int i = 0;i < count; i++) {
+        Ivar iv = ivarsA[i];
+        NSString *ivarName = [NSString stringWithUTF8String:ivar_getName(iv)];
+        [arr addObject:ivarName];
+    }
+    free(ivarsA);
+    return arr;
+}
+</pre>
+
+<blockquote>
+<p>结果：</p>
+</blockquote>
+<pre>
+(
+    "_size",
+    "_highlightedColor",
+    "_numberOfLines",
+    "_measuredNumberOfLines",
+    "_baselineReferenceBounds",
+    "_lastLineBaseline",
+    "_previousBaselineOffsetFromBottom",
+    "_firstLineBaseline",
+    "_previousFirstLineBaseline",
+    "_minimumScaleFactor",
+    "_content",
+    "_synthesizedAttributedText",
+    "_defaultAttributes",
+    "_fallbackColorsForUserInterfaceStyle",
+    "_minimumFontSize",
+    "_lineSpacing",
+    "_layout",
+    "_scaledMetrics",
+    "_cachedIntrinsicContentSize",
+    "_contentsFormat",
+    "_cuiCatalog",
+    "_cuiStyleEffectConfiguration",
+    "_textLabelFlags",
+    "_adjustsFontForContentSizeCategory",
+    "__textColorFollowsTintColor",
+    "_preferredMaxLayoutWidth",
+    "_multilineContextWidth",
+    "__visualStyle"
+)
+</pre>
+
+<p>但是跳转到UILabel.h，你会发现里面有好多的属性不包含在我们根据该方法得出的属性数组里面，而且使用该方法得到的属性在UILabel.h里面并没有。这个是什么原因呢？<br>先看一下好多UILabel里面的属性没有在数组里面打印问题：猜想应该是在UILabel.m里面使用了@dynamic。导致没有自动生成getter、setter和ivar，所以没有在数组里面包含。</p>
+<blockquote>
+<p>@synthsize：如果没有手动实现setter/getter方法那么会自动生成，自动生成var变量。如果不写，默认生成getter/setter和var。你也可以使用该关键字自己设置自动变量的名称。<br>@dynamic告诉编译器：属性的setter/getter需要用户自己实现，不自动生成，而且也不会产生_var变量。</p>
+</blockquote>
+<p>也就是说在UILabel里面虽然有个text的属性，也许在UILabel.m里面已经包含：</p>
+<blockquote>
+<p>@dynamic text;</p>
+</blockquote>
+<p>这样的话在实现里面没有产生实例变量，只是手动实现了getter和setter，所以就不会显示text属性在刚才得到的数组里面了。<br>至于数组中有UILabel.h里面没有的变量，这个就好理解了，有可能在UILabel.m里面添加了一些实例变量或者在运行时添加了这些实例变量。 </p>
+<p>除此方法之外，你还可以使用class_copyPropertyList方法，这个是拿到的所有用 @property声明的属性,包括在.m里面添加的属性（所以打印出来的可能要比真实在.h里面看到的多），具体实现和上面的获取方法类似：</p>
+<pre>
+- (NSArray *)propertyArr:(Class)cls {
+    unsigned count = 0;
+    objc_property_t *properties = class_copyPropertyList(cls, &count);
+    if (count == 0) {
+        return nil;
+    }
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:count];
+    for (int i = 0; i < count; i ++) {
+        objc_property_t property = properties[i];
+        NSString *propertyName = [NSString stringWithUTF8String:property_getName(property)] ;
+        [arr addObject:propertyName];
+    }
+    free(properties);
+    return arr;
+}
+</pre>
+
+<blockquote>
+<p>结果</p>
+</blockquote>
+<pre>
+(
+    hash,
+    superclass,
+    description,
+    debugDescription,
+    "ab_text",
+    "ab_textAttributes",
+    "_capOffsetFromBoundsTop",
+    "_firstLineBaselineOffsetFromBoundsTop",
+    "_firstLineCapFrameOriginY",
+    "_firstLineBaselineFrameOriginY",
+    "_lastLineBaselineFrameOriginY",
+    "_drawsDebugBaselines",
+  "_wantsUnderlineForAccessibilityButtonShapesEnabled",
+    hash,
+    superclass,
+    description,
+    debugDescription,
+  "_wantsUnderlineForAccessibilityButtonShapesEnabled",
+    "_lastLineBaseline",
+    lineSpacing,
+    "_content",
+    "_synthesizedAttributedText",
+    "_textColorFollowsTintColor",
+    "_visualStyle",
+    text,
+    font,
+    textColor,
+    shadowColor,
+    shadowOffset,
+    textAlignment,
+    lineBreakMode,
+    attributedText,
+    highlightedTextColor,
+    highlighted,
+    userInteractionEnabled,
+    enabled,
+    numberOfLines,
+    adjustsFontSizeToFitWidth,
+    baselineAdjustment,
+    minimumScaleFactor,
+    allowsDefaultTighteningForTruncation,
+    preferredMaxLayoutWidth,
+    minimumFontSize,
+    adjustsLetterSpacingToFitWidth,
+    hash,
+    superclass,
+    description,
+    debugDescription,
+    adjustsFontForContentSizeCategory
+)
 </pre>
 
 <h4 id="获取父类"><a href="#获取父类" class="headerlink" title="获取父类"></a>获取父类</h4><p><code>class_getSuperclass</code></p>
@@ -940,7 +1077,7 @@ NSLog(@"-UserModel----%@--%@--%@",model.name,model.gender,model.remark);</pre>
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">36.7k字</span>
+    <span title="博客全站共">37.3k字</span>
   
 </div>
 
