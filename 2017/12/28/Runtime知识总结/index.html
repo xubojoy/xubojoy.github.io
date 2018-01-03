@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="Objective-C 扩展了 C 语言，并加入了面向对象特性和 Smalltalk 式的消息传递机制。而这个扩展的核心是一个用 C 和 编译语言 写的 Runtime 库。它是 Objective-C 面向对象和动态机制的基石。Objective-C 是一个动态语言，这意味着它不仅需要一个编译器，也需要一个运行时系统来动态得创建类和对象、进行消息传递和转发。理解 Objective-C 的 R">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-03T01:45:56.644Z">
+<meta property="og:updated_time" content="2018-01-03T01:58:55.487Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime知识总结">
 <meta name="twitter:description" content="Objective-C 扩展了 C 语言，并加入了面向对象特性和 Smalltalk 式的消息传递机制。而这个扩展的核心是一个用 C 和 编译语言 写的 Runtime 库。它是 Objective-C 面向对象和动态机制的基石。Objective-C 是一个动态语言，这意味着它不仅需要一个编译器，也需要一个运行时系统来动态得创建类和对象、进行消息传递和转发。理解 Objective-C 的 R">
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,153
+                  1,227
                 </span>
               
 
@@ -738,6 +738,50 @@ model.gender = @"男";
 model.remark = @"hello world !!!!";
 NSLog(@"-UserModel----%@--%@--%@",model.name,model.gender,model.remark);</pre>
 
+
+<h5 id="字典转model的两种方式"><a href="#字典转model的两种方式" class="headerlink" title="字典转model的两种方式"></a>字典转model的两种方式</h5><p>方式一：<code>class_copyPropertyList</code></p>
+<pre>
++ (instancetype)zg_modelFromDic:(NSDictionary *)dataDic {
+    id model = [[self alloc] init];
+    unsigned int count = 0;
+
+    objc_property_t *properties = class_copyPropertyList([self class], &count);
+    if (count == 0) {
+        return model;
+    }
+    for (int i = 0;i < count; i++) {
+        objc_property_t property = properties[i];
+        NSString *propertyName = [NSString stringWithUTF8String:property_getName(property)];
+        id value = dataDic[propertyName];
+        [model setValue:value forKey:propertyName];
+    }
+    free(properties);
+    return model;
+}
+</pre>
+
+<p>方式二：<code>class_copyIvarList</code></p>
+<pre>
++ (instancetype)zg_modelFromDic:(NSDictionary *)dataDic {
+    id model = [[self alloc] init];
+    unsigned int count = 0;
+
+    Ivar *ivarsA = class_copyIvarList(self, &count);
+    if (count == 0) {
+        return model;
+    }
+    for (int i = 0;i < count; i++) {
+        Ivar iv = ivarsA[i];
+        NSString *ivarName = [NSString stringWithUTF8String:ivar_getName(iv)];
+        ivarName = [ivarName substringFromIndex:1];
+        id value = dataDic[ivarName];
+        [model setValue:value forKey:ivarName];
+    }
+    free(ivarsA);
+    return model;
+}
+</pre>
+
       
     </div>
     
@@ -1042,7 +1086,7 @@ NSLog(@"-UserModel----%@--%@--%@",model.name,model.gender,model.remark);</pre>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取类中的所有成员变量"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;" class="headerlink" title="&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;"></a>&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取父类"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7236;&#x7C7B;" class="headerlink" title="&#x83B7;&#x53D6;&#x7236;&#x7C7B;"></a>&#x83B7;&#x53D6;&#x7236;&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象操作"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;" class="headerlink" title="&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;"></a>&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#给category增加属性"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;" class="headerlink" title="&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;"></a>&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取类中的所有成员变量"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;" class="headerlink" title="&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;"></a>&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取父类"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7236;&#x7C7B;" class="headerlink" title="&#x83B7;&#x53D6;&#x7236;&#x7C7B;"></a>&#x83B7;&#x53D6;&#x7236;&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象操作"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;" class="headerlink" title="&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;"></a>&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#给category增加属性"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;" class="headerlink" title="&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;"></a>&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字典转model的两种方式"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x5B57;&#x5178;&#x8F6C;model&#x7684;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;" class="headerlink" title="&#x5B57;&#x5178;&#x8F6C;model&#x7684;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;"></a>&#x5B57;&#x5178;&#x8F6C;model&#x7684;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;</span></a></li></ol></li></ol></div>
             
 
           </div>
