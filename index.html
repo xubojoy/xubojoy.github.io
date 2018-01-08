@@ -465,76 +465,15 @@
 
       
         
-          
-            <p>如何失效launchImage的渐渐消失效果！</p>
-<p>首先给UIView创建类别：<code>UIView (AnimationProperty)</code></p>
-<p><code>.h</code>中添加属性</p>
-<pre>
-/**
- *  CGAffineTransformMakeScale
- */
-@property (nonatomic) CGFloat  scale;
-
-/**
- *  CGAffineTransformMakeRotation
- */
-@property (nonatomic) CGFloat  angle;
-</pre>
-
-
-<p><code>.m</code>中利用<code>runtime</code>实现</p>
-<pre>
-NSString * const _recognizerScale = @"_recognizerScale";
-</pre>
-
-<pre>
-- (void)setScale:(CGFloat)scale {
-
-    objc_setAssociatedObject(self, (__bridge const void *)(_recognizerScale), @(scale), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    self.transform = CGAffineTransformMakeScale(scale, scale);
-}
-</pre>
-<pre>
-- (CGFloat)scale {
-
-    NSNumber *scaleValue = objc_getAssociatedObject(self, (__bridge const void *)(_recognizerScale));
-    return scaleValue.floatValue;
-}
-</pre>
-<pre>
-NSString * const _recognizerAngle = @"_recognizerAngle";
-</pre>
-<pre>
-- (void)setAngle:(CGFloat)angle {
-
-    objc_setAssociatedObject(self, (__bridge const void *)(_recognizerAngle), @(angle), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    self.transform = CGAffineTransformMakeRotation(angle);
-}
-</pre>
-<pre>
-- (CGFloat)angle {
-
-    NSNumber *angleValue = objc_getAssociatedObject(self, (__bridge const void *)(_recognizerAngle));
-    return angleValue.floatValue;
-}
-</pre>
-
-<p>在RootController中调用:</p>
-<pre>
- NSLog(@"-------------YBUtils.launchImage------------%@",YBUtils.launchImage);
-        // LaunchImage
- UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
- iconImageView.image        = YBUtils.launchImage;
- [self.view addSubview:iconImageView];
-        // Do animation
- [UIView animateKeyframesWithDuration:0.5f delay:0.5f options:0 animations:^{
-      iconImageView.scale = 1.2f;
-      iconImageView.alpha = 0.f;
- } completion:^(BOOL finished) {
-      [iconImageView removeFromSuperview];
- }];
-</pre>
-          
+          <p>如何失效launchImage的渐渐消失效果！</p>
+<p>首先给UIView创建类别：<code>UIView (AnimationProperty)</code><br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/08/iOS启动页渐消效果/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
