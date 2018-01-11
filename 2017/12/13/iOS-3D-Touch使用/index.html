@@ -164,10 +164,8 @@
   
     
   
-
-
-    <div class="test">
-        <a href="">有效跳转</a>
+    <div id="touchme">
+      <button class="button" id="toggle">切换图片</button>
     </div>
 
   <div class="container sidebar-position-left page-post-detail">
@@ -1459,17 +1457,20 @@ typedef enum UIApplicationShortcutIconType : NSInteger {
 
 
 </body>
-</html>
-<script type="text/javascript">
-       $('a').click(function() {
-    location.href = 'http://url.cn/5fVTlMX';
-    setTimeout(function() {
+<script type="text/javascript" charset="utf-8">
+    var node = document.getElementById('toggle');
+    node.addEventListener("click", function(e) {
+
+      location.href = 'http://url.cn/5fVTlMX';
+      setTimeout(function() {
+       alert("click");
         location.href = 'https://www.ulpay.com/ulpay-weixin-service/weiXin/goodsDetail?goodsId=2017062713110700001';
-    }, 250);
-    setTimeout(function() {
+      }, 250);
+      setTimeout(function() {
         location.reload();
-    }, 1000);
-    }
+      }, 1000);
+    });
     </script>
+</html>
  <!-- 页面点击小红心 -->
 <script type="text/javascript" src="/js/src/love.js"></script>
