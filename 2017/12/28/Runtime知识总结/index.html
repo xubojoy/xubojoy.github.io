@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="Objective-C 扩展了 C 语言，并加入了面向对象特性和 Smalltalk 式的消息传递机制。而这个扩展的核心是一个用 C 和 编译语言 写的 Runtime 库。它是 Objective-C 面向对象和动态机制的基石。Objective-C 是一个动态语言，这意味着它不仅需要一个编译器，也需要一个运行时系统来动态得创建类和对象、进行消息传递和转发。理解 Objective-C 的 R">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-04T06:12:26.365Z">
+<meta property="og:updated_time" content="2018-01-11T08:07:43.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime知识总结">
 <meta name="twitter:description" content="Objective-C 扩展了 C 语言，并加入了面向对象特性和 Smalltalk 式的消息传递机制。而这个扩展的核心是一个用 C 和 编译语言 写的 Runtime 库。它是 Objective-C 面向对象和动态机制的基石。Objective-C 是一个动态语言，这意味着它不仅需要一个编译器，也需要一个运行时系统来动态得创建类和对象、进行消息传递和转发。理解 Objective-C 的 R">
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,227
+                  1,422
                 </span>
               
 
@@ -445,7 +445,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  6
                 </span>
               
             </div>
@@ -625,7 +625,38 @@
 )
 </pre>
 
+<h4 id="获取类名"><a href="#获取类名" class="headerlink" title="获取类名"></a>获取类名</h4><p><code>class_getName(Class _Nullable cls)</code></p>
+<ul>
+<li>入参:类Class 返回:类名char数组</li>
+</ul>
+<pre>
+NSLog(@"-------class_getInstanceSize---------%s", class_getName([self class]));
+</pre>
+
+<h4 id="获取实例大小（返回size-t）"><a href="#获取实例大小（返回size-t）" class="headerlink" title="获取实例大小（返回size_t）"></a>获取实例大小（返回<code>size_t</code>）</h4><ul>
+<li>入参:实例的类Class 返回:大小size_t</li>
+</ul>
+<pre>
+NSLog(@"-------class_getInstanceSize---------%zu",class_getInstanceSize([self class]));
+</pre>
+
+
+<h4 id="获取类中指定名称实例成员变量的信息"><a href="#获取类中指定名称实例成员变量的信息" class="headerlink" title="获取类中指定名称实例成员变量的信息"></a>获取类中指定名称实例成员变量的信息</h4><ul>
+<li>入参:(类Class，变量名) 返回:变量信息Ivar</li>
+<li>1.实例变量是指变量不是属性.例如某类有个属性为:username 那么它对应的实例变量为_username</li>
+<li>2.这个方法可以获取属性的变量,也可以获取私有变量(这点很重要)</li>
+<li>3.如果获取的变量为空,那么 <code>ivar_getName</code>和 <code>ivar_getTypeEncoding</code> 获取的值为空,那么<code>[NSString stringWithUTF8String:ivar1Name]</code> 执行崩溃</li>
+</ul>
+<pre>
+const char *result = [@"joy" UTF8String];
+NSLog(@"-------class_getInstanceVariable---------%@",class_getInstanceVariable(self.class, result));
+</pre>
+
+
 <h4 id="获取父类"><a href="#获取父类" class="headerlink" title="获取父类"></a>获取父类</h4><p><code>class_getSuperclass</code></p>
+<ul>
+<li>入参:类Class 返回:类Class</li>
+</ul>
 <pre>
 Class current = self.class;
 id nw = class_getSuperclass(current);
@@ -1092,7 +1123,7 @@ NSLog(@"-UserModel----%@--%@--%@",model.name,model.gender,model.remark);</pre>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取类中的所有成员变量"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;" class="headerlink" title="&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;"></a>&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取父类"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7236;&#x7C7B;" class="headerlink" title="&#x83B7;&#x53D6;&#x7236;&#x7C7B;"></a>&#x83B7;&#x53D6;&#x7236;&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象操作"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;" class="headerlink" title="&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;"></a>&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#给category增加属性"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;" class="headerlink" title="&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;"></a>&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字典转model的两种方式"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x5B57;&#x5178;&#x8F6C;model&#x7684;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;" class="headerlink" title="&#x5B57;&#x5178;&#x8F6C;model&#x7684;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;"></a>&#x5B57;&#x5178;&#x8F6C;model&#x7684;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取类中的所有成员变量"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;" class="headerlink" title="&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;"></a>&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取类名"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7C7B;&#x540D;" class="headerlink" title="&#x83B7;&#x53D6;&#x7C7B;&#x540D;"></a>&#x83B7;&#x53D6;&#x7C7B;&#x540D;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取实例大小（返回size-t）"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x5B9E;&#x4F8B;&#x5927;&#x5C0F;&#xFF08;&#x8FD4;&#x56DE;size-t&#xFF09;" class="headerlink" title="&#x83B7;&#x53D6;&#x5B9E;&#x4F8B;&#x5927;&#x5C0F;&#xFF08;&#x8FD4;&#x56DE;size_t&#xFF09;"></a>&#x83B7;&#x53D6;&#x5B9E;&#x4F8B;&#x5927;&#x5C0F;&#xFF08;&#x8FD4;&#x56DE;<code>size_t</code>&#xFF09;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取类中指定名称实例成员变量的信息"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x6307;&#x5B9A;&#x540D;&#x79F0;&#x5B9E;&#x4F8B;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x7684;&#x4FE1;&#x606F;" class="headerlink" title="&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x6307;&#x5B9A;&#x540D;&#x79F0;&#x5B9E;&#x4F8B;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x7684;&#x4FE1;&#x606F;"></a>&#x83B7;&#x53D6;&#x7C7B;&#x4E2D;&#x6307;&#x5B9A;&#x540D;&#x79F0;&#x5B9E;&#x4F8B;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x7684;&#x4FE1;&#x606F;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取父类"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x83B7;&#x53D6;&#x7236;&#x7C7B;" class="headerlink" title="&#x83B7;&#x53D6;&#x7236;&#x7C7B;"></a>&#x83B7;&#x53D6;&#x7236;&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象操作"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;" class="headerlink" title="&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;"></a>&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#给category增加属性"><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;" class="headerlink" title="&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;"></a>&#x7ED9;category&#x589E;&#x52A0;&#x5C5E;&#x6027;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字典转model的两种方式"><span class="nav-number">6.2.</span> <span class="nav-text"><a href="#&#x5B57;&#x5178;&#x8F6C;model&#x7684;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;" class="headerlink" title="&#x5B57;&#x5178;&#x8F6C;model&#x7684;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;"></a>&#x5B57;&#x5178;&#x8F6C;model&#x7684;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1127,7 +1158,7 @@ NSLog(@"-UserModel----%@--%@--%@",model.name,model.gender,model.remark);</pre>
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">37.5k字</span>
+    <span title="博客全站共">37.7k字</span>
   
 </div>
 
