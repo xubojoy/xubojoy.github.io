@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于Objective-C与Swift混编的那些事儿]]></title>
+    <url>%2F2018%2F01%2F24%2F%E5%85%B3%E4%BA%8EObjective-C%E4%B8%8ESwift%E6%B7%B7%E7%BC%96%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF%2F</url>
+    <content type="text"><![CDATA[新建OC或者swift工程，在OC工程创建swift类或者在swift工程里创建OC类，Xcode会提示创建bridging桥接文件，如： 之后，先以OC调用swift为例：首先在OC中需要调用Swift类的OC类中导入#import &quot;xxxx-Swift.h&quot;,其中xxxx为项目名称,此时直接调用swift类可能不会提示，我们需要做的就是先编译一下工程，应该就可以了，就是这么神奇！ 下面先介绍下OC中调用swift类的枚举:如：swift类中枚举若是这样写： enum TestType{ case Scale case Rotate}对于swift之间的调用是木有问题的，但是若要OC来调用，就需要修改一下书写方法了！修改如下： @objc public enum TestType: Int { case Scale case Rotate}这样关于枚举的调用就👌了！]]></content>
+      <categories>
+        <category>ios</category>
+      </categories>
+      <tags>
+        <tag>ios</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[iOS简单倒计时动画]]></title>
     <url>%2F2018%2F01%2F24%2FiOS%E7%AE%80%E5%8D%95%E5%80%92%E8%AE%A1%E6%97%B6%E5%8A%A8%E7%94%BB%2F</url>
     <content type="text"><![CDATA[本文介绍两种简单的倒计时动画方式： swift版本： 新建CountDownLabel类继承UILabel，依次实现如下方法： var count: Int = 0 var timer = Timer.init() func startCount(){ self.initTimer() } func initTimer(){ if self.count == 0 { self.count = 5 } timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countDown), userInfo: nil, repeats: true) } func countDown(){ if count > 0 { self.text = String.init(format: "%d", count) let anima2 = CAKeyframeAnimation.init(keyPath: "transform.scale") anima2.values = [NSNumber.init(value: 3.0),NSNumber.init(value: 2.0),NSNumber.init(value: 0.7),NSNumber.init(value: 1.0)] anima2.duration = 0.5 self.layer.add(anima2, forKey: "scalsTime") count -= 1 } else { timer.invalidate() self.removeFromSuperview() } }]]></content>
