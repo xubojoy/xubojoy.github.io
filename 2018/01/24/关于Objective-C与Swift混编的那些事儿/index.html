@@ -86,19 +86,19 @@
 
 
 
-<meta name="description" content="新建OC或者swift工程，在OC工程创建swift类或者在swift工程里创建OC类，Xcode会提示创建bridging桥接文件，如：">
+<meta name="description" content="新建OC或者swift工程，在OC工程创建swift类或者在swift工程里创建OC类，Xcode会提示创建bridging桥接文件xxxx-Bridging-Header.h,其中xxxx为工程名称，如：">
 <meta name="keywords" content="ios">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Objective-C与Swift混编的那些事儿">
 <meta property="og:url" content="http://xubojoy.github.io/2018/01/24/关于Objective-C与Swift混编的那些事儿/index.html">
 <meta property="og:site_name" content="枫林飘雪">
-<meta property="og:description" content="新建OC或者swift工程，在OC工程创建swift类或者在swift工程里创建OC类，Xcode会提示创建bridging桥接文件，如：">
+<meta property="og:description" content="新建OC或者swift工程，在OC工程创建swift类或者在swift工程里创建OC类，Xcode会提示创建bridging桥接文件xxxx-Bridging-Header.h,其中xxxx为工程名称，如：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xubojoy.github.io/2018/01/24/关于Objective-C与Swift混编的那些事儿/01.png">
-<meta property="og:updated_time" content="2018-01-24T06:20:41.360Z">
+<meta property="og:updated_time" content="2018-01-24T07:25:26.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Objective-C与Swift混编的那些事儿">
-<meta name="twitter:description" content="新建OC或者swift工程，在OC工程创建swift类或者在swift工程里创建OC类，Xcode会提示创建bridging桥接文件，如：">
+<meta name="twitter:description" content="新建OC或者swift工程，在OC工程创建swift类或者在swift工程里创建OC类，Xcode会提示创建bridging桥接文件xxxx-Bridging-Header.h,其中xxxx为工程名称，如：">
 <meta name="twitter:image" content="http://xubojoy.github.io/2018/01/24/关于Objective-C与Swift混编的那些事儿/01.png">
 
 
@@ -434,7 +434,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  200
+                  259
                 </span>
               
 
@@ -471,12 +471,13 @@
       
 
       
-        <p>新建OC或者swift工程，在OC工程创建swift类或者在swift工程里创建OC类，Xcode会提示创建bridging桥接文件，如：<br><img src="/2018/01/24/关于Objective-C与Swift混编的那些事儿/01.png" alt="01"></p>
+        <p>新建OC或者swift工程，在OC工程创建swift类或者在swift工程里创建OC类，Xcode会提示创建bridging桥接文件<code>xxxx-Bridging-Header.h</code>,其中<code>xxxx</code>为工程名称，如：<br><img src="/2018/01/24/关于Objective-C与Swift混编的那些事儿/01.png" alt="01"></p>
 <a id="more"></a>
-<p>之后，先以OC调用swift为例：<br>首先在OC中需要调用Swift类的OC类中导入<code>#import &quot;xxxx-Swift.h&quot;</code>,其中<code>xxxx</code>为项目名称,此时直接调用swift类可能不会提示，我们需要做的就是先编译一下工程，应该就可以了，就是这么神奇！</p>
+<h4 id="先以OC调用swift为例："><a href="#先以OC调用swift为例：" class="headerlink" title="先以OC调用swift为例："></a>先以OC调用swift为例：</h4><p>首先在OC中需要调用Swift类的OC类中导入<code>#import &quot;xxxx-Swift.h&quot;</code>,其中<code>xxxx</code>为项目名称,此时直接调用swift类可能不会提示，我们需要做的就是先编译一下工程，应该就可以了，就是这么神奇！</p>
 <p>下面先介绍下OC中调用swift类的枚举:<br>如：swift类中枚举若是这样写：</p>
 <p><pre><br>enum TestType{<br>    case Scale<br>    case Rotate<br>}<br></pre><br>对于swift之间的调用是木有问题的，但是若要OC来调用，就需要修改一下书写方法了！修改如下：</p>
 <p><pre><br>@objc public enum TestType: Int {<br>    case Scale<br>    case Rotate<br>}<br></pre><br>这样关于枚举的调用就👌了！</p>
+<h4 id="Swift调用OC类"><a href="#Swift调用OC类" class="headerlink" title="Swift调用OC类"></a>Swift调用OC类</h4><p>swift第阿勇OC类，首先要在桥接文件<code>xxxx-Bridging-Header.h</code>中将要调用的OC类引入，如swift要使用ViewController类，则在桥接文件中导入<code>#import &quot;ViewController.h&quot;</code>即可</p>
 
       
     </div>
@@ -656,8 +657,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -763,6 +773,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#先以OC调用swift为例："><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5148;&#x4EE5;OC&#x8C03;&#x7528;swift&#x4E3A;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x5148;&#x4EE5;OC&#x8C03;&#x7528;swift&#x4E3A;&#x4F8B;&#xFF1A;"></a>&#x5148;&#x4EE5;OC&#x8C03;&#x7528;swift&#x4E3A;&#x4F8B;&#xFF1A;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Swift调用OC类"><span class="nav-number">2.</span> <span class="nav-text"><a href="#Swift&#x8C03;&#x7528;OC&#x7C7B;" class="headerlink" title="Swift&#x8C03;&#x7528;OC&#x7C7B;"></a>Swift&#x8C03;&#x7528;OC&#x7C7B;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
