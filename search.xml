@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[iOS简单倒计时动画]]></title>
+    <url>%2F2018%2F01%2F24%2FiOS%E7%AE%80%E5%8D%95%E5%80%92%E8%AE%A1%E6%97%B6%E5%8A%A8%E7%94%BB%2F</url>
+    <content type="text"><![CDATA[本文介绍两种简单的倒计时动画方式： swift版本： 新建CountDownLabel类继承UILabel，依次实现如下方法： var count: Int = 0 var timer = Timer.init() func startCount(){ self.initTimer() } func initTimer(){ if self.count == 0 { self.count = 5 } timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countDown), userInfo: nil, repeats: true) } func countDown(){ if count > 0 { self.text = String.init(format: "%d", count) let anima2 = CAKeyframeAnimation.init(keyPath: "transform.scale") anima2.values = [NSNumber.init(value: 3.0),NSNumber.init(value: 2.0),NSNumber.init(value: 0.7),NSNumber.init(value: 1.0)] anima2.duration = 0.5 self.layer.add(anima2, forKey: "scalsTime") count -= 1 } else { timer.invalidate() self.removeFromSuperview() } }]]></content>
+      <categories>
+        <category>ios</category>
+      </categories>
+      <tags>
+        <tag>ios</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[iOS启动页渐消效果]]></title>
     <url>%2F2018%2F01%2F08%2FiOS%E5%90%AF%E5%8A%A8%E9%A1%B5%E6%B8%90%E6%B6%88%E6%95%88%E6%9E%9C%2F</url>
     <content type="text"><![CDATA[如何失效launchImage的渐渐消失效果！ 首先给UIView创建类别：UIView (AnimationProperty) .h中添加属性 /** * CGAffineTransformMakeScale */ @property (nonatomic) CGFloat scale; /** * CGAffineTransformMakeRotation */ @property (nonatomic) CGFloat angle; .m中利用runtime实现 NSString * const _recognizerScale = @"_recognizerScale"; - (void)setScale:(CGFloat)scale { objc_setAssociatedObject(self, (__bridge const void *)(_recognizerScale), @(scale), OBJC_ASSOCIATION_RETAIN_NONATOMIC); self.transform = CGAffineTransformMakeScale(scale, scale); } - (CGFloat)scale { NSNumber *scaleValue = objc_getAssociatedObject(self, (__bridge const void *)(_recognizerScale)); return scaleValue.floatValue; } NSString * const _recognizerAngle = @"_recognizerAngle"; - (void)setAngle:(CGFloat)angle { objc_setAssociatedObject(self, (__bridge const void *)(_recognizerAngle), @(angle), OBJC_ASSOCIATION_RETAIN_NONATOMIC); self.transform = CGAffineTransformMakeRotation(angle); } - (CGFloat)angle { NSNumber *angleValue = objc_getAssociatedObject(self, (__bridge const void *)(_recognizerAngle)); return angleValue.floatValue; } 在RootController中调用: NSLog(@"-------------YBUtils.launchImage------------%@",YBUtils.launchImage); // LaunchImage UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:self.view.bounds]; iconImageView.image = YBUtils.launchImage; [self.view addSubview:iconImageView]; // Do animation [UIView animateKeyframesWithDuration:0.5f delay:0.5f options:0 animations:^{ iconImageView.scale = 1.2f; iconImageView.alpha = 0.f; } completion:^(BOOL finished) { [iconImageView removeFromSuperview]; }];]]></content>
