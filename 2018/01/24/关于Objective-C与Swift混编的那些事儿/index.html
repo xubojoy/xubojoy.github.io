@@ -95,7 +95,7 @@
 <meta property="og:description" content="新建OC或者swift工程，在OC工程创建swift类或者在swift工程里创建OC类，Xcode会提示创建bridging桥接文件xxxx-Bridging-Header.h,其中xxxx为工程名称，如：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xubojoy.github.io/2018/01/24/关于Objective-C与Swift混编的那些事儿/01.png">
-<meta property="og:updated_time" content="2018-01-24T07:25:26.904Z">
+<meta property="og:updated_time" content="2018-01-24T07:27:55.975Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Objective-C与Swift混编的那些事儿">
 <meta name="twitter:description" content="新建OC或者swift工程，在OC工程创建swift类或者在swift工程里创建OC类，Xcode会提示创建bridging桥接文件xxxx-Bridging-Header.h,其中xxxx为工程名称，如：">
@@ -434,7 +434,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  259
+                  258
                 </span>
               
 
@@ -477,7 +477,7 @@
 <p>下面先介绍下OC中调用swift类的枚举:<br>如：swift类中枚举若是这样写：</p>
 <p><pre><br>enum TestType{<br>    case Scale<br>    case Rotate<br>}<br></pre><br>对于swift之间的调用是木有问题的，但是若要OC来调用，就需要修改一下书写方法了！修改如下：</p>
 <p><pre><br>@objc public enum TestType: Int {<br>    case Scale<br>    case Rotate<br>}<br></pre><br>这样关于枚举的调用就👌了！</p>
-<h4 id="Swift调用OC类"><a href="#Swift调用OC类" class="headerlink" title="Swift调用OC类"></a>Swift调用OC类</h4><p>swift第阿勇OC类，首先要在桥接文件<code>xxxx-Bridging-Header.h</code>中将要调用的OC类引入，如swift要使用ViewController类，则在桥接文件中导入<code>#import &quot;ViewController.h&quot;</code>即可</p>
+<h4 id="Swift调用OC类"><a href="#Swift调用OC类" class="headerlink" title="Swift调用OC类"></a>Swift调用OC类</h4><p>Swift调用OC类，首先要在桥接文件<code>xxxx-Bridging-Header.h</code>中将要调用的OC类引入，如swift要使用ViewController类，则在桥接文件中导入<code>#import &quot;ViewController.h&quot;</code>即可</p>
 
       
     </div>
