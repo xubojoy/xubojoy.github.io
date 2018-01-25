@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="本文介绍两种简单的倒计时动画方式：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-25T01:55:44.053Z">
+<meta property="og:updated_time" content="2018-01-25T02:01:01.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS简单倒计时动画">
 <meta name="twitter:description" content="本文介绍两种简单的倒计时动画方式：">
@@ -505,16 +505,16 @@ func countDown(){
 //开始倒计时
 - (void)startTime
 {
-    __block int timeout = 5;
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
-    dispatch_source_set_event_handler(_timer, ^{
-        if ( timeout <= 0="" )="" {="" dispatch_source_cancel(_timer);="" dispatch_async(dispatch_get_main_queue(),="" ^{="" [self="" beginrain];="" });="" }="" else="" int="" seconds="timeout" %="" 6;="" countdown:seconds];="" timeout--;="" dispatch_resume(_timer);="" <="" pre="">
+__block int timeout = 5;
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);   dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0);
+dispatch_source_set_event_handler(_timer, ^{
+  if ( timeout <= 0="" )="" {="" dispatch_source_cancel(_timer);="" dispatch_async(dispatch_get_main_queue(),="" ^{="" [self="" beginrain];="" });="" }="" else="" int="" seconds="timeout" %="" 6;="" countdown:seconds];="" timeout--;="" dispatch_resume(_timer);="" <="" pre="">
+
 <pre>
 //倒计时显示
 -(void)countDown:(int)count{
-    if(count <=0){ 倒计时已到，作需要作的事吧。="" return;="" }="" uilabel*="" lblcountdown="[[UILabel" alloc]="" initwithframe:cgrectmake(0,="" 0,="" 100,="" 100)];="" lblcountdown.textcolor="[UIColor" whitecolor];="" lblcountdown.font="[UIFont" boldsystemfontofsize:80];="" lblcountdown.textalignment="NSTextAlignmentCenter;" lblcountdown.center="self.view.center;" lblcountdown.backgroundcolor="[UIColor" clearcolor];="" lblcountdown.text="[NSString" stringwithformat:@"%d",count];="" [self.view="" addsubview:lblcountdown];="" [uiview="" animatewithduration:1="" delay:0="" options:uiviewanimationoptioncurveeaseout="" animations:^{="" lblcountdown.alpha="0;" lblcountdown.transform="CGAffineTransformScale(CGAffineTransformIdentity," 0.5,="" 0.5);="" completion:^(bool="" finished)="" {="" [lblcountdown="" removefromsuperview];="" 不用gcd可直接用递归调用，直到计时为零="" [self="" countdown:count-1];="" }];="" <="" pre=""></=0){></pre></=></pre>
+ if(count <=0){ 倒计时已到，作需要作的事吧。="" return;="" }="" uilabel*="" lblcountdown="[[UILabel" alloc]="" initwithframe:cgrectmake(0,="" 0,="" 100,="" 100)];="" lblcountdown.textcolor="[UIColor" whitecolor];="" lblcountdown.font="[UIFont" boldsystemfontofsize:80];="" lblcountdown.textalignment="NSTextAlignmentCenter;" lblcountdown.center="self.view.center;" lblcountdown.backgroundcolor="[UIColor" clearcolor];="" lblcountdown.text="[NSString" stringwithformat:@"%d",count];="" [self.view="" addsubview:lblcountdown];="" [uiview="" animatewithduration:1="" delay:0="" options:uiviewanimationoptioncurveeaseout="" animations:^{="" lblcountdown.alpha="0;" lblcountdown.transform="CGAffineTransformScale(CGAffineTransformIdentity," 0.5,="" 0.5);="" completion:^(bool="" finished)="" {="" [lblcountdown="" removefromsuperview];="" 不用gcd可直接用递归调用，直到计时为零="" [self="" countdown:count-1];="" }];="" <="" pre=""></=0){></pre></=></pre>
       
     </div>
     
