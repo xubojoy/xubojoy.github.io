@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="关于获取iPhone手机设备信息的汇总：  屏幕宽度 屏幕高度 获取设备分辨率 获取设备版本号 获取iPhone名称 获取app版本号 获取电池电量 当前系统名称 当前系统版本号 通用唯一识别码UUID 获取当前设备IP 获取总内存大小 获取当前可用内存 获取精准电池电量 获取电池当前的状态，共有4种状态 获取当前语言 获取设备IDFA  (Appstore禁止不使用广告而采集IDFA的app上架">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T06:17:00.621Z">
+<meta property="og:updated_time" content="2018-01-26T06:19:45.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS获取设备信息汇总">
 <meta name="twitter:description" content="关于获取iPhone手机设备信息的汇总：  屏幕宽度 屏幕高度 获取设备分辨率 获取设备版本号 获取iPhone名称 获取app版本号 获取电池电量 当前系统名称 当前系统版本号 通用唯一识别码UUID 获取当前设备IP 获取总内存大小 获取当前可用内存 获取精准电池电量 获取电池当前的状态，共有4种状态 获取当前语言 获取设备IDFA  (Appstore禁止不使用广告而采集IDFA的app上架">
@@ -855,7 +855,7 @@
                     Ivar ivar=  class_getInstanceVariable([bview class],"_capacity");
                     if(ivar){
                         batteryLevel = ((int (*)(id, Ivar))object_getIvar)(bview, ivar);
-                        <br>if (batteryLevel > 0 && batteryLevel <= 100){="" <br=""> return batteryLevel;
+                        <br>if (batteryLevel > 0 && batteryLevel <= 100){="" <br="">return batteryLevel;
                         <br>}else{
                             <br>return 0;
                         <br>}
