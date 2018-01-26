@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="关于获取iPhone手机设备信息的汇总：  屏幕宽度 屏幕高度 获取设备分辨率 获取设备版本号 获取iPhone名称 获取app版本号 获取电池电量 当前系统名称 当前系统版本号 通用唯一识别码UUID 获取当前设备IP 获取总内存大小 获取当前可用内存 获取精准电池电量 获取电池当前的状态，共有4种状态 获取当前语言 获取设备IDFA  (Appstore禁止不使用广告而采集IDFA的app上架">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T05:22:35.602Z">
+<meta property="og:updated_time" content="2018-01-26T05:34:29.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS获取设备信息汇总">
 <meta name="twitter:description" content="关于获取iPhone手机设备信息的汇总：  屏幕宽度 屏幕高度 获取设备分辨率 获取设备版本号 获取iPhone名称 获取app版本号 获取电池电量 当前系统名称 当前系统版本号 通用唯一识别码UUID 获取当前设备IP 获取总内存大小 获取当前可用内存 获取精准电池电量 获取电池当前的状态，共有4种状态 获取当前语言 获取设备IDFA  (Appstore禁止不使用广告而采集IDFA的app上架">
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,307
+                  1,431
                 </span>
               
 
@@ -448,7 +448,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7
+                  8
                 </span>
               
             </div>
@@ -765,6 +765,7 @@
 <ul>
 <li>获取设备MAC</li>
 </ul>
+<p>iOS7以后苹果对于sysctl和ioctl进行了技术处理，MAC地址返回的都是02:00:00:00:00:00 ,官方文档上这样写的“Twolow-level networking APIs that used to return a MAC address now return thefixed value 02:00:00:00:00:00. The APIs in question are sysctl(NET_RT_IFLIST) and ioctl(SIOCGIFCONF). Developers using the value of the MAC address should migrate toidentifiers such as -[UIDevice identifierForVendor].This change affects all apps running on iOS 7”。<br>所以在iOS7以后想要获取设备的唯一标示Mac地址已经不行了，只能用其他的代替。</p>
 <pre>
 +(NSString*)dy_getDeviceMAC{
     //    ios7 之前获取的方法
@@ -809,7 +810,6 @@
     free(buf);
 
     DYLog(@"macStr------》%@",macStr);
-    * ios7 之后
     return @"iOS7之后已无法获取！";
 }
 </pre>
@@ -1172,7 +1172,7 @@
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">39.6k字</span>
+    <span title="博客全站共">39.7k字</span>
   
 </div>
 
