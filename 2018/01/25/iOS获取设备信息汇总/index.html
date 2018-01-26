@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="关于获取iPhone手机设备信息的汇总：  屏幕宽度 屏幕高度 获取设备分辨率 获取设备版本号 获取iPhone名称 获取app版本号 获取电池电量 当前系统名称 当前系统版本号 通用唯一识别码UUID 获取当前设备IP 获取总内存大小 获取当前可用内存 获取精准电池电量 获取电池当前的状态，共有4种状态 获取当前语言 获取设备IDFA  (广告标志符) 获取设备IDFV  (iOS6及以上系统)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T01:36:36.560Z">
+<meta property="og:updated_time" content="2018-01-26T01:40:05.466Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS获取设备信息汇总">
 <meta name="twitter:description" content="关于获取iPhone手机设备信息的汇总：  屏幕宽度 屏幕高度 获取设备分辨率 获取设备版本号 获取iPhone名称 获取app版本号 获取电池电量 当前系统名称 当前系统版本号 通用唯一识别码UUID 获取当前设备IP 获取总内存大小 获取当前可用内存 获取精准电池电量 获取电池当前的状态，共有4种状态 获取当前语言 获取设备IDFA  (广告标志符) 获取设备IDFV  (iOS6及以上系统)">
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,306
+                  1,219
                 </span>
               
 
@@ -701,25 +701,6 @@
 </pre>
 
 <ul>
-<li>获取精准电池电量获取精准电池电量</li>
-</ul>
-<pre>
-+ (CGFloat)getCurrentBatteryLevel {
-    UIApplication *app = [UIApplication sharedApplication];
-    if (app.applicationState == UIApplicationStateActive||app.applicationState==UIApplicationStateInactive) {
-        Ivar ivar=  class_getInstanceVariable([app class],"_statusBar");
-        id status  = object_getIvar(app, ivar);
-        for (id aview in [status subviews]) {
-            int batteryLevel = 0;
-            for (id bview in [aview subviews]) {
-                if ([NSStringFromClass([bview class]) caseInsensitiveCompare:@"UIStatusBarBatteryItemView"] == NSOrderedSame&&[[[UIDevice currentDevice] systemVersion] floatValue] >=6.0) {
-             Ivar ivar=  class_getInstanceVariable([bview class],"_capacity");
-                 if(ivar) {
-                    batteryLevel = ((int (*)(id, Ivar))object_getIvar)(bview, ivar);
-                    if (batteryLevel > 0 && batteryLevel <= 100)="" {="" return="" batterylevel;="" }="" else="" 0;="" <="" pre="">
-
-
-<ul>
 <li>获取电池当前的状态，共有4种状态</li>
 </ul>
 <pre>
@@ -858,7 +839,7 @@
 }
 </pre>
 
-</=></pre>
+
       
     </div>
     
@@ -1173,7 +1154,7 @@
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">39.6k字</span>
+    <span title="博客全站共">39.5k字</span>
   
 </div>
 
