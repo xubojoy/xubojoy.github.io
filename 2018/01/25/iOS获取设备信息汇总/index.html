@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="关于获取iPhone手机设备信息的汇总：  屏幕宽度 屏幕高度 获取设备分辨率 获取设备版本号 获取iPhone名称 获取app版本号 获取电池电量 当前系统名称 当前系统版本号 通用唯一识别码UUID 获取当前设备IP 获取总内存大小 获取当前可用内存 获取精准电池电量 获取电池当前的状态，共有4种状态 获取当前语言 获取设备IDFA  (广告标志符) 获取设备IDFV  (iOS6及以上系统)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-26T01:28:55.372Z">
+<meta property="og:updated_time" content="2018-01-26T01:36:36.560Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS获取设备信息汇总">
 <meta name="twitter:description" content="关于获取iPhone手机设备信息的汇总：  屏幕宽度 屏幕高度 获取设备分辨率 获取设备版本号 获取iPhone名称 获取app版本号 获取电池电量 当前系统名称 当前系统版本号 通用唯一识别码UUID 获取当前设备IP 获取总内存大小 获取当前可用内存 获取精准电池电量 获取电池当前的状态，共有4种状态 获取当前语言 获取设备IDFA  (广告标志符) 获取设备IDFV  (iOS6及以上系统)">
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,298
+                  1,306
                 </span>
               
 
@@ -496,36 +496,42 @@
 </ul>
 <a id="more"></a>
 <p>具体代码实现：</p>
+<ul>
+<li>屏幕宽度</li>
+</ul>
 <pre>
-/// 屏幕宽度
 + (CGFloat)getDeviceScreenWidth {
     return [UIScreen mainScreen].bounds.size.width;
 }
 </pre>
 
+<ul>
+<li>屏幕高度</li>
+</ul>
 <pre>
-/// 屏幕高度
 + (CGFloat)getDeviceScreenHeight {
     return [UIScreen mainScreen].bounds.size.height;
 }
 </pre>
 
+<ul>
+<li>分辨率</li>
+</ul>
 <pre>
-//分辨率
 + (NSString *)getDevice_Resolution{
 
     return [NSString stringWithFormat:@"%.0fx%.0f",([NNDeviceInformation getDeviceScreenWidth]*[UIScreen mainScreen].scale),([NNDeviceInformation getDeviceScreenHeight]*[UIScreen mainScreen].scale)];
 }
 </pre>
 
+<ul>
+<li>获取设备版本号 ,需要 <code>#import &quot;sys/utsname.h&quot;</code></li>
+</ul>
 <pre>
-/// 获取设备版本号
 + (NSString *)getDeviceName {
-    // 需要#import "sys/utsname.h"
     struct utsname systemInfo;
     uname(&systemInfo);
     NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-
     if ([deviceString isEqualToString:@"iPhone3,1"])    return @"iPhone 4";
     if ([deviceString isEqualToString:@"iPhone3,2"])    return @"iPhone 4";
     if ([deviceString isEqualToString:@"iPhone3,3"])    return @"iPhone 4";
@@ -541,13 +547,11 @@
     if ([deviceString isEqualToString:@"iPhone8,1"])    return @"iPhone 6s";
     if ([deviceString isEqualToString:@"iPhone8,2"])    return @"iPhone 6s Plus";
     if ([deviceString isEqualToString:@"iPhone8,4"])    return @"iPhone SE";
-
     if ([deviceString isEqualToString:@"iPod1,1"])      return @"iPod Touch 1G";
     if ([deviceString isEqualToString:@"iPod2,1"])      return @"iPod Touch 2G";
     if ([deviceString isEqualToString:@"iPod3,1"])      return @"iPod Touch 3G";
     if ([deviceString isEqualToString:@"iPod4,1"])      return @"iPod Touch 4G";
     if ([deviceString isEqualToString:@"iPod5,1"])      return @"iPod Touch (5 Gen)";
-
     if ([deviceString isEqualToString:@"iPad1,1"])      return @"iPad";
     if ([deviceString isEqualToString:@"iPad1,2"])      return @"iPad 3G";
     if ([deviceString isEqualToString:@"iPad2,1"])      return @"iPad 2 (WiFi)";
@@ -579,58 +583,70 @@
     if ([deviceString isEqualToString:@"iPad6,4"])      return @"iPad Pro 9.7";
     if ([deviceString isEqualToString:@"iPad6,7"])      return @"iPad Pro 12.9";
     if ([deviceString isEqualToString:@"iPad6,8"])      return @"iPad Pro 12.9";
-
     if ([deviceString isEqualToString:@"i386"])         return @"Simulator";
     if ([deviceString isEqualToString:@"x86_64"])       return @"Simulator";
-
     return deviceString;
 }
 </pre>
 
+<ul>
+<li>获取iPhone名称</li>
+</ul>
 <pre>
-/// 获取iPhone名称
 + (NSString *)getiPhoneName {
     return [UIDevice currentDevice].name;
 }
 </pre>
 
+<ul>
+<li>获取app版本号</li>
+</ul>
 <pre>
-/// 获取app版本号
 + (NSString *)getAPPVerion {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 </pre>
 
+<ul>
+<li>获取电池电量</li>
+</ul>
 <pre>
-/// 获取电池电量
 + (CGFloat)getBatteryLevel {
     return [UIDevice currentDevice].batteryLevel;
 }
 </pre>
 
+<ul>
+<li>当前系统名称</li>
+</ul>
 <pre>
-/// 当前系统名称
 + (NSString *)getSystemName {
     return [UIDevice currentDevice].systemName;
 }
 </pre>
 
+<ul>
+<li>当前系统版本号</li>
+</ul>
 <pre>
-/// 当前系统版本号
 + (NSString *)getSystemVersion {
     return [UIDevice currentDevice].systemVersion;
 }
 </pre>
 
+<ul>
+<li>通用唯一识别码UUID</li>
+</ul>
 <pre>
-/// 通用唯一识别码UUID
 + (NSString *)getUUID {
     return [[UIDevice currentDevice] identifierForVendor].UUIDString;
 }
 </pre>
 
+<ul>
+<li>获取当前设备IP</li>
+</ul>
 <pre>
-// 获取当前设备IP
 + (NSString *)getDeviceIPAdress {
     NSString *address = @"an error occurred when obtaining ip address";
     struct ifaddrs *interfaces = NULL;
@@ -659,15 +675,19 @@
 }
 </pre>
 
+<ul>
+<li>获取总内存大小</li>
+</ul>
 <pre>
-/// 获取总内存大小
 + (long long)getTotalMemorySize {
     return [NSProcessInfo processInfo].physicalMemory;
 }
 </pre>
 
+<ul>
+<li>获取当前可用内存</li>
+</ul>
 <pre>
-/// 获取当前可用内存
 + (long long)getAvailableMemorySize {
     vm_statistics_data_t vmStats;
     mach_msg_type_number_t infoCount = HOST_VM_INFO_COUNT;
@@ -680,8 +700,10 @@
 }
 </pre>
 
+<ul>
+<li>获取精准电池电量获取精准电池电量</li>
+</ul>
 <pre>
-/// 获取精准电池电量
 + (CGFloat)getCurrentBatteryLevel {
     UIApplication *app = [UIApplication sharedApplication];
     if (app.applicationState == UIApplicationStateActive||app.applicationState==UIApplicationStateInactive) {
@@ -696,8 +718,11 @@
                     batteryLevel = ((int (*)(id, Ivar))object_getIvar)(bview, ivar);
                     if (batteryLevel > 0 && batteryLevel <= 100)="" {="" return="" batterylevel;="" }="" else="" 0;="" <="" pre="">
 
+
+<ul>
+<li>获取电池当前的状态，共有4种状态</li>
+</ul>
 <pre>
-// 获取电池当前的状态，共有4种状态
 + (NSString *) getBatteryState {
     UIDevice *device = [UIDevice currentDevice];
     if (device.batteryState == UIDeviceBatteryStateUnknown) {
@@ -713,16 +738,20 @@
 }
 </pre>
 
+<ul>
+<li>获取当前语言</li>
+</ul>
 <pre>
-// 获取当前语言
 + (NSString *)getDeviceLanguage {
     NSArray *languageArray = [NSLocale preferredLanguages];
     return [languageArray objectAtIndex:0];
 }
 </pre>
 
+<ul>
+<li>获取设备IDFA</li>
+</ul>
 <pre>
-//获取设备IDFA
 +(NSString *)dy_getDeviceIDFA{
    ASIdentifierManager *asIM = [[ASIdentifierManager alloc] init];
     NSString *idfaStr = [asIM.advertisingIdentifier UUIDString];
@@ -731,8 +760,10 @@
 }
 </pre>
 
+<ul>
+<li>获取设备IDFV</li>
+</ul>
 <pre>
-//获取设备IDFV
 +(NSString *)dy_getDeviceIDFV{
     NSString* idfvStr      = [[UIDevice currentDevice] identifierForVendor].UUIDString;
 
@@ -741,15 +772,19 @@
 }
 </pre>
 
+<ul>
+<li>获取设备IMEI</li>
+</ul>
 <pre>
-//获取设备IMEI
 +(NSString *)dy_getDeviceIMEI{
     return @"iOS5以后不能获取手机IMEI";
 }
 </pre>
 
+<ul>
+<li>获取设备MAC</li>
+</ul>
 <pre>
-//获取设备MAC
 +(NSString*)dy_getDeviceMAC{
     //    ios7 之前获取的方法
     int mib[6];
@@ -793,13 +828,15 @@
     free(buf);
 
     DYLog(@"macStr------》%@",macStr);
-    // ios7 之后
+    * ios7 之后
     return @"iOS7之后已无法获取！";
 }
 </pre>
 
+<ul>
+<li>获取设备UUID</li>
+</ul>
 <pre>
-//获取设备UUID
 +(NSString*)dy_getDeviceUUID{
 
     CFUUIDRef uuid = CFUUIDCreate(NULL);
@@ -811,9 +848,11 @@
 }
 </pre>
 
+<ul>
+<li>获取设备UDID</li>
+</ul>
 <p>no way，UDID是肯定要被苹果拒绝的，炸了！Stack Overflow提供了另外一种方法，越狱可尝试：<br><a href="http://stackoverflow.com/questions/27602368/how-to-get-serial-number-of-a-device-using-iokit-in-ios8-as-ioplatformserialnumb/27686125#27686125" target="_blank" rel="noopener">stackoverflow</a></p>
 <pre>
-//获取设备UDID
 +(NSString*)dy_getDeviceUDID{
     return @"审核会被拒！！！！";
 }
