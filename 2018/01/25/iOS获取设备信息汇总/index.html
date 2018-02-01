@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="关于获取iPhone手机设备信息的汇总：  屏幕宽度 屏幕高度 获取设备分辨率 获取设备版本号 获取iPhone名称 获取app版本号 获取电池电量 当前系统名称 当前系统版本号 通用唯一识别码UUID 获取当前设备IP 获取总内存大小 获取当前可用内存 获取精准电池电量 获取电池当前的状态，共有4种状态 获取当前语言 获取设备IDFA  (Appstore禁止不使用广告而采集IDFA的app上架">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-01T05:43:27.269Z">
+<meta property="og:updated_time" content="2018-02-01T06:50:16.769Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS获取设备信息汇总">
 <meta name="twitter:description" content="关于获取iPhone手机设备信息的汇总：  屏幕宽度 屏幕高度 获取设备分辨率 获取设备版本号 获取iPhone名称 获取app版本号 获取电池电量 当前系统名称 当前系统版本号 通用唯一识别码UUID 获取当前设备IP 获取总内存大小 获取当前可用内存 获取精准电池电量 获取电池当前的状态，共有4种状态 获取当前语言 获取设备IDFA  (Appstore禁止不使用广告而采集IDFA的app上架">
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,552
+                  1,930
                 </span>
               
 
@@ -448,7 +448,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8
+                  11
                 </span>
               
             </div>
@@ -490,6 +490,11 @@
 <li>获取设备IDFA  <code>(Appstore禁止不使用广告而采集IDFA的app上架)</code></li>
 <li>获取设备IDFV  <code>(iOS6及以上系统)</code></li>
 <li>获取设备IMEI <code>(iOS 5 以后不能获取！！！)</code></li>
+</ul>
+<blockquote>
+<p>IMEI(International Mobile Equipment Identity)是国际移动设备身份码的缩写，国际移动装备辨识码</p>
+</blockquote>
+<ul>
 <li>获取设备MAC  <code>(iOS 7 之后无法获取！！！)</code></li>
 <li>获取设备UUID</li>
 <li>获取设备UDID  <code>(审核会被拒的！！！)</code></li>
@@ -722,8 +727,11 @@ if([platform isEqualToString:@"x86_64"])  return@"iPhone Simulator";
 </pre>
 
 <ul>
-<li>获取当前设备IP</li>
+<li>只能获取当前设备WIFI下网络下的IP</li>
 </ul>
+<blockquote>
+<p>#import \<ifaddrs.h><br>#import \<arpa inet.h=""> </arpa></ifaddrs.h></p>
+</blockquote>
 <pre>
 + (NSString *)getDeviceIPAdress {
     NSString *address = @"an error occurred when obtaining ip address";
@@ -752,6 +760,97 @@ if([platform isEqualToString:@"x86_64"])  return@"iPhone Simulator";
     return address;
 }
 </pre>
+
+
+<p>//可获取WiFi及蜂窝网络的IP，需要导入</p>
+<blockquote>
+<p>#import \<ifaddrs.h><br>#import \<arpa inet.h=""><br>#import \<net if.h=""><br>#define IOS_CELLULAR    @”pdp_ip0”<br>#define IOS_WIFI        @”en0”<br>#define IOS_VPN         @”utun0”<br>#define IP_ADDR_IPv4    @”ipv4”<br>#define IP_ADDR_IPv6    @”ipv6” </net></arpa></ifaddrs.h></p>
+</blockquote>
+<pre>
++ (NSString *)getIPAddress:(BOOL)preferIPv4
+{
+    NSArray *searchArray = preferIPv4 ?
+    @[ IOS_VPN @"/" IP_ADDR_IPv4, IOS_VPN @"/" IP_ADDR_IPv6, IOS_WIFI @"/" IP_ADDR_IPv4, IOS_WIFI @"/" IP_ADDR_IPv6, IOS_CELLULAR @"/" IP_ADDR_IPv4, IOS_CELLULAR @"/" IP_ADDR_IPv6 ] :
+    @[ IOS_VPN @"/" IP_ADDR_IPv6, IOS_VPN @"/" IP_ADDR_IPv4, IOS_WIFI @"/" IP_ADDR_IPv6, IOS_WIFI @"/" IP_ADDR_IPv4, IOS_CELLULAR @"/" IP_ADDR_IPv6, IOS_CELLULAR @"/" IP_ADDR_IPv4 ] ;
+    NSDictionary *addresses = [self getIPAddresses];
+    NSLog(@"addresses: %@", addresses);
+    __block NSString *address;
+    [searchArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        address = addresses[obj];
+        //筛选出IP地址格式
+        if([self isValidatIP:address]) *stop = YES;
+    }];
+    return address ? address : @"0.0.0.0";
+}
+</pre>
+
+<pre>
++ (BOOL)isValidatIP:(NSString *)ipAddress {
+    if (ipAddress.length == 0) {
+        return NO;
+    }
+    NSString *urlRegEx = @"^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+    "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+    "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+    "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
+    NSError *error;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:urlRegEx options:0 error:&error];
+    if (regex != nil) {
+        NSTextCheckingResult *firstMatch=[regex firstMatchInString:ipAddress options:0 range:NSMakeRange(0, [ipAddress length])];
+        if (firstMatch) {
+            NSRange resultRange = [firstMatch rangeAtIndex:0];
+            NSString *result=[ipAddress substringWithRange:resultRange];
+            //输出结果
+            NSLog(@"%@",result);
+            return YES;
+        }
+    }
+    return NO;
+}
+</pre>
+
+<pre>
++ (NSDictionary *)getIPAddresses
+{
+    NSMutableDictionary *addresses = [NSMutableDictionary dictionaryWithCapacity:8];
+    // retrieve the current interfaces - returns 0 on success
+    struct ifaddrs *interfaces;
+    if(!getifaddrs(&interfaces)) {
+        // Loop through linked list of interfaces
+        struct ifaddrs *interface;
+        for(interface=interfaces; interface; interface=interface->ifa_next) {
+            if(!(interface->ifa_flags & IFF_UP) /* || (interface->ifa_flags & IFF_LOOPBACK) */ ) {
+                continue; // deeply nested code harder to read
+            }
+            const struct sockaddr_in *addr = (const struct sockaddr_in*)interface->ifa_addr;
+            char addrBuf[ MAX(INET_ADDRSTRLEN, INET6_ADDRSTRLEN) ];
+            if(addr && (addr->sin_family==AF_INET || addr->sin_family==AF_INET6)) {
+                NSString *name = [NSString stringWithUTF8String:interface->ifa_name];
+                NSString *type;
+                if(addr->sin_family == AF_INET) {
+                    if(inet_ntop(AF_INET, &addr->sin_addr, addrBuf, INET_ADDRSTRLEN)) {
+                        type = IP_ADDR_IPv4;
+                    }
+                } else {
+                    const struct sockaddr_in6 *addr6 = (const struct sockaddr_in6*)interface->ifa_addr;
+                    if(inet_ntop(AF_INET6, &addr6->sin6_addr, addrBuf, INET6_ADDRSTRLEN)) {
+                        type = IP_ADDR_IPv6;
+                    }
+                }
+                if(type) {
+                    NSString *key = [NSString stringWithFormat:@"%@/%@", name, type];
+                    addresses[key] = [NSString stringWithUTF8String:addrBuf];
+                }
+            }
+        }
+        // Free memory
+        freeifaddrs(interfaces);
+    }
+    return [addresses count] ? addresses : nil;
+}
+</pre>
+
+
 
 <ul>
 <li>获取总内存大小</li>
@@ -1240,7 +1339,7 @@ if([platform isEqualToString:@"x86_64"])  return@"iPhone Simulator";
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">40.9k字</span>
+    <span title="博客全站共">41.3k字</span>
   
 </div>
 
