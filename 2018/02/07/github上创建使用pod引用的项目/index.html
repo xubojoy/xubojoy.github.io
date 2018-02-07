@@ -86,18 +86,26 @@
 
 
 
-<meta name="description" content="纯粹的限制小数点后两位- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{     if (textField == self.amountTextField) {         //如果输入的是“.">
+<meta name="description" content="这两天折腾cocoapods，折腾的也是够够的🐶，各种尝试发布自己的框架到github上，供其他人直接用pod安装。现在记录下过程：">
 <meta name="keywords" content="ios">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ios限制小数点后只能输入两位">
-<meta property="og:url" content="http://xubojoy.github.io/2016/07/14/ios限制小数点后只能输入两位/index.html">
+<meta property="og:title" content="github上创建使用pod引用的项目">
+<meta property="og:url" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/index.html">
 <meta property="og:site_name" content="枫林飘雪">
-<meta property="og:description" content="纯粹的限制小数点后两位- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{     if (textField == self.amountTextField) {         //如果输入的是“.">
+<meta property="og:description" content="这两天折腾cocoapods，折腾的也是够够的🐶，各种尝试发布自己的框架到github上，供其他人直接用pod安装。现在记录下过程：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-07-14T15:01:20.000Z">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/1.png">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/2.png">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/3.png">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/4.png">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/5.png">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/6.png">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/7.png">
+<meta property="og:updated_time" content="2018-02-07T08:57:06.935Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ios限制小数点后只能输入两位">
-<meta name="twitter:description" content="纯粹的限制小数点后两位- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{     if (textField == self.amountTextField) {         //如果输入的是“.">
+<meta name="twitter:title" content="github上创建使用pod引用的项目">
+<meta name="twitter:description" content="这两天折腾cocoapods，折腾的也是够够的🐶，各种尝试发布自己的框架到github上，供其他人直接用pod安装。现在记录下过程：">
+<meta name="twitter:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/1.png">
 
 
 
@@ -127,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://xubojoy.github.io/2016/07/14/ios限制小数点后只能输入两位/"/>
+  <link rel="canonical" href="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/"/>
 
 
 
 
 
-  <title>ios限制小数点后只能输入两位 | 枫林飘雪</title>
+  <title>github上创建使用pod引用的项目 | 枫林飘雪</title>
   
 
 
@@ -349,7 +357,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2016/07/14/ios限制小数点后只能输入两位/">
+    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="枫林飘雪">
@@ -366,7 +374,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ios限制小数点后只能输入两位</h1>
+          <h1 class="post-title" itemprop="name headline">github上创建使用pod引用的项目</h1>
         
 
         <div class="post-meta">
@@ -378,8 +386,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-14T21:53:01+08:00">
-                2016-07-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T16:03:34+08:00">
+                2018-02-07
               </time>
             
 
@@ -432,7 +440,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  257
+                  422
                 </span>
               
 
@@ -448,7 +456,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -469,72 +477,39 @@
       
 
       
-        <h5 id="纯粹的限制小数点后两位"><a href="#纯粹的限制小数点后两位" class="headerlink" title="纯粹的限制小数点后两位"></a>纯粹的限制小数点后两位</h5><pre><code>- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    if (textField == self.amountTextField) {
-        //如果输入的是“.”  判断之前已经有"."或者字符串为空
-        if ([string isEqualToString:@"."] && ([textField.text rangeOfString:@"."].location != NSNotFound || [textField.text isEqualToString:@""])) {
-            return NO;
-        }
-        //拼出输入完成的str,判断str的长度大于等于“.”的位置＋4,则返回false,此次插入string失败 （"379132.424",长度10,"."的位置6, 10>=6+4）
-        NSMutableString *str = [[NSMutableString alloc] initWithString:textField.text];
-        [str insertString:string atIndex:range.location];
-        if (str.length >= [str rangeOfString:@"."].location+4){
-            return NO;
-        }
-    }
-    return YES;
-}</code></pre>
-
+        <p>这两天折腾cocoapods，折腾的也是够够的🐶，各种尝试发布自己的框架到github上，供其他人直接用pod安装。现在记录下过程：</p>
 <a id="more"></a>
-<h5 id="限制小数点后两位并且数值要大于0"><a href="#限制小数点后两位并且数值要大于0" class="headerlink" title="限制小数点后两位并且数值要大于0"></a>限制小数点后两位并且数值要大于0</h5><pre><code>
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    if ([textField.text rangeOfString:@"."].location==NSNotFound) {
-        isHaveDian=NO;
-    }
-    if ([string length]>0)
-    {
-        unichar single=[string characterAtIndex:0];//当前输入的字符
-        </code></pre>
+<p>首先必备技能：玩转<code>git</code>及<code>github</code></p>
+<p>一、打开<a href="https://github.com/" target="_blank" rel="noopener">www.github.com</a>,创建自己的项目仓库<br><img src="/2018/02/07/github上创建使用pod引用的项目/1.png" alt=""><br>大致就是这个样子，本文仓库名<code>FJAlertView</code><br>有关开原协议，这里采用<code>MIT License</code>,然后使用<code>git clone [仓库地址]</code>,将仓库克隆到本地。<br>二、将要测试的demo及要发布的开元框架放到仓库<code>FJAlertView</code>里,并创建<code>.podspec</code>文件<br><img src="/2018/02/07/github上创建使用pod引用的项目/2.png" alt=""><br><code>.podspec</code>文件的创建：</p>
+<p><code>pod spec create FJAlertView</code></p>
+<p><img src="/2018/02/07/github上创建使用pod引用的项目/3.png" alt=""><br>此时的<code>FJAlertView</code>就是之后可以被搜索的pod名字</p>
+<p>三、配置<code>.podspec</code>文件，这是我使用的是<code>Sublime Text</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |s|</span><br><span class="line">  s.name         = &quot;FJAlertView&quot;</span><br><span class="line">  s.version      = &quot;0.0.4&quot;</span><br><span class="line">  s.summary      = &quot;a custom view for everyone FJAlertView.&quot;</span><br><span class="line">  s.description  = &lt;&lt;-DESC</span><br><span class="line">                    自定义AlertView   a custom view for everyone FJAlertView.</span><br><span class="line">                   DESC</span><br><span class="line"></span><br><span class="line">  s.homepage     = &quot;https://github.com/xubojoy/FJAlertView&quot;</span><br><span class="line">  s.license      = &quot;MIT&quot;</span><br><span class="line">  s.author             = &#123; &quot;xubojoy&quot; =&gt; &quot;xubojoy1112@163.com&quot; &#125;</span><br><span class="line">  s.platform     = :ios, &quot;7.0&quot;</span><br><span class="line">  s.source       = &#123; :git =&gt; &quot;https://github.com/xubojoy/FJAlertView.git&quot;, :tag =&gt; &quot;#&#123;s.version&#125;&quot; &#125;</span><br><span class="line">  s.source_files  = &quot;FJAlertView/*.&#123;h,m&#125;&quot;</span><br><span class="line">  s.dependency &quot;Masonry&quot;, &quot;~&gt; 1.1.0&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>name:类库的名称</li>
+<li>version:库的版本</li>
+<li>summary: 库的介绍</li>
+<li>homtepage:Github上项目地址</li>
+<li>license:许可证</li>
+<li>author:作者</li>
+<li>platform:运行的平台及最低支持版本</li>
+<li>source:Github上项目的https链接地址</li>
+<li>source_files:要共享的代码，这里是FJAlertView下面的所有代码。</li>
+<li>dependency：第三方依赖库</li>
+</ul>
+<p>四、创建相应的分支及tag标签<br><img src="/2018/02/07/github上创建使用pod引用的项目/4.png" alt=""></p>
+<p>五、执行验证命令：</p>
+<p><code>pod lib lint FJAlertView.podspec</code></p>
+<p><img src="/2018/02/07/github上创建使用pod引用的项目/5.png" alt=""></p>
+<p>如上则就是验证成功！</p>
+<p>六、验证podspec</p>
+<p><code>pod spec lint FJAlertView.podspec</code></p>
+<p><img src="/2018/02/07/github上创建使用pod引用的项目/6.png" alt=""></p>
+<p>七、提交公有库</p>
+<p><code>pod trunk push FJAlertView.podspec</code></p>
+<p><img src="/2018/02/07/github上创建使用pod引用的项目/7.png" alt=""></p>
+<p>整个过程到此完结，可以开始装逼了！！！🙃🙃🙃🙃🙃———-</p>
 
-<pre><code>
-        if ((single >='0' && single<='9') ||="" single="='.')//数据格式正确" {="" 首字母不能为0和小数点="" if([textfield.text="" length]="=0){" if(single="=" '.'){="" [textfield.text="" stringbyreplacingcharactersinrange:range="" withstring:@""];="" return="" no;="" }="" if="" (single="=" '0')="" <="" code=""></='9')></code></pre>
-
-<pre><code>
-             if (single=='.')
-            {
-                if(!isHaveDian)//text中还没有小数点
-                {
-                    isHaveDian=YES;
-                    return YES;
-                }else
-                {
-                    [textField.text stringByReplacingCharactersInRange:range withString:@""];
-                    return NO;
-                }
-            }
-            </code></pre>
-
-<pre><code>
-            else
-            {
-                if (isHaveDian)//存在小数点
-                {
-                    //判断小数点的位数
-                    NSRange ran=[textField.text rangeOfString:@"."];
-                    int tt= (int)range.location-(int)ran.location;
-                    if (tt <= 2){="" return="" yes;="" }else{="" no;="" }="" else="" {="" <="" code=""></=></code></pre>            
-<pre><code> 
-        else{//输入的数据格式不正确
-            [textField.text stringByReplacingCharactersInRange:range withString:@""];
-            return NO;
-        }
-    }
-    else
-    {
-        return YES;
-    }
-}</code></pre>
       
     </div>
     
@@ -610,8 +585,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/04/摘录/" rel="next" title="摘录">
-                <i class="fa fa-chevron-left"></i> 摘录
+              <a href="/2018/02/02/iOS字符串相关/" rel="next" title="iOS字符串相关">
+                <i class="fa fa-chevron-left"></i> iOS字符串相关
               </a>
             
           </div>
@@ -619,10 +594,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/18/清理Xcode多余的证书/" rel="prev" title="清理Xcode多余的证书">
-                清理Xcode多余的证书 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -717,17 +688,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -833,22 +795,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#纯粹的限制小数点后两位"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x7EAF;&#x7CB9;&#x7684;&#x9650;&#x5236;&#x5C0F;&#x6570;&#x70B9;&#x540E;&#x4E24;&#x4F4D;" class="headerlink" title="&#x7EAF;&#x7CB9;&#x7684;&#x9650;&#x5236;&#x5C0F;&#x6570;&#x70B9;&#x540E;&#x4E24;&#x4F4D;"></a>&#x7EAF;&#x7CB9;&#x7684;&#x9650;&#x5236;&#x5C0F;&#x6570;&#x70B9;&#x540E;&#x4E24;&#x4F4D;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#限制小数点后两位并且数值要大于0"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x9650;&#x5236;&#x5C0F;&#x6570;&#x70B9;&#x540E;&#x4E24;&#x4F4D;&#x5E76;&#x4E14;&#x6570;&#x503C;&#x8981;&#x5927;&#x4E8E;0" class="headerlink" title="&#x9650;&#x5236;&#x5C0F;&#x6570;&#x70B9;&#x540E;&#x4E24;&#x4F4D;&#x5E76;&#x4E14;&#x6570;&#x503C;&#x8981;&#x5927;&#x4E8E;0"></a>&#x9650;&#x5236;&#x5C0F;&#x6570;&#x70B9;&#x540E;&#x4E24;&#x4F4D;&#x5E76;&#x4E14;&#x6570;&#x503C;&#x8981;&#x5927;&#x4E8E;0</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
