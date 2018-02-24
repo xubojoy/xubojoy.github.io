@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/1.png">
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/2.png">
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/3.png">
-<meta property="og:updated_time" content="2018-02-24T08:30:32.139Z">
+<meta property="og:updated_time" content="2018-02-24T08:42:31.905Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发中的八种锁(Lock)">
 <meta name="twitter:description" content="介绍前先看一张之前的锁性能图表：不知道有没有跟我一样除了看@synchronized 和 NSLock眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！">
@@ -413,7 +413,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  690
+                  686
                 </span>
               
 
@@ -465,7 +465,7 @@
 <li>传入0时:<br><img src="/2018/02/24/iOS开发中的八种锁-Lock/2.png" alt="传入0时"></li>
 <li>传入&gt;0时:<br><img src="/2018/02/24/iOS开发中的八种锁-Lock/3.png" alt="传入&gt;0时"></li>
 </ul>
-<p><code>dispatch_semaphore_wait(signal, overTime)</code>：可以理解为 <code>lock</code>,会使得 <code>signal</code> 值 <code>-1</code><br><code>dispatch_semaphore_signal(signal)</code>：可以理解为 <code>unlock</code>,会使得 <code>signal</code> 值 <code>+1</code></p>
+<p><code>dispatch_semaphore_wait(signal, overTime)</code>：相当于 <code>lock</code>,会使得 <code>signal</code> 值 <code>-1</code><br><code>dispatch_semaphore_signal(signal)</code>：相当于 <code>unlock</code>,会使得 <code>signal</code> 值 <code>+1</code></p>
 
       
     </div>
