@@ -408,7 +408,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  312
+                  452
                 </span>
               
 
@@ -424,7 +424,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -446,51 +446,14 @@
 
       
         
-          
-            <p>介绍前先看一张之前的锁性能图表：<br><img src="/2018/02/24/iOS开发中的八种锁-Lock/1.png" alt="1"><br>不知道有没有跟我一样除了看<code>@synchronized</code> 和 <code>NSLock</code>眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！</p>
-<h5 id="OSSpinLock-自旋锁"><a href="#OSSpinLock-自旋锁" class="headerlink" title="OSSpinLock (自旋锁)"></a>OSSpinLock (自旋锁)</h5><pre>
-__block OSSpinLock pinLock = OS_SPINLOCK_INIT;
-    //    线程1
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSLog(@"线程 1 准备上锁 %d",pinLock);
-        OSSpinLockLock(&pinLock);
-        sleep(4);
-        NSLog(@"线程1 %zd",pinLock);
-        OSSpinLockUnlock(&pinLock);
-        NSLog(@"线程1 解锁成功 %zd", pinLock);
-        NSLog(@"-------------------");
-    });    
-    //    线程2
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSLog(@"线程2 准备上锁 %zd",pinLock);
-        OSSpinLockLock(&pinLock);
-        NSLog(@"线程2 %zd",pinLock);
-        OSSpinLockUnlock(&pinLock);
-        NSLog(@"线程2 解锁成功 %zd",pinLock);
-    });
- </pre> 
- 可以发现即使加了异步线程，当线程1加锁之后，线程2会处于一直等待状态，直到线程1 解锁完成后，线程2才会执行。但是作为效率最优的锁，在 bireme的[不再安全的OSSpinLock](https://blog.ibireme.com/2016/01/16/spinlock_is_unsafe_in_ios/?utm_source=tuicool&utm_medium=referral)文中，已经指出潜在的bug：会导致优先级反转，因此不建议继续使用，目前已用`os_unfair_lock`锁替代,但是仅限iOS 10以后使用。
-
-##### os_unfair_lock
-
-栗子：
-<pre>
- if (@available(iOS 10.0, *)) {
-        os_unfair_lock_t oslock = &(OS_UNFAIR_LOCK_INIT);
-        NSLog(@"线程准备上锁 %zd",oslock);
-        os_unfair_lock_lock(oslock);
-        NSLog(@"线程%zd",oslock);
-        os_unfair_lock_unlock(oslock);
-        NSLog(@"解锁成功 %zd", oslock);
-        NSLog(@"-------------------");
-} else {
-        // Fallback on earlier versions
-    }
-</pre>
-
-
-
-          
+          <p>介绍前先看一张之前的锁性能图表：<br><img src="/2018/02/24/iOS开发中的八种锁-Lock/1.png" alt="1"><br>不知道有没有跟我一样除了看<code>@synchronized</code> 和 <code>NSLock</code>眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/24/iOS开发中的八种锁-Lock/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2389,7 +2352,7 @@ for ch in str{
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">42.1k字</span>
+    <span title="博客全站共">42.3k字</span>
   
 </div>
 

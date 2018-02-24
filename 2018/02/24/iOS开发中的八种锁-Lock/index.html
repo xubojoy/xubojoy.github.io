@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="介绍前先看一张之前的锁性能图表：不知道有没有跟我一样除了看@synchronized 和 NSLock眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！ OSSpinLock (自旋锁) __block OSSpinLock pinLock = OS_SPINLOCK_INIT;     //    线程1 dispatch_async(dispatch_get_global_q">
+<meta name="description" content="介绍前先看一张之前的锁性能图表：不知道有没有跟我一样除了看@synchronized 和 NSLock眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发中的八种锁(Lock)">
 <meta property="og:url" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/index.html">
 <meta property="og:site_name" content="枫林飘雪">
-<meta property="og:description" content="介绍前先看一张之前的锁性能图表：不知道有没有跟我一样除了看@synchronized 和 NSLock眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！ OSSpinLock (自旋锁) __block OSSpinLock pinLock = OS_SPINLOCK_INIT;     //    线程1 dispatch_async(dispatch_get_global_q">
+<meta property="og:description" content="介绍前先看一张之前的锁性能图表：不知道有没有跟我一样除了看@synchronized 和 NSLock眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/1.png">
-<meta property="og:updated_time" content="2018-02-24T06:43:32.068Z">
+<meta property="og:updated_time" content="2018-02-24T07:41:07.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发中的八种锁(Lock)">
-<meta name="twitter:description" content="介绍前先看一张之前的锁性能图表：不知道有没有跟我一样除了看@synchronized 和 NSLock眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！ OSSpinLock (自旋锁) __block OSSpinLock pinLock = OS_SPINLOCK_INIT;     //    线程1 dispatch_async(dispatch_get_global_q">
+<meta name="twitter:description" content="介绍前先看一张之前的锁性能图表：不知道有没有跟我一样除了看@synchronized 和 NSLock眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！">
 <meta name="twitter:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/1.png">
 
 
@@ -411,7 +411,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  312
+                  452
                 </span>
               
 
@@ -427,7 +427,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -449,47 +449,13 @@
 
       
         <p>介绍前先看一张之前的锁性能图表：<br><img src="/2018/02/24/iOS开发中的八种锁-Lock/1.png" alt="1"><br>不知道有没有跟我一样除了看<code>@synchronized</code> 和 <code>NSLock</code>眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！</p>
-<h5 id="OSSpinLock-自旋锁"><a href="#OSSpinLock-自旋锁" class="headerlink" title="OSSpinLock (自旋锁)"></a>OSSpinLock (自旋锁)</h5><pre>
-__block OSSpinLock pinLock = OS_SPINLOCK_INIT;
-    //    线程1
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSLog(@"线程 1 准备上锁 %d",pinLock);
-        OSSpinLockLock(&pinLock);
-        sleep(4);
-        NSLog(@"线程1 %zd",pinLock);
-        OSSpinLockUnlock(&pinLock);
-        NSLog(@"线程1 解锁成功 %zd", pinLock);
-        NSLog(@"-------------------");
-    });    
-    //    线程2
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSLog(@"线程2 准备上锁 %zd",pinLock);
-        OSSpinLockLock(&pinLock);
-        NSLog(@"线程2 %zd",pinLock);
-        OSSpinLockUnlock(&pinLock);
-        NSLog(@"线程2 解锁成功 %zd",pinLock);
-    });
- </pre> 
- 可以发现即使加了异步线程，当线程1加锁之后，线程2会处于一直等待状态，直到线程1 解锁完成后，线程2才会执行。但是作为效率最优的锁，在 bireme的[不再安全的OSSpinLock](https://blog.ibireme.com/2016/01/16/spinlock_is_unsafe_in_ios/?utm_source=tuicool&utm_medium=referral)文中，已经指出潜在的bug：会导致优先级反转，因此不建议继续使用，目前已用`os_unfair_lock`锁替代,但是仅限iOS 10以后使用。
-
-##### os_unfair_lock
-
-栗子：
-<pre>
- if (@available(iOS 10.0, *)) {
-        os_unfair_lock_t oslock = &(OS_UNFAIR_LOCK_INIT);
-        NSLog(@"线程准备上锁 %zd",oslock);
-        os_unfair_lock_lock(oslock);
-        NSLog(@"线程%zd",oslock);
-        os_unfair_lock_unlock(oslock);
-        NSLog(@"解锁成功 %zd", oslock);
-        NSLog(@"-------------------");
-} else {
-        // Fallback on earlier versions
-    }
-</pre>
-
-
+<a id="more"></a>
+<h5 id="OSSpinLock-自旋锁"><a href="#OSSpinLock-自旋锁" class="headerlink" title="OSSpinLock (自旋锁)"></a>OSSpinLock (自旋锁)</h5><p><pre><br>__block OSSpinLock pinLock = OS_SPINLOCK_INIT;<br>    //    线程1<br>dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{<br>        NSLog(@”线程 1 准备上锁 %d”,pinLock);<br>        OSSpinLockLock(&amp;pinLock);<br>        sleep(4);<br>        NSLog(@”线程1 %zd”,pinLock);<br>        OSSpinLockUnlock(&amp;pinLock);<br>        NSLog(@”线程1 解锁成功 %zd”, pinLock);<br>        NSLog(@”——————-“);<br>    });<br>    //    线程2<br>dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{<br>        NSLog(@”线程2 准备上锁 %zd”,pinLock);<br>        OSSpinLockLock(&amp;pinLock);<br>        NSLog(@”线程2 %zd”,pinLock);<br>        OSSpinLockUnlock(&amp;pinLock);<br>        NSLog(@”线程2 解锁成功 %zd”,pinLock);<br>    });<br></pre><br>可以发现即使加了异步线程，当线程1加锁之后，线程2会处于一直等待状态，直到线程1 解锁完成后，线程2才会执行。但是作为效率最优的锁，在 bireme的<a href="https://blog.ibireme.com/2016/01/16/spinlock_is_unsafe_in_ios/?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">不再安全的OSSpinLock</a>文中，已经指出潜在的bug：会导致优先级反转，因此不建议继续使用，目前已用<code>os_unfair_lock</code>锁替代,但是仅限iOS 10以后使用。</p>
+<h5 id="os-unfair-lock"><a href="#os-unfair-lock" class="headerlink" title="os_unfair_lock"></a>os_unfair_lock</h5><p>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if (@available(iOS 10.0, *)) &#123;</span><br><span class="line">   os_unfair_lock_t oslock = &amp;(OS_UNFAIR_LOCK_INIT);</span><br><span class="line">   NSLog(@&quot;线程准备上锁 %zd&quot;,oslock);</span><br><span class="line">    os_unfair_lock_lock(oslock);</span><br><span class="line">    NSLog(@&quot;线程%zd&quot;,oslock);</span><br><span class="line">    os_unfair_lock_unlock(oslock);</span><br><span class="line">    NSLog(@&quot;解锁成功 %zd&quot;, oslock);</span><br><span class="line">    NSLog(@&quot;-------------------&quot;);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    Fallback on earlier versions</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>正常情况下，<code>lock</code>和<code>unlock</code>最好成对出现。</p>
+<p><code>OS_SPINLOCK_INIT</code>： 默认值为 <code>0</code>,在 <code>locked</code> 状态时就会大于 <code>0</code>，unlocked状态下为 <code>0</code><br><code>OSSpinLockLock(&amp;oslock)</code>：上锁，参数为 <code>OSSpinLock</code> 地址<br><code>OSSpinLockUnlock(&amp;oslock)</code>：解锁，参数为 <code>OSSpinLock</code> 地址<br><code>OSSpinLockTry(&amp;oslock)</code>：尝试加锁，可以加锁则立即加锁并返回 <code>YES</code>,反之返回 <code>NO</code></p>
+<p>这里顺便提一下<code>trylock</code>和<code>lock</code>使用场景：</p>
+<p>当前线程锁失败，也可以继续其它任务，用 <code>trylock</code> 合适<br>当前线程只有锁成功后，才会做一些有意义的工作，那就 <code>lock</code>，没必要轮询 <code>trylock</code></p>
 
       
     </div>
@@ -789,7 +755,7 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#OSSpinLock-自旋锁"><span class="nav-number">1.</span> <span class="nav-text"><a href="#OSSpinLock-&#x81EA;&#x65CB;&#x9501;" class="headerlink" title="OSSpinLock (&#x81EA;&#x65CB;&#x9501;)"></a>OSSpinLock (&#x81EA;&#x65CB;&#x9501;)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#OSSpinLock-自旋锁"><span class="nav-number">1.</span> <span class="nav-text"><a href="#OSSpinLock-&#x81EA;&#x65CB;&#x9501;" class="headerlink" title="OSSpinLock (&#x81EA;&#x65CB;&#x9501;)"></a>OSSpinLock (&#x81EA;&#x65CB;&#x9501;)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#os-unfair-lock"><span class="nav-number">2.</span> <span class="nav-text"><a href="#os-unfair-lock" class="headerlink" title="os_unfair_lock"></a>os_unfair_lock</span></a></li></ol></div>
             
 
           </div>
@@ -824,7 +790,7 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">42.1k字</span>
+    <span title="博客全站共">42.3k字</span>
   
 </div>
 
