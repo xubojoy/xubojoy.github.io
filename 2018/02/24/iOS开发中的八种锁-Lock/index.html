@@ -94,7 +94,9 @@
 <meta property="og:description" content="介绍前先看一张之前的锁性能图表：不知道有没有跟我一样除了看@synchronized 和 NSLock眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/1.png">
-<meta property="og:updated_time" content="2018-02-24T07:41:07.788Z">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/2.png">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/3.png">
+<meta property="og:updated_time" content="2018-02-24T08:30:32.139Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发中的八种锁(Lock)">
 <meta name="twitter:description" content="介绍前先看一张之前的锁性能图表：不知道有没有跟我一样除了看@synchronized 和 NSLock眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！">
@@ -411,7 +413,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  452
+                  690
                 </span>
               
 
@@ -427,7 +429,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -456,6 +458,14 @@
 <p><code>OS_SPINLOCK_INIT</code>： 默认值为 <code>0</code>,在 <code>locked</code> 状态时就会大于 <code>0</code>，unlocked状态下为 <code>0</code><br><code>OSSpinLockLock(&amp;oslock)</code>：上锁，参数为 <code>OSSpinLock</code> 地址<br><code>OSSpinLockUnlock(&amp;oslock)</code>：解锁，参数为 <code>OSSpinLock</code> 地址<br><code>OSSpinLockTry(&amp;oslock)</code>：尝试加锁，可以加锁则立即加锁并返回 <code>YES</code>,反之返回 <code>NO</code></p>
 <p>这里顺便提一下<code>trylock</code>和<code>lock</code>使用场景：</p>
 <p>当前线程锁失败，也可以继续其它任务，用 <code>trylock</code> 合适<br>当前线程只有锁成功后，才会做一些有意义的工作，那就 <code>lock</code>，没必要轮询 <code>trylock</code></p>
+<h5 id="dispatch-semaphore-信号量"><a href="#dispatch-semaphore-信号量" class="headerlink" title="dispatch_semaphore 信号量"></a>dispatch_semaphore 信号量</h5><p>栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> dispatch_semaphore_t signal = dispatch_semaphore_create(1);//传入值必须 &gt;=0, 若传入为0则阻塞线程并等待timeout,时间到后会执行其后的语句</span><br><span class="line">    dispatch_time_t overtime = dispatch_time(DISPATCH_TIME_NOW, 3.0f * NSEC_PER_SEC);</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        NSLog(@&quot;线程等待1----%@&quot;,signal);</span><br><span class="line">        dispatch_semaphore_wait(signal, overtime);//signal 值 -1</span><br><span class="line">        NSLog(@&quot;线程1&quot;);</span><br><span class="line">        dispatch_semaphore_signal(signal); //signal 值 +1</span><br><span class="line">        NSLog(@&quot;线程发送信号1&quot;);</span><br><span class="line">        NSLog(@&quot;--------------1----------------------&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        NSLog(@&quot;线程等待2----%@&quot;,signal);</span><br><span class="line">        dispatch_semaphore_wait(signal, overtime);//signal 值 -1</span><br><span class="line">        NSLog(@&quot;线程2&quot;);</span><br><span class="line">        dispatch_semaphore_signal(signal); //signal 值 +1</span><br><span class="line">        NSLog(@&quot;线程发送信号2&quot;);</span><br><span class="line">        NSLog(@&quot;----------2--------------------------&quot;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>同样的信号量锁，会等一个线程执行完毕后，才会去执行另一个线程！<br><code>dispatch_semaphore_create(1)</code>： 传入值必须 &gt;=0, 若传入为 0 则阻塞线程并等待timeout,时间到后会执行其后的语句</p>
+<ul>
+<li>传入0时:<br><img src="/2018/02/24/iOS开发中的八种锁-Lock/2.png" alt="传入0时"></li>
+<li>传入&gt;0时:<br><img src="/2018/02/24/iOS开发中的八种锁-Lock/3.png" alt="传入&gt;0时"></li>
+</ul>
+<p><code>dispatch_semaphore_wait(signal, overTime)</code>：可以理解为 <code>lock</code>,会使得 <code>signal</code> 值 <code>-1</code><br><code>dispatch_semaphore_signal(signal)</code>：可以理解为 <code>unlock</code>,会使得 <code>signal</code> 值 <code>+1</code></p>
 
       
     </div>
@@ -755,7 +765,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#OSSpinLock-自旋锁"><span class="nav-number">1.</span> <span class="nav-text"><a href="#OSSpinLock-&#x81EA;&#x65CB;&#x9501;" class="headerlink" title="OSSpinLock (&#x81EA;&#x65CB;&#x9501;)"></a>OSSpinLock (&#x81EA;&#x65CB;&#x9501;)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#os-unfair-lock"><span class="nav-number">2.</span> <span class="nav-text"><a href="#os-unfair-lock" class="headerlink" title="os_unfair_lock"></a>os_unfair_lock</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#OSSpinLock-自旋锁"><span class="nav-number">1.</span> <span class="nav-text"><a href="#OSSpinLock-&#x81EA;&#x65CB;&#x9501;" class="headerlink" title="OSSpinLock (&#x81EA;&#x65CB;&#x9501;)"></a>OSSpinLock (&#x81EA;&#x65CB;&#x9501;)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#os-unfair-lock"><span class="nav-number">2.</span> <span class="nav-text"><a href="#os-unfair-lock" class="headerlink" title="os_unfair_lock"></a>os_unfair_lock</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatch-semaphore-信号量"><span class="nav-number">3.</span> <span class="nav-text"><a href="#dispatch-semaphore-&#x4FE1;&#x53F7;&#x91CF;" class="headerlink" title="dispatch_semaphore &#x4FE1;&#x53F7;&#x91CF;"></a>dispatch_semaphore &#x4FE1;&#x53F7;&#x91CF;</span></a></li></ol></div>
             
 
           </div>
@@ -790,7 +800,7 @@
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">42.3k字</span>
+    <span title="博客全站共">42.5k字</span>
   
 </div>
 
