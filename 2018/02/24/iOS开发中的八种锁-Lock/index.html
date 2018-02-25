@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/5.png">
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/6.png">
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/7.png">
-<meta property="og:updated_time" content="2018-02-25T08:05:26.320Z">
+<meta property="og:updated_time" content="2018-02-25T08:07:28.924Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发中的八种锁(Lock)">
 <meta name="twitter:description" content="介绍前先看一张之前的锁性能图表：不知道有没有跟我一样除了看@synchronized 和 NSLock眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！">
@@ -506,8 +506,8 @@
 <p>结果打印：<br><img src="/2018/02/24/iOS开发中的八种锁-Lock/7.png" alt=""></p>
 <p>结果显示：</p>
 <ul>
-<li>在初始化 <code>NSConditionLock</code> 对象时，给了默认标示为<code>0</code></li>
-<li>执行 <code>tryLockWhenCondition:</code>时，传入的条件标示也是 <code>0</code>,所以线程<code>1</code> 加锁成功</li>
+<li>在初始化 <code>NSConditionLock</code> 对象时，给了默认标识为<code>0</code></li>
+<li>执行 <code>tryLockWhenCondition:</code>时，传入的条件标识也是 <code>0</code>,所以线程<code>1</code> 加锁成功</li>
 <li>执行 <code>unlockWithCondition:</code>时，会把<code>condition</code>由 <code>0</code> 修改为 <code>1</code><br>因为<code>condition</code> 修改为了 <code>1</code>， 会先走到 线程3，然后 线程3 又将 <code>condition</code> 修改为 <code>3</code></li>
 <li>最后是线程2</li>
 </ul>
