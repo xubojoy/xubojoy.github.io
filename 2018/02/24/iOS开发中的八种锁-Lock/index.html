@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/5.png">
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/6.png">
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/24/iOS开发中的八种锁-Lock/7.png">
-<meta property="og:updated_time" content="2018-02-25T07:56:20.355Z">
+<meta property="og:updated_time" content="2018-02-25T08:05:26.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发中的八种锁(Lock)">
 <meta name="twitter:description" content="介绍前先看一张之前的锁性能图表：不知道有没有跟我一样除了看@synchronized 和 NSLock眼熟  其他的根本不知道什么意思。于是怀着敬畏惭愧的心，赶紧学习下！">
@@ -417,7 +417,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,528
+                  1,617
                 </span>
               
 
@@ -504,6 +504,13 @@
 <h4 id="NSConditionLock-条件锁"><a href="#NSConditionLock-条件锁" class="headerlink" title="NSConditionLock 条件锁"></a>NSConditionLock 条件锁</h4><p>🌰：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> NSConditionLock *cLock = [[NSConditionLock alloc] initWithCondition:0];</span><br><span class="line">    //线程1</span><br><span class="line">dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        if([cLock tryLockWhenCondition:0])&#123;</span><br><span class="line">            NSLog(@&quot;线程1&quot;);</span><br><span class="line">            [cLock unlockWithCondition:1];</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            NSLog(@&quot;失败&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //线程2</span><br><span class="line">dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        [cLock lockWhenCondition:3];</span><br><span class="line">        NSLog(@&quot;线程2&quot;);</span><br><span class="line">        [cLock unlockWithCondition:2];</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //线程3</span><br><span class="line">dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        [cLock lockWhenCondition:1];</span><br><span class="line">        NSLog(@&quot;线程3&quot;);</span><br><span class="line">        [cLock unlockWithCondition:3];</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
 <p>结果打印：<br><img src="/2018/02/24/iOS开发中的八种锁-Lock/7.png" alt=""></p>
+<p>结果显示：</p>
+<ul>
+<li>在初始化 <code>NSConditionLock</code> 对象时，给了默认标示为<code>0</code></li>
+<li>执行 <code>tryLockWhenCondition:</code>时，传入的条件标示也是 <code>0</code>,所以线程<code>1</code> 加锁成功</li>
+<li>执行 <code>unlockWithCondition:</code>时，会把<code>condition</code>由 <code>0</code> 修改为 <code>1</code><br>因为<code>condition</code> 修改为了 <code>1</code>， 会先走到 线程3，然后 线程3 又将 <code>condition</code> 修改为 <code>3</code></li>
+<li>最后是线程2</li>
+</ul>
 
       
     </div>
@@ -838,7 +845,7 @@
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">43.3k字</span>
+    <span title="博客全站共">43.4k字</span>
   
 </div>
 
