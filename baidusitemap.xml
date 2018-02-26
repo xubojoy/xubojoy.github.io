@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://xubojoy.github.io/2018/02/26/%E5%A6%82%E4%BD%95%E8%AE%BE%E5%AE%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%95%B0%E7%9B%AE/</loc>
+    <lastmod>2018-02-26T01:46:23.813Z</lastmod>
+    <data>
+        <display>
+        <title>如何设定线程池中线程的数目</title>
+        <pubTime>2018-02-26T01:39:56.000Z</pubTime>
+        
+        <tag>ios</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xubojoy.github.io/2018/02/24/iOS%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%85%AB%E7%A7%8D%E9%94%81-Lock/</loc>
-    <lastmod>2018-02-25T08:07:28.924Z</lastmod>
+    <lastmod>2018-02-25T08:13:42.508Z</lastmod>
     <data>
         <display>
         <title>iOS开发中的八种锁(Lock)</title>
