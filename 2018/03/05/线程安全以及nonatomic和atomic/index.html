@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="atomic在set方法里加了锁，防止了多线程一直去写这个property，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的，最好的方式是加锁。但是有个很大的问题就是造成读写很慢。">
+<meta name="description" content="atomic在set方法里加了锁，防止了多线程一直去写这个property，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的。而且有个很大的问题就是造成读写很慢。">
 <meta name="keywords" content="ios">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程安全以及nonatomic和atomic">
 <meta property="og:url" content="http://xubojoy.github.io/2018/03/05/线程安全以及nonatomic和atomic/index.html">
 <meta property="og:site_name" content="枫林飘雪">
-<meta property="og:description" content="atomic在set方法里加了锁，防止了多线程一直去写这个property，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的，最好的方式是加锁。但是有个很大的问题就是造成读写很慢。">
+<meta property="og:description" content="atomic在set方法里加了锁，防止了多线程一直去写这个property，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的。而且有个很大的问题就是造成读写很慢。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-05T06:52:19.221Z">
+<meta property="og:updated_time" content="2018-03-05T07:04:58.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程安全以及nonatomic和atomic">
-<meta name="twitter:description" content="atomic在set方法里加了锁，防止了多线程一直去写这个property，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的，最好的方式是加锁。但是有个很大的问题就是造成读写很慢。">
+<meta name="twitter:description" content="atomic在set方法里加了锁，防止了多线程一直去写这个property，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的。而且有个很大的问题就是造成读写很慢。">
 
 
 
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  797
+                  789
                 </span>
               
 
@@ -469,7 +469,7 @@
       
 
       
-        <p><code>atomic</code>在<code>set</code>方法里加了锁，防止了多线程一直去写这个<code>property</code>，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的，最好的方式是加锁。但是有个很大的问题就是造成读写很慢。</p>
+        <p><code>atomic</code>在<code>set</code>方法里加了锁，防止了多线程一直去写这个<code>property</code>，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的。而且有个很大的问题就是造成读写很慢。</p>
 <a id="more"></a>
 <h5 id="借用别人一形象比喻："><a href="#借用别人一形象比喻：" class="headerlink" title="借用别人一形象比喻："></a>借用别人一形象比喻：</h5><p>比如你开了一个服装店，这个服装店有三层，在第三层有个只能容纳一人试衣间，今天要来5个人买衣服，第一个人看上了一件衣服，要去试试，你告诉他位置他就去了，这时候试衣间的可容纳人数已经是0，这时候第二个人也要去试衣服，你也告诉他位置，他就去了，去了之后打开门，注意，这里能打开门，所以在他看来，这里是能进去的，但是打开门就尴尬了，然后这个时候两个人可能就干起来了，这个时候两个人（多线程）同时访问了这个试衣间（内存），造成了线程的不安全（容纳人数是这个内存中的数据），造成了错误，第一个人可能就说了，我已经先来了，把这块区域占了，已经在使用这个数据了，第二个人就会说，是老板跟我所试衣间在这里，我也要使用试衣间，我一拉门就开了，我以为里面没人。那么怎么解决这样的线程不安全呢？当然一看就知道，给这个门加个锁就行了，客户进来试衣服就把门锁上，第二个人来了，发现门打不开，就不会立即使用这个数据，等第一个人开锁出来了，第二个人再进去，这样数据就是安全的了，不会产生错误。关于加锁的位置也有说法，因为加锁是很耗资源的，所以锁的位置要放对，也不要多放，比如来买衣服，进来一个人你直接把服装店的大门就锁上了，就浪费了其他人选衣服的时间（要放对位置）；第一个人选好了衣服，准备去试衣服，你直接把一楼，二楼，三楼，试衣间全锁上了，那这个人试玩衣服出来解完全部的锁，要花费大量的时间（浪费资源），当然这样也是没有必要的（不要多放）。只要在试衣间门上面上个锁就行了。</p>
 <p>关于<code>nonatomic</code>和<code>atomic</code>也是一样，<code>nonatomic</code>线程不安全，<code>atomic</code>线程安全，具体表现在变量是<code>setter</code>方法有没有加锁。如果用<code>atomic</code>修饰就相当于每个人出生你就给他搞了个可携带式的加锁试衣间，不管干什么，都要先解锁，来买个衣服，先解了锁从试衣间出来跟你说话，说完又进去，解锁出来看衣服，看完再进去，很耗资源，所以建议我们使用<code>nonatomic</code>，先不装试衣间，只要在需要用的地方（比如你的服装店）搞个加锁的试衣间就可以。</p>

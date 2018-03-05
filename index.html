@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  797
+                  789
                 </span>
               
 
@@ -468,7 +468,7 @@
 
       
         
-          <p><code>atomic</code>在<code>set</code>方法里加了锁，防止了多线程一直去写这个<code>property</code>，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的，最好的方式是加锁。但是有个很大的问题就是造成读写很慢。</p>
+          <p><code>atomic</code>在<code>set</code>方法里加了锁，防止了多线程一直去写这个<code>property</code>，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的。而且有个很大的问题就是造成读写很慢。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/05/线程安全以及nonatomic和atomic/#more" rel="contents">
