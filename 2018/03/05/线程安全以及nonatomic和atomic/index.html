@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="服务器," />
+  <meta name="keywords" content="ios," />
 
 
 
@@ -86,22 +86,18 @@
 
 
 
-<meta name="description" content="DES与AES的比较自DES 算法公诸于世以来，学术界围绕它的安全性等方面进行了研究并展开了激烈的争论。在技术上，对DES的批评主要集中在以下几个方面：">
-<meta name="keywords" content="服务器">
+<meta name="description" content="atomic在set方法里加了锁，防止了多线程一直去写这个property，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的，最好的方式是加锁。但是有个很大的问题就是造成读写很慢。">
+<meta name="keywords" content="ios">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅析DES与AES、RSA三种典型加密算法的比较">
-<meta property="og:url" content="http://xubojoy.github.io/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/index.html">
+<meta property="og:title" content="线程安全以及nonatomic和atomic">
+<meta property="og:url" content="http://xubojoy.github.io/2018/03/05/线程安全以及nonatomic和atomic/index.html">
 <meta property="og:site_name" content="枫林飘雪">
-<meta property="og:description" content="DES与AES的比较自DES 算法公诸于世以来，学术界围绕它的安全性等方面进行了研究并展开了激烈的争论。在技术上，对DES的批评主要集中在以下几个方面：">
+<meta property="og:description" content="atomic在set方法里加了锁，防止了多线程一直去写这个property，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的，最好的方式是加锁。但是有个很大的问题就是造成读写很慢。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://xubojoy.github.io/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/21306-1.png">
-<meta property="og:image" content="http://xubojoy.github.io/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/AES.png">
-<meta property="og:image" content="http://xubojoy.github.io/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/21306-3.jpg">
-<meta property="og:updated_time" content="2017-12-12T01:19:46.523Z">
+<meta property="og:updated_time" content="2018-03-05T06:52:19.221Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅析DES与AES、RSA三种典型加密算法的比较">
-<meta name="twitter:description" content="DES与AES的比较自DES 算法公诸于世以来，学术界围绕它的安全性等方面进行了研究并展开了激烈的争论。在技术上，对DES的批评主要集中在以下几个方面：">
-<meta name="twitter:image" content="http://xubojoy.github.io/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/21306-1.png">
+<meta name="twitter:title" content="线程安全以及nonatomic和atomic">
+<meta name="twitter:description" content="atomic在set方法里加了锁，防止了多线程一直去写这个property，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的，最好的方式是加锁。但是有个很大的问题就是造成读写很慢。">
 
 
 
@@ -131,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://xubojoy.github.io/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/"/>
+  <link rel="canonical" href="http://xubojoy.github.io/2018/03/05/线程安全以及nonatomic和atomic/"/>
 
 
 
 
 
-  <title>浅析DES与AES、RSA三种典型加密算法的比较 | 枫林飘雪</title>
+  <title>线程安全以及nonatomic和atomic | 枫林飘雪</title>
   
 
 
@@ -353,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/">
+    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2018/03/05/线程安全以及nonatomic和atomic/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="枫林飘雪">
@@ -370,7 +366,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">浅析DES与AES、RSA三种典型加密算法的比较</h1>
+          <h1 class="post-title" itemprop="name headline">线程安全以及nonatomic和atomic</h1>
         
 
         <div class="post-meta">
@@ -382,8 +378,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-11T18:06:57+08:00">
-                2017-12-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T14:44:10+08:00">
+                2018-03-05
               </time>
             
 
@@ -405,8 +401,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/服务器/" itemprop="url" rel="index">
-                    <span itemprop="name">服务器</span>
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
                   </a>
                 </span>
 
@@ -436,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  794
+                  797
                 </span>
               
 
@@ -473,22 +469,11 @@
       
 
       
-        <h4 id="DES与AES的比较"><a href="#DES与AES的比较" class="headerlink" title="DES与AES的比较"></a>DES与AES的比较</h4><p>自DES 算法公诸于世以来，学术界围绕它的安全性等方面进行了研究并展开了激烈的争论。在技术上，对DES的批评主要集中在以下几个方面：<br><a id="more"></a></p>
-<p>1、作为分组密码，DES 的加密单位仅有64 位二进制，这对于数据传输来说太小，因为每个分组仅含8 个字符，而且其中某些位还要用于奇偶校验或其他通讯开销。</p>
-<p>2、DES 的密钥的位数太短，只有56 比特，而且各次迭代中使用的密钥是递推产生的，这种相关必然降低密码体制的安全性，在现有技术下用穷举法寻找密钥已趋于可行。</p>
-<p>3、DES 不能对抗差分和线性密码分析。</p>
-<p>4、DES 用户实际使用的密钥长度为56bit，理论上最大加密强度为256。DES 算法要提高加密强度（例如增加密钥长度），则系统开销呈指数增长。除采用提高硬件功能和增加并行处理功能外，从算法本身和软件技术方面都无法提高DES 算法的加密强度。<br><img src="/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/21306-1.png" alt="DES"></p>
-<p>相对DES算法来说，AES算法无疑解决了上述问题，主要表现在以下几个方面：<br><img src="/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/AES.png" alt="AES"></p>
-<p>1、运算速度快，在有反馈模式、无反馈模式的软硬件中，Rijndael都表现出非常好的性能。</p>
-<p>2、对内存的需求非常低,适合于受限环境。</p>
-<p>3、Rijndael 是一个分组迭代密码， 分组长度和密钥长度设计灵活。</p>
-<p>4、AES标准支持可变分组长度，分组长度可设定为32 比特的任意倍数，最小值为128 比特，最大值为256 比特。</p>
-<p>5、AES的密钥长度比DES大， 它也可设定为32 比特的任意倍数，最小值为12 比特，最大值为256 比特，所以用穷举法是不可能破解的。</p>
-<p>6、AES算法的设计策略是WTS。WTS 是针对差分分析和线性分析提出的，可对抗差分密码分析和线性密码分析。</p>
-<h4 id="DES与RSA的比较"><a href="#DES与RSA的比较" class="headerlink" title="DES与RSA的比较"></a>DES与RSA的比较</h4><p>RSA算法的密钥很长，具有较好的安全性，但加密的计算量很大，加密速度较慢限制了其应用范围。为减少计算量，在传送信息时，常采用传统加密方法与公开密钥加密方法相结合的方式，即信息采用改进的DES对话密钥加密，然后使用RSA密钥加密对话密钥和信息摘要。对方收到信息后，用不同的密钥解密并可核对信息摘要。<br><img src="/2017/12/11/浅析DES与AES、RSA三种典型加密算法的比较/21306-3.jpg" alt=""></p>
-<p>采用DES与RSA相结合的应用，使它们的优缺点正好互补，即DES加密速度快，适合加密较长的报文，可用其加密明文；RSA加密速度慢，安全性好，应用于DES 密钥的加密，可解决DES 密钥分配的问题。</p>
-<p>目前这种RSA和DES结合的方法已成为EMAIL保密通信标准。</p>
-<h4 id="转载：-浅析DES与AES、RSA三种典型加密算法的比较"><a href="#转载：-浅析DES与AES、RSA三种典型加密算法的比较" class="headerlink" title="转载： 浅析DES与AES、RSA三种典型加密算法的比较"></a>转载： <a href="http://www.jiamisoft.com/blog/21306-deses.html" target="_blank" rel="noopener">浅析DES与AES、RSA三种典型加密算法的比较</a></h4>
+        <p><code>atomic</code>在<code>set</code>方法里加了锁，防止了多线程一直去写这个<code>property</code>，造成难以预计的数值。但这也只是读写的锁定。并不能保证一定是线程安全的，最好的方式是加锁。但是有个很大的问题就是造成读写很慢。</p>
+<a id="more"></a>
+<h5 id="借用别人一形象比喻："><a href="#借用别人一形象比喻：" class="headerlink" title="借用别人一形象比喻："></a>借用别人一形象比喻：</h5><p>比如你开了一个服装店，这个服装店有三层，在第三层有个只能容纳一人试衣间，今天要来5个人买衣服，第一个人看上了一件衣服，要去试试，你告诉他位置他就去了，这时候试衣间的可容纳人数已经是0，这时候第二个人也要去试衣服，你也告诉他位置，他就去了，去了之后打开门，注意，这里能打开门，所以在他看来，这里是能进去的，但是打开门就尴尬了，然后这个时候两个人可能就干起来了，这个时候两个人（多线程）同时访问了这个试衣间（内存），造成了线程的不安全（容纳人数是这个内存中的数据），造成了错误，第一个人可能就说了，我已经先来了，把这块区域占了，已经在使用这个数据了，第二个人就会说，是老板跟我所试衣间在这里，我也要使用试衣间，我一拉门就开了，我以为里面没人。那么怎么解决这样的线程不安全呢？当然一看就知道，给这个门加个锁就行了，客户进来试衣服就把门锁上，第二个人来了，发现门打不开，就不会立即使用这个数据，等第一个人开锁出来了，第二个人再进去，这样数据就是安全的了，不会产生错误。关于加锁的位置也有说法，因为加锁是很耗资源的，所以锁的位置要放对，也不要多放，比如来买衣服，进来一个人你直接把服装店的大门就锁上了，就浪费了其他人选衣服的时间（要放对位置）；第一个人选好了衣服，准备去试衣服，你直接把一楼，二楼，三楼，试衣间全锁上了，那这个人试玩衣服出来解完全部的锁，要花费大量的时间（浪费资源），当然这样也是没有必要的（不要多放）。只要在试衣间门上面上个锁就行了。</p>
+<p>关于<code>nonatomic</code>和<code>atomic</code>也是一样，<code>nonatomic</code>线程不安全，<code>atomic</code>线程安全，具体表现在变量是<code>setter</code>方法有没有加锁。如果用<code>atomic</code>修饰就相当于每个人出生你就给他搞了个可携带式的加锁试衣间，不管干什么，都要先解锁，来买个衣服，先解了锁从试衣间出来跟你说话，说完又进去，解锁出来看衣服，看完再进去，很耗资源，所以建议我们使用<code>nonatomic</code>，先不装试衣间，只要在需要用的地方（比如你的服装店）搞个加锁的试衣间就可以。</p>
+
       
     </div>
     
@@ -551,7 +536,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/服务器/" rel="tag"><i class="fa fa-tag"></i> 服务器</a>
+            <a href="/tags/ios/" rel="tag"><i class="fa fa-tag"></i> ios</a>
           
         </div>
       
@@ -564,8 +549,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/30/iOS判断手机是否越狱/" rel="next" title="iOS判断手机是否越狱">
-                <i class="fa fa-chevron-left"></i> iOS判断手机是否越狱
+              <a href="/2018/02/26/如何用HTTP实现长连接/" rel="next" title="如何用HTTP实现长连接">
+                <i class="fa fa-chevron-left"></i> 如何用HTTP实现长连接
               </a>
             
           </div>
@@ -573,10 +558,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/11/HTTPS如何保护数据传输安全/" rel="prev" title="HTTPS如何保护数据传输安全">
-                HTTPS如何保护数据传输安全 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -797,7 +778,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#DES与AES的比较"><span class="nav-number">1.</span> <span class="nav-text"><a href="#DES&#x4E0E;AES&#x7684;&#x6BD4;&#x8F83;" class="headerlink" title="DES&#x4E0E;AES&#x7684;&#x6BD4;&#x8F83;"></a>DES&#x4E0E;AES&#x7684;&#x6BD4;&#x8F83;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DES与RSA的比较"><span class="nav-number">2.</span> <span class="nav-text"><a href="#DES&#x4E0E;RSA&#x7684;&#x6BD4;&#x8F83;" class="headerlink" title="DES&#x4E0E;RSA&#x7684;&#x6BD4;&#x8F83;"></a>DES&#x4E0E;RSA&#x7684;&#x6BD4;&#x8F83;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#转载：-浅析DES与AES、RSA三种典型加密算法的比较"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x8F6C;&#x8F7D;&#xFF1A;-&#x6D45;&#x6790;DES&#x4E0E;AES&#x3001;RSA&#x4E09;&#x79CD;&#x5178;&#x578B;&#x52A0;&#x5BC6;&#x7B97;&#x6CD5;&#x7684;&#x6BD4;&#x8F83;" class="headerlink" title="&#x8F6C;&#x8F7D;&#xFF1A; &#x6D45;&#x6790;DES&#x4E0E;AES&#x3001;RSA&#x4E09;&#x79CD;&#x5178;&#x578B;&#x52A0;&#x5BC6;&#x7B97;&#x6CD5;&#x7684;&#x6BD4;&#x8F83;"></a>&#x8F6C;&#x8F7D;&#xFF1A; <a href="http://www.jiamisoft.com/blog/21306-deses.html" target="_blank" rel="noopener">&#x6D45;&#x6790;DES&#x4E0E;AES&#x3001;RSA&#x4E09;&#x79CD;&#x5178;&#x578B;&#x52A0;&#x5BC6;&#x7B97;&#x6CD5;&#x7684;&#x6BD4;&#x8F83;</a></span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#借用别人一形象比喻："><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x501F;&#x7528;&#x522B;&#x4EBA;&#x4E00;&#x5F62;&#x8C61;&#x6BD4;&#x55BB;&#xFF1A;" class="headerlink" title="&#x501F;&#x7528;&#x522B;&#x4EBA;&#x4E00;&#x5F62;&#x8C61;&#x6BD4;&#x55BB;&#xFF1A;"></a>&#x501F;&#x7528;&#x522B;&#x4EBA;&#x4E00;&#x5F62;&#x8C61;&#x6BD4;&#x55BB;&#xFF1A;</span></a></li></ol></div>
             
 
           </div>
