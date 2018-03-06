@@ -468,48 +468,17 @@
 
       
         
-          
-            <p>关于KVC在Apple提供的API文档中如下：</p>
+          <p>关于KVC在Apple提供的API文档中如下：</p>
 <blockquote>
 <p>Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-value coding compliant, its properties are addressable via string parameters through a concise, uniform messaging interface. This indirect access mechanism supplements the direct access afforded by instance variables and their associated accessor methods.</p>
 </blockquote>
-<p>文档中可以大致了解到，键值编码是一种由NSKeyValueCoding非正式协议所支持的机制，对象采用该协议来提供对其属性的间接访问。当一个对象的键值编码兼容时，它的属性通过一个简洁的、统一的消息传递接口通过字符串参数寻址。这种间接访问机制补充了实例变量及其相关访问方法所提供的直接访问。</p>
-<p>官方文档给出的🌰：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@interface BankAccount : NSObject</span><br><span class="line"> </span><br><span class="line">@property (nonatomic) NSNumber* currentBalance;              // An attribute</span><br><span class="line">@property (nonatomic) Person* owner;                         // A to-one relation</span><br><span class="line">@property (nonatomic) NSArray&lt; Transaction* &gt;* transactions; // A to-many relation</span><br><span class="line"> </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>我们可以通过set方法直接给属性赋值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[myAccount setCurrentBalance:@(100.0)];</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>This is direct, but lacks flexibility. A key-value coding compliant object, on the other hand, offers a more general mechanism to access an object’s properties using string identifiers.</p>
-</blockquote>
-<p>这是直接的，但缺乏灵活性。另一方面，一个键值编码兼容的对象提供了一种更通用的机制，可以使用字符串标识符访问对象的属性。</p>
-<h5 id="通过kvc-可直接将属性当做key，来对属性进行赋值"><a href="#通过kvc-可直接将属性当做key，来对属性进行赋值" class="headerlink" title="通过kvc 可直接将属性当做key，来对属性进行赋值"></a>通过kvc 可直接将属性当做key，来对属性进行赋值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[myAccount setValue:@(100.0) forKeyPath:@&quot;currentBalance&quot;];</span><br></pre></td></tr></table></figure>
-<p>如果数组中存储的对象类型都相同，可以通过<code>valueForKeyPath:</code>方法指定取出数组中所有对象的某个字段。例如下面例子中，通过<code>valueForKeyPath:</code>将数组中所有对象的<code>currentBalance</code>属性值取出，并放入一个数组中返回。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BankAccount *myAccount1 = [[BankAccount alloc] init];</span><br><span class="line">[myAccount1 setValue:@(100.0) forKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">BankAccount *myAccount2 = [[BankAccount alloc] init];</span><br><span class="line">[myAccount2 setValue:@(200.0) forKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">BankAccount *myAccount3 = [[BankAccount alloc] init];</span><br><span class="line">[myAccount3 setValue:@(300.0) forKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">NSArray *array = [NSArray arrayWithObjects:myAccount1,myAccount2,myAccount3, nil];</span><br><span class="line">NSArray *accountArray = [array valueForKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">NSLog(@&quot;-------------%@&quot;,accountArray);</span><br></pre></td></tr></table></figure>
-<p>打印结果：</p>
-<blockquote>
-<p>————-(<br>    100,<br>    200,<br>    300<br>)</p>
-</blockquote>
-<p>通过<code>KVC</code>进行批量赋值。在对象调用<code>setValuesForKeysWithDictionary:</code>方法时，可以传入一个包含<code>key</code>、<code>value</code>的字典进去，<code>KVC</code>可以将所有数据按照属性名和字典的<code>key</code>进行匹配，并将<code>value</code>给<code>User</code>对象的属性赋值。</p>
-<blockquote>
-<p>- (void)setValuesForKeysWithDictionary:(NSDictionary<nsstring *,="" id=""> *)keyedValues;</nsstring></p>
-</blockquote>
-<h5 id="实用实例"><a href="#实用实例" class="headerlink" title="实用实例"></a>实用实例</h5><p>项目中通常会用到字典转模型的需求，如果在自定义的init方法里逐个赋值，这样每次数据发生改变还需要改赋值语句。然而通过KVC为我们提供的赋值API，可以对数据进行批量赋值。</p>
-<p>例如有如下JSON数据：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSDictionary *dict = @&#123;</span><br><span class="line">                           @&quot;username&quot;: @&quot;joy&quot;,</span><br><span class="line">                           @&quot;age&quot;: @(20),</span><br><span class="line">                           @&quot;id&quot;: @(10)</span><br><span class="line">                           &#125;;</span><br></pre></td></tr></table></figure>
-<p>把以上数据转化成User对象模型，我们可以建立User类(此处类的属性特殊化一下，有些字段没有按JSON数据字段)：<br>赋值时会遇到一些问题，例如服务器会返回一个id字段，但是对于客户端来说id是系统保留字段，可以重写setValue:forUndefinedKey:方法并在内部处理id参数的赋值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@interface User : NSObject</span><br><span class="line">@property (nonatomic, copy) NSString *name;</span><br><span class="line">@property (nonatomic, assign) NSString age;</span><br><span class="line">@property (nonatomic, assign) NSInteger userId;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>那么在User类的.m中需要做如下处理：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@implementation User</span><br><span class="line">- (void)setValue:(id)value forUndefinedKey:(NSString *)key &#123;</span><br><span class="line">    if ([key isEqualToString:@&quot;id&quot;]) &#123;</span><br><span class="line">        self.userId = [value integerValue];</span><br><span class="line">    &#125;else if ([key isEqualToString:@&quot;username&quot;])&#123;</span><br><span class="line">        self.name = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>以此来对应数据。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User *user = [[User alloc] init];</span><br><span class="line">[user setValuesForKeysWithDictionary:dict];</span><br><span class="line">NSLog(@&quot;---------------%@-------%@----%d---%ld&quot;,user,user.name,user.age,(long)user.userId);</span><br></pre></td></tr></table></figure>
-<p>调用打印：</p>
-<blockquote>
-<p>2018-03-06 10:49:15.422367+0800 RuntimeTest[4589:1486047] —————\<user: 0x1c02266a0="">——-joy—-20—10</user:></p>
-</blockquote>
-<p>转换时需要服务器数据和类定义匹配，字段数量和字段名都应该匹配。如果User比服务器数据多，则服务器没传的字段为空。如果服务端传递的数据User中没有定义，则会导致崩溃。</p>
-<p>在KVC进行属性赋值时，内部会对基础数据类型做处理，不需要手动做NSNumber的转换。需要注意的是，NSArray和NSDictionary等集合对象，value都不能是nil，否则会导致Crash。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/05/KVC实现原理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

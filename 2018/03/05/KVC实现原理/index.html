@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="关于KVC在Apple提供的API文档中如下：  Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-valu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-06T03:05:16.358Z">
+<meta property="og:updated_time" content="2018-03-06T03:22:44.331Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KVC实现原理">
 <meta name="twitter:description" content="关于KVC在Apple提供的API文档中如下：  Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-valu">
@@ -473,6 +473,7 @@
 <blockquote>
 <p>Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-value coding compliant, its properties are addressable via string parameters through a concise, uniform messaging interface. This indirect access mechanism supplements the direct access afforded by instance variables and their associated accessor methods.</p>
 </blockquote>
+<a id="more"></a>
 <p>文档中可以大致了解到，键值编码是一种由NSKeyValueCoding非正式协议所支持的机制，对象采用该协议来提供对其属性的间接访问。当一个对象的键值编码兼容时，它的属性通过一个简洁的、统一的消息传递接口通过字符串参数寻址。这种间接访问机制补充了实例变量及其相关访问方法所提供的直接访问。</p>
 <p>官方文档给出的🌰：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@interface BankAccount : NSObject</span><br><span class="line"> </span><br><span class="line">@property (nonatomic) NSNumber* currentBalance;              // An attribute</span><br><span class="line">@property (nonatomic) Person* owner;                         // A to-one relation</span><br><span class="line">@property (nonatomic) NSArray&lt; Transaction* &gt;* transactions; // A to-many relation</span><br><span class="line"> </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
