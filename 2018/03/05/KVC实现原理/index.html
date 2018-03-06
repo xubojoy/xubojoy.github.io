@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="关于KVC在Apple提供的API文档中如下：  Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-valu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-06T03:22:44.331Z">
+<meta property="og:updated_time" content="2018-03-06T05:44:59.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KVC实现原理">
 <meta name="twitter:description" content="关于KVC在Apple提供的API文档中如下：  Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-valu">
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,024
+                  1,136
                 </span>
               
 
@@ -448,7 +448,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -484,13 +484,15 @@
 </blockquote>
 <p>这是直接的，但缺乏灵活性。另一方面，一个键值编码兼容的对象提供了一种更通用的机制，可以使用字符串标识符访问对象的属性。</p>
 <h5 id="通过kvc-可直接将属性当做key，来对属性进行赋值"><a href="#通过kvc-可直接将属性当做key，来对属性进行赋值" class="headerlink" title="通过kvc 可直接将属性当做key，来对属性进行赋值"></a>通过kvc 可直接将属性当做key，来对属性进行赋值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[myAccount setValue:@(100.0) forKeyPath:@&quot;currentBalance&quot;];</span><br></pre></td></tr></table></figure>
+<h5 id="除了对当前对象的属性进行赋值外，还可以对其更“深层”的对象进行赋值。"><a href="#除了对当前对象的属性进行赋值外，还可以对其更“深层”的对象进行赋值。" class="headerlink" title="除了对当前对象的属性进行赋值外，还可以对其更“深层”的对象进行赋值。"></a>除了对当前对象的属性进行赋值外，还可以对其更“深层”的对象进行赋值。</h5><p>例如对当前对象的owner属性address的属性street属性进行赋值。KVC进行多级访问时，直接类似于属性调用一样用点语法进行访问即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BankAccount *myAccount = [BankAccount new];</span><br><span class="line">Person *person = [Person new];</span><br><span class="line">Address *address = [Address new];</span><br><span class="line">myAccount.owner = person;</span><br><span class="line">myAccount.owner.address = address;</span><br><span class="line">[myAccount setValue:@&quot;海淀&quot; forKeyPath:@&quot;owner.address.street&quot;];</span><br></pre></td></tr></table></figure>
 <p>如果数组中存储的对象类型都相同，可以通过<code>valueForKeyPath:</code>方法指定取出数组中所有对象的某个字段。例如下面例子中，通过<code>valueForKeyPath:</code>将数组中所有对象的<code>currentBalance</code>属性值取出，并放入一个数组中返回。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BankAccount *myAccount1 = [[BankAccount alloc] init];</span><br><span class="line">[myAccount1 setValue:@(100.0) forKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">BankAccount *myAccount2 = [[BankAccount alloc] init];</span><br><span class="line">[myAccount2 setValue:@(200.0) forKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">BankAccount *myAccount3 = [[BankAccount alloc] init];</span><br><span class="line">[myAccount3 setValue:@(300.0) forKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">NSArray *array = [NSArray arrayWithObjects:myAccount1,myAccount2,myAccount3, nil];</span><br><span class="line">NSArray *accountArray = [array valueForKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">NSLog(@&quot;-------------%@&quot;,accountArray);</span><br></pre></td></tr></table></figure>
 <p>打印结果：</p>
 <blockquote>
 <p>————-(<br>    100,<br>    200,<br>    300<br>)</p>
 </blockquote>
-<p>通过<code>KVC</code>进行批量赋值。在对象调用<code>setValuesForKeysWithDictionary:</code>方法时，可以传入一个包含<code>key</code>、<code>value</code>的字典进去，<code>KVC</code>可以将所有数据按照属性名和字典的<code>key</code>进行匹配，并将<code>value</code>给<code>User</code>对象的属性赋值。</p>
+<h5 id="通过KVC进行批量赋值。"><a href="#通过KVC进行批量赋值。" class="headerlink" title="通过KVC进行批量赋值。"></a>通过<code>KVC</code>进行批量赋值。</h5><p>在对象调用<code>setValuesForKeysWithDictionary:</code>方法时，可以传入一个包含<code>key</code>、<code>value</code>的字典进去，<code>KVC</code>可以将所有数据按照属性名和字典的<code>key</code>进行匹配，并将<code>value</code>给<code>User</code>对象的属性赋值。</p>
 <blockquote>
 <p>- (void)setValuesForKeysWithDictionary:(NSDictionary<nsstring *,="" id=""> *)keyedValues;</nsstring></p>
 </blockquote>
@@ -814,7 +816,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#通过kvc-可直接将属性当做key，来对属性进行赋值"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x901A;&#x8FC7;kvc-&#x53EF;&#x76F4;&#x63A5;&#x5C06;&#x5C5E;&#x6027;&#x5F53;&#x505A;key&#xFF0C;&#x6765;&#x5BF9;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;" class="headerlink" title="&#x901A;&#x8FC7;kvc &#x53EF;&#x76F4;&#x63A5;&#x5C06;&#x5C5E;&#x6027;&#x5F53;&#x505A;key&#xFF0C;&#x6765;&#x5BF9;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;"></a>&#x901A;&#x8FC7;kvc &#x53EF;&#x76F4;&#x63A5;&#x5C06;&#x5C5E;&#x6027;&#x5F53;&#x505A;key&#xFF0C;&#x6765;&#x5BF9;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实用实例"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B9E;&#x7528;&#x5B9E;&#x4F8B;" class="headerlink" title="&#x5B9E;&#x7528;&#x5B9E;&#x4F8B;"></a>&#x5B9E;&#x7528;&#x5B9E;&#x4F8B;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#通过kvc-可直接将属性当做key，来对属性进行赋值"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x901A;&#x8FC7;kvc-&#x53EF;&#x76F4;&#x63A5;&#x5C06;&#x5C5E;&#x6027;&#x5F53;&#x505A;key&#xFF0C;&#x6765;&#x5BF9;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;" class="headerlink" title="&#x901A;&#x8FC7;kvc &#x53EF;&#x76F4;&#x63A5;&#x5C06;&#x5C5E;&#x6027;&#x5F53;&#x505A;key&#xFF0C;&#x6765;&#x5BF9;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;"></a>&#x901A;&#x8FC7;kvc &#x53EF;&#x76F4;&#x63A5;&#x5C06;&#x5C5E;&#x6027;&#x5F53;&#x505A;key&#xFF0C;&#x6765;&#x5BF9;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#除了对当前对象的属性进行赋值外，还可以对其更“深层”的对象进行赋值。"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x9664;&#x4E86;&#x5BF9;&#x5F53;&#x524D;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x5916;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5BF9;&#x5176;&#x66F4;&#x201C;&#x6DF1;&#x5C42;&#x201D;&#x7684;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x3002;" class="headerlink" title="&#x9664;&#x4E86;&#x5BF9;&#x5F53;&#x524D;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x5916;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5BF9;&#x5176;&#x66F4;&#x201C;&#x6DF1;&#x5C42;&#x201D;&#x7684;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x3002;"></a>&#x9664;&#x4E86;&#x5BF9;&#x5F53;&#x524D;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x5916;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5BF9;&#x5176;&#x66F4;&#x201C;&#x6DF1;&#x5C42;&#x201D;&#x7684;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x3002;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过KVC进行批量赋值。"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x901A;&#x8FC7;KVC&#x8FDB;&#x884C;&#x6279;&#x91CF;&#x8D4B;&#x503C;&#x3002;" class="headerlink" title="&#x901A;&#x8FC7;KVC&#x8FDB;&#x884C;&#x6279;&#x91CF;&#x8D4B;&#x503C;&#x3002;"></a>&#x901A;&#x8FC7;<code>KVC</code>&#x8FDB;&#x884C;&#x6279;&#x91CF;&#x8D4B;&#x503C;&#x3002;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实用实例"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5B9E;&#x7528;&#x5B9E;&#x4F8B;" class="headerlink" title="&#x5B9E;&#x7528;&#x5B9E;&#x4F8B;"></a>&#x5B9E;&#x7528;&#x5B9E;&#x4F8B;</span></a></li></ol></div>
             
 
           </div>
@@ -849,7 +851,7 @@
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">46.4k字</span>
+    <span title="博客全站共">46.5k字</span>
   
 </div>
 
