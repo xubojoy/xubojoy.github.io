@@ -86,13 +86,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="枫林飘雪">
-<meta property="og:url" content="http://xubojoy.github.io/archives/page/3/index.html">
+<meta name="description" content="关于KVC在Apple提供的API文档中如下：  Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-valu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KVC实现原理">
+<meta property="og:url" content="http://xubojoy.github.io/2018/03/05/KVC实现原理/index.html">
 <meta property="og:site_name" content="枫林飘雪">
+<meta property="og:description" content="关于KVC在Apple提供的API文档中如下：  Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-valu">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-06T03:03:40.710Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="枫林飘雪">
+<meta name="twitter:title" content="KVC实现原理">
+<meta name="twitter:description" content="关于KVC在Apple提供的API文档中如下：  Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-valu">
 
 
 
@@ -122,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://xubojoy.github.io/archives/page/3/"/>
+  <link rel="canonical" href="http://xubojoy.github.io/2018/03/05/KVC实现原理/"/>
 
 
 
 
 
-  <title>归档 | 枫林飘雪</title>
+  <title>KVC实现原理 | 枫林飘雪</title>
   
 
 
@@ -160,7 +164,7 @@
       <button class="button" id="toggle">切换图片</button>
     </div>
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <a href="https://github.com/xubojoy"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
@@ -330,484 +334,294 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2018/03/05/KVC实现原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="枫林飘雪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫林飘雪">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">KVC实现原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T15:32:52+08:00">
+                2018-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        好! 目前共计 52 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2016">2016</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/18/清理Xcode多余的证书/" itemprop="url">
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">清理Xcode多余的证书</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,024
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-18T22:17:16+08:00"
-              content="2016-07-18" >
-          07-18
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/14/ios限制小数点后只能输入两位/" itemprop="url">
-              
-                <span itemprop="name">ios限制小数点后只能输入两位</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-14T21:53:01+08:00"
-              content="2016-07-14" >
-          07-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/04/摘录/" itemprop="url">
-              
-                <span itemprop="name">摘录</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-04T22:22:57+08:00"
-              content="2016-07-04" >
-          07-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>关于KVC在Apple提供的API文档中如下：</p>
+<blockquote>
+<p>Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-value coding compliant, its properties are addressable via string parameters through a concise, uniform messaging interface. This indirect access mechanism supplements the direct access afforded by instance variables and their associated accessor methods.</p>
+</blockquote>
+<p>文档中可以大致了解到，键值编码是一种由NSKeyValueCoding非正式协议所支持的机制，对象采用该协议来提供对其属性的间接访问。当一个对象的键值编码兼容时，它的属性通过一个简洁的、统一的消息传递接口通过字符串参数寻址。这种间接访问机制补充了实例变量及其相关访问方法所提供的直接访问。</p>
+<p>官方文档给出的🌰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@interface BankAccount : NSObject</span><br><span class="line"> </span><br><span class="line">@property (nonatomic) NSNumber* currentBalance;              // An attribute</span><br><span class="line">@property (nonatomic) Person* owner;                         // A to-one relation</span><br><span class="line">@property (nonatomic) NSArray&lt; Transaction* &gt;* transactions; // A to-many relation</span><br><span class="line"> </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>我们可以通过set方法直接给属性赋值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[myAccount setCurrentBalance:@(100.0)];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>This is direct, but lacks flexibility. A key-value coding compliant object, on the other hand, offers a more general mechanism to access an object’s properties using string identifiers.</p>
+</blockquote>
+<p>这是直接的，但缺乏灵活性。另一方面，一个键值编码兼容的对象提供了一种更通用的机制，可以使用字符串标识符访问对象的属性。</p>
+<h5 id="通过kvc-可直接将属性当做key，来对属性进行赋值"><a href="#通过kvc-可直接将属性当做key，来对属性进行赋值" class="headerlink" title="通过kvc 可直接将属性当做key，来对属性进行赋值"></a>通过kvc 可直接将属性当做key，来对属性进行赋值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[myAccount setValue:@(100.0) forKeyPath:@&quot;currentBalance&quot;];</span><br></pre></td></tr></table></figure>
+<p>如果数组中存储的对象类型都相同，可以通过<code>valueForKeyPath:</code>方法指定取出数组中所有对象的某个字段。例如下面例子中，通过<code>valueForKeyPath:</code>将数组中所有对象的<code>currentBalance</code>属性值取出，并放入一个数组中返回。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BankAccount *myAccount1 = [[BankAccount alloc] init];</span><br><span class="line">[myAccount1 setValue:@(100.0) forKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">BankAccount *myAccount2 = [[BankAccount alloc] init];</span><br><span class="line">[myAccount2 setValue:@(200.0) forKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">BankAccount *myAccount3 = [[BankAccount alloc] init];</span><br><span class="line">[myAccount3 setValue:@(300.0) forKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">NSArray *array = [NSArray arrayWithObjects:myAccount1,myAccount2,myAccount3, nil];</span><br><span class="line">NSArray *accountArray = [array valueForKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">NSLog(@&quot;-------------%@&quot;,accountArray);</span><br></pre></td></tr></table></figure>
+<p>打印结果：</p>
+<blockquote>
+<p>————-(<br>    100,<br>    200,<br>    300<br>)</p>
+</blockquote>
+<p>通过<code>KVC</code>进行批量赋值。在对象调用<code>setValuesForKeysWithDictionary:</code>方法时，可以传入一个包含<code>key</code>、<code>value</code>的字典进去，<code>KVC</code>可以将所有数据按照属性名和字典的<code>key</code>进行匹配，并将<code>value</code>给<code>User</code>对象的属性赋值。</p>
+<blockquote>
+<p>- (void)setValuesForKeysWithDictionary:(NSDictionary<nsstring *,="" id=""> *)keyedValues;</nsstring></p>
+</blockquote>
+<h5 id="实用实例"><a href="#实用实例" class="headerlink" title="实用实例"></a>实用实例</h5><p>项目中通常会用到字典转模型的需求，如果在自定义的init方法里逐个赋值，这样每次数据发生改变还需要改赋值语句。然而通过KVC为我们提供的赋值API，可以对数据进行批量赋值。</p>
+<p>例如有如下JSON数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSDictionary *dict = @&#123;</span><br><span class="line">                           @&quot;username&quot;: @&quot;joy&quot;,</span><br><span class="line">                           @&quot;age&quot;: @(20),</span><br><span class="line">                           @&quot;id&quot;: @(10)</span><br><span class="line">                           &#125;;</span><br></pre></td></tr></table></figure>
+<p>把以上数据转化成User对象模型，我们可以建立User类(此处类的属性特殊化一下，有些字段没有按JSON数据字段)：<br>赋值时会遇到一些问题，例如服务器会返回一个id字段，但是对于客户端来说id是系统保留字段，可以重写setValue:forUndefinedKey:方法并在内部处理id参数的赋值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@interface User : NSObject</span><br><span class="line">@property (nonatomic, copy) NSString *name;</span><br><span class="line">@property (nonatomic, assign) NSString age;</span><br><span class="line">@property (nonatomic, assign) NSInteger userId;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>那么在User类的.m中需要做如下处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@implementation User</span><br><span class="line">- (void)setValue:(id)value forUndefinedKey:(NSString *)key &#123;</span><br><span class="line">    if ([key isEqualToString:@&quot;id&quot;]) &#123;</span><br><span class="line">        self.userId = [value integerValue];</span><br><span class="line">    &#125;else if ([key isEqualToString:@&quot;username&quot;])&#123;</span><br><span class="line">        self.name = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>以此来对应数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User *user = [[User alloc] init];</span><br><span class="line">[user setValuesForKeysWithDictionary:dict];</span><br><span class="line">NSLog(@&quot;---------------%@-------%@----%d---%ld&quot;,user,user.name,user.age,(long)user.userId);</span><br></pre></td></tr></table></figure>
+<p>调用打印：</p>
+<blockquote>
+<p>2018-03-06 10:49:15.422367+0800 RuntimeTest[4589:1486047] —————\<user: 0x1c02266a0="">——-joy—-20—10</user:></p>
+</blockquote>
+<p>转换时需要服务器数据和类定义匹配，字段数量和字段名都应该匹配。如果User比服务器数据多，则服务器没传的字段为空。如果服务端传递的数据User中没有定义，则会导致崩溃。</p>
+<p>在KVC进行属性赋值时，内部会对基础数据类型做处理，不需要手动做NSNumber的转换。需要注意的是，NSArray和NSDictionary等集合对象，value都不能是nil，否则会导致Crash。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/06/26/《活着》/" itemprop="url">
-              
-                <span itemprop="name">《活着》</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-06-26T21:11:32+08:00"
-              content="2016-06-26" >
-          06-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/06/16/xcode-“The-file-couldn-t-be-opened”/" itemprop="url">
-              
-                <span itemprop="name">xcode “The file couldn't be opened”</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-06-16T12:29:51+08:00"
-              content="2016-06-16" >
-          06-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/06/08/iOS-APP转让/" itemprop="url">
-              
-                <span itemprop="name">iOS APP转让</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-06-08T15:03:05+08:00"
-              content="2016-06-08" >
-          06-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/27/iOS计算间隔时间/" itemprop="url">
-              
-                <span itemprop="name">iOS计算间隔时间</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-27T11:41:01+08:00"
-              content="2016-05-27" >
-          05-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/30/ios对字典进行重新排序/" itemprop="url">
-              
-                <span itemprop="name">ios对字典进行重新排序</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-30T15:18:29+08:00"
-              content="2016-04-30" >
-          04-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/26/iOS关于自定义协议/" itemprop="url">
-              
-                <span itemprop="name">iOS关于自定义协议</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-26T19:45:14+08:00"
-              content="2016-04-26" >
-          04-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/25/一些常见的状态码/" itemprop="url">
-              
-                <span itemprop="name">一些常见的状态码</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-25T13:43:09+08:00"
-              content="2016-04-25" >
-          04-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/24/基于Hexo-Github搭建自己的blog/" itemprop="url">
-              
-                <span itemprop="name">基于Hexo+Github搭建自己的blog</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-24T22:01:34+08:00"
-              content="2016-04-24" >
-          04-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/24/ios-错误总结/" itemprop="url">
-              
-                <span itemprop="name">ios 错误总结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-24T17:54:02+08:00"
-              content="2016-04-24" >
-          04-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+    <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+        
+    </div>
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/xubojoy.jpg" alt="枫林飘雪 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信订阅号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/wechat-reward-image.png" alt="枫林飘雪 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/alipay-reward-image.jpg" alt="枫林飘雪 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/05/KVO实现原理/" rel="next" title="KVO实现原理">
+                <i class="fa fa-chevron-left"></i> KVO实现原理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -815,6 +629,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDIwOS82NzY0"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -835,8 +658,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -942,6 +774,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#通过kvc-可直接将属性当做key，来对属性进行赋值"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x901A;&#x8FC7;kvc-&#x53EF;&#x76F4;&#x63A5;&#x5C06;&#x5C5E;&#x6027;&#x5F53;&#x505A;key&#xFF0C;&#x6765;&#x5BF9;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;" class="headerlink" title="&#x901A;&#x8FC7;kvc &#x53EF;&#x76F4;&#x63A5;&#x5C06;&#x5C5E;&#x6027;&#x5F53;&#x505A;key&#xFF0C;&#x6765;&#x5BF9;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;"></a>&#x901A;&#x8FC7;kvc &#x53EF;&#x76F4;&#x63A5;&#x5C06;&#x5C5E;&#x6027;&#x5F53;&#x505A;key&#xFF0C;&#x6765;&#x5BF9;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实用实例"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B9E;&#x7528;&#x5B9E;&#x4F8B;" class="headerlink" title="&#x5B9E;&#x7528;&#x5B9E;&#x4F8B;"></a>&#x5B9E;&#x7528;&#x5B9E;&#x4F8B;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1099,6 +947,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -1127,6 +979,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
