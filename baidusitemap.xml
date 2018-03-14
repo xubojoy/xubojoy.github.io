@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://xubojoy.github.io/2017/12/28/SVN%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2018-03-14T02:12:32.292Z</lastmod>
+    <data>
+        <display>
+        <title>SVN命令行操作</title>
+        <pubTime>2017-12-28T07:34:46.000Z</pubTime>
+        
+        <tag>服务器</tag>
+         
+         
+           
+             
+              <breadCrumb title="服务器" url="http://xubojoy.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xubojoy.github.io/2018/03/05/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</loc>
     <lastmod>2018-03-07T10:24:19.528Z</lastmod>
     <data>
@@ -187,26 +207,6 @@
            
              
               <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xubojoy.github.io/2017/12/28/SVN%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2018-01-26T07:07:45.162Z</lastmod>
-    <data>
-        <display>
-        <title>SVN命令行操作</title>
-        <pubTime>2017-12-28T07:34:46.000Z</pubTime>
-        
-        <tag>服务器</tag>
-         
-         
-           
-             
-              <breadCrumb title="服务器" url="http://xubojoy.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
           
         </display>
     </data>
