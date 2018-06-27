@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="对于很多APP在启动是会询问定位信息，因此对于swift定位处理。首先要在项目info.plist中添加定位权限：12&amp;lt;key&amp;gt;NSLocationWhenInUseUsageDescription&amp;lt;/key&amp;gt;&amp;lt;string&amp;gt;我们需要通过您的地理位置信息获取您周边的相关数据&amp;lt;/string&amp;gt; 其他权限如：12345678910&amp;lt;key&amp;gt;N">
+<meta name="description" content="对于很多APP在启动是会询问定位信息，因此对于swift定位处理。 一、要在项目info.plist中添加定位权限：12&amp;lt;key&amp;gt;NSLocationWhenInUseUsageDescription&amp;lt;/key&amp;gt;&amp;lt;string&amp;gt;我们需要通过您的地理位置信息获取您周边的相关数据&amp;lt;/string&amp;gt;">
 <meta name="keywords" content="ios">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift当前位置定位处理">
 <meta property="og:url" content="http://xubojoy.github.io/2018/06/27/Swift当前位置定位处理/index.html">
 <meta property="og:site_name" content="枫林飘雪">
-<meta property="og:description" content="对于很多APP在启动是会询问定位信息，因此对于swift定位处理。首先要在项目info.plist中添加定位权限：12&amp;lt;key&amp;gt;NSLocationWhenInUseUsageDescription&amp;lt;/key&amp;gt;&amp;lt;string&amp;gt;我们需要通过您的地理位置信息获取您周边的相关数据&amp;lt;/string&amp;gt; 其他权限如：12345678910&amp;lt;key&amp;gt;N">
+<meta property="og:description" content="对于很多APP在启动是会询问定位信息，因此对于swift定位处理。 一、要在项目info.plist中添加定位权限：12&amp;lt;key&amp;gt;NSLocationWhenInUseUsageDescription&amp;lt;/key&amp;gt;&amp;lt;string&amp;gt;我们需要通过您的地理位置信息获取您周边的相关数据&amp;lt;/string&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-27T08:28:45.538Z">
+<meta property="og:updated_time" content="2018-06-27T08:39:25.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift当前位置定位处理">
-<meta name="twitter:description" content="对于很多APP在启动是会询问定位信息，因此对于swift定位处理。首先要在项目info.plist中添加定位权限：12&amp;lt;key&amp;gt;NSLocationWhenInUseUsageDescription&amp;lt;/key&amp;gt;&amp;lt;string&amp;gt;我们需要通过您的地理位置信息获取您周边的相关数据&amp;lt;/string&amp;gt; 其他权限如：12345678910&amp;lt;key&amp;gt;N">
+<meta name="twitter:description" content="对于很多APP在启动是会询问定位信息，因此对于swift定位处理。 一、要在项目info.plist中添加定位权限：12&amp;lt;key&amp;gt;NSLocationWhenInUseUsageDescription&amp;lt;/key&amp;gt;&amp;lt;string&amp;gt;我们需要通过您的地理位置信息获取您周边的相关数据&amp;lt;/string&amp;gt;">
 
 
 
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  186
+                  549
                 </span>
               
 
@@ -448,7 +448,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -469,8 +469,87 @@
       
 
       
-        <p>对于很多APP在启动是会询问定位信息，因此对于swift定位处理。首先要在项目info.plist中添加定位权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;key&gt;NSLocationWhenInUseUsageDescription&lt;/key&gt;</span><br><span class="line">&lt;string&gt;我们需要通过您的地理位置信息获取您周边的相关数据&lt;/string&gt;</span><br></pre></td></tr></table></figure></p>
+        <p>对于很多APP在启动是会询问定位信息，因此对于swift定位处理。</p>
+<h5 id="一、要在项目info-plist中添加定位权限："><a href="#一、要在项目info-plist中添加定位权限：" class="headerlink" title="一、要在项目info.plist中添加定位权限："></a>一、要在项目info.plist中添加定位权限：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;key&gt;NSLocationWhenInUseUsageDescription&lt;/key&gt;</span><br><span class="line">&lt;string&gt;我们需要通过您的地理位置信息获取您周边的相关数据&lt;/string&gt;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>其他权限如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;</span><br><span class="line">&lt;string&gt;是否允许此App使用你的相机？&lt;/string&gt;</span><br><span class="line">&lt;key&gt;NSLocationWhenInUseUsageDescription&lt;/key&gt;</span><br><span class="line">&lt;string&gt;我们需要通过您的地理位置信息获取您周边的相关数据&lt;/string&gt;</span><br><span class="line">&lt;key&gt;NSMicrophoneUsageDescription&lt;/key&gt;</span><br><span class="line">&lt;string&gt;是否允许此App访问你的麦克风？&lt;/string&gt;</span><br><span class="line">&lt;key&gt;NSPhotoLibraryUsageDescription&lt;/key&gt;</span><br><span class="line">&lt;string&gt;是否允许此App访问你的媒体资料库？&lt;/string&gt;</span><br><span class="line">&lt;key&gt;NSContactsUsageDescription&lt;/key&gt;</span><br><span class="line">&lt;string&gt;是否允许开启通讯录好友？&lt;/string&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="二、导入库import-CoreLocation"><a href="#二、导入库import-CoreLocation" class="headerlink" title="二、导入库import CoreLocation"></a>二、导入库<code>import CoreLocation</code></h5><h5 id="三、这里我建了一个类MapProcessor来专门处理有关地图定位"><a href="#三、这里我建了一个类MapProcessor来专门处理有关地图定位" class="headerlink" title="三、这里我建了一个类MapProcessor来专门处理有关地图定位"></a>三、这里我建了一个类<code>MapProcessor</code>来专门处理有关地图定位</h5><p>上代码：</p>
+<pre>
+class MapProcessor: NSObject {
+    var locationManager : CLLocationManager?
+    var location : CLLocation?
+    static let shared = MapProcessor()
+    //打开定位
+    func loadLocation()
+    {
+        locationManager = CLLocationManager.init()
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.distanceFilter = 10
+        locationManager?.delegate = self
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.startUpdatingLocation()
+    }
+}
+</pre>
+
+<h6 id="实现代理CLLocationManagerDelegate方法"><a href="#实现代理CLLocationManagerDelegate方法" class="headerlink" title="实现代理CLLocationManagerDelegate方法"></a>实现代理<code>CLLocationManagerDelegate</code>方法</h6><pre>
+extension MapProcessor: CLLocationManagerDelegate{
+    //获取定位信息
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(locations)
+        let loc:CLLocation = locations[locations.count-1]
+        location = locations.last
+        if loc.horizontalAccuracy > 0 {
+            let lat =  String.init(format: "%.1f", (location?.coordinate.latitude)!)
+            let long = String.init(format: "%.1f", (location?.coordinate.longitude)!)
+            print(String.init(format: "lat:%@,long:%@", lat,long))
+//            location = CLLocation(latitude: 34.7472541716, longitude: 113.6249284647)
+            locationManager?.stopUpdatingLocation()
+            //将经纬度转换成城市名
+            let geocoder:CLGeocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(location!, completionHandler: { (placemark, error) in
+                if error == nil{
+                    let array = placemark! as NSArray
+                    let mark = array.firstObject as! CLPlacemark 
+                    print("==获取定位==========",mark.addressDictionary!)
+                    //城市
+                    let city:String = (mark.addressDictionary! as NSDictionary).value(forKey: "City") as! String
+                    //国家
+                    let country:NSString = (mark.addressDictionary! as NSDictionary).value(forKey: "Country") as! NSString
+                    //国家编码
+                    let countryCode:NSString = (mark.addressDictionary! as NSDictionary).value(forKey: "CountryCode") as! NSString
+                    //街道位置
+                    let formattedAddressLines : NSString = ((mark.addressDictionary! as NSDictionary).value(forKey: "FormattedAddressLines") as AnyObject).firstObject as! NSString
+                    //具体位置
+                    let name:String = ((mark.addressDictionary! as NSDictionary).value(forKey: "Name") as! NSString) as String
+                    //省
+                    var state: String = ""
+                    if (mark.addressDictionary! as NSDictionary).value(forKey: "State") != nil {
+                        state = (mark.addressDictionary! as NSDictionary).value(forKey: "State") as! String
+                    }else{
+                        state = ""
+                    } 
+                    //区
+                    let subLocality:NSString = (mark.addressDictionary! as NSDictionary).value(forKey: "SubLocality") as! NSString
+//                    state, 省：%@,
+                    print("=============",state)
+                    print(String.init(format: "城市：%@,国家：%@,国家编码：%@,街道位置：%@,具体位置：%@,区：%@", city,country,countryCode,formattedAddressLines,name,subLocality))
+                    AppStatus.shared.city = city.pregReplace(pattern: "市", with: "")
+                    AppStatus.saveAppStatus()
+                }else{
+                    print(error!)
+                }
+            })
+        }
+    }
+</pre>
+
+<h6 id="定位错误处理"><a href="#定位错误处理" class="headerlink" title="定位错误处理"></a>定位错误处理</h6><pre>
+func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
+        print(error as Any)
+    }
+</pre>
+
 
       
     </div>
@@ -650,8 +729,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -758,6 +846,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#一、要在项目info-plist中添加定位权限："><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;&#x8981;&#x5728;&#x9879;&#x76EE;info-plist&#x4E2D;&#x6DFB;&#x52A0;&#x5B9A;&#x4F4D;&#x6743;&#x9650;&#xFF1A;" class="headerlink" title="&#x4E00;&#x3001;&#x8981;&#x5728;&#x9879;&#x76EE;info.plist&#x4E2D;&#x6DFB;&#x52A0;&#x5B9A;&#x4F4D;&#x6743;&#x9650;&#xFF1A;"></a>&#x4E00;&#x3001;&#x8981;&#x5728;&#x9879;&#x76EE;info.plist&#x4E2D;&#x6DFB;&#x52A0;&#x5B9A;&#x4F4D;&#x6743;&#x9650;&#xFF1A;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二、导入库import-CoreLocation"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;&#x5BFC;&#x5165;&#x5E93;import-CoreLocation" class="headerlink" title="&#x4E8C;&#x3001;&#x5BFC;&#x5165;&#x5E93;import CoreLocation"></a>&#x4E8C;&#x3001;&#x5BFC;&#x5165;&#x5E93;<code>import CoreLocation</code></span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三、这里我建了一个类MapProcessor来专门处理有关地图定位"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E09;&#x3001;&#x8FD9;&#x91CC;&#x6211;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x7C7B;MapProcessor&#x6765;&#x4E13;&#x95E8;&#x5904;&#x7406;&#x6709;&#x5173;&#x5730;&#x56FE;&#x5B9A;&#x4F4D;" class="headerlink" title="&#x4E09;&#x3001;&#x8FD9;&#x91CC;&#x6211;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x7C7B;MapProcessor&#x6765;&#x4E13;&#x95E8;&#x5904;&#x7406;&#x6709;&#x5173;&#x5730;&#x56FE;&#x5B9A;&#x4F4D;"></a>&#x4E09;&#x3001;&#x8FD9;&#x91CC;&#x6211;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x7C7B;<code>MapProcessor</code>&#x6765;&#x4E13;&#x95E8;&#x5904;&#x7406;&#x6709;&#x5173;&#x5730;&#x56FE;&#x5B9A;&#x4F4D;</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#实现代理CLLocationManagerDelegate方法"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x5B9E;&#x73B0;&#x4EE3;&#x7406;CLLocationManagerDelegate&#x65B9;&#x6CD5;" class="headerlink" title="&#x5B9E;&#x73B0;&#x4EE3;&#x7406;CLLocationManagerDelegate&#x65B9;&#x6CD5;"></a>&#x5B9E;&#x73B0;&#x4EE3;&#x7406;<code>CLLocationManagerDelegate</code>&#x65B9;&#x6CD5;</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#定位错误处理"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x5B9A;&#x4F4D;&#x9519;&#x8BEF;&#x5904;&#x7406;" class="headerlink" title="&#x5B9A;&#x4F4D;&#x9519;&#x8BEF;&#x5904;&#x7406;"></a>&#x5B9A;&#x4F4D;&#x9519;&#x8BEF;&#x5904;&#x7406;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -786,7 +890,7 @@
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">51.8k字</span>
+    <span title="博客全站共">52.2k字</span>
   
 </div>
 
