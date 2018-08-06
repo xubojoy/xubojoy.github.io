@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="关于KVC在Apple提供的API文档中如下：  Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-valu">
+<meta name="description" content="“温故而知新”,最近有空会持续总结一下iOS常见的概念及遇到的问题，帮助自己回顾下iOS知识体系，也会持续总结一些面试之类是题。">
 <meta name="keywords" content="ios">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KVC实现原理">
-<meta property="og:url" content="http://xubojoy.github.io/2018/03/05/KVC实现原理/index.html">
+<meta property="og:title" content="iOS总结(一)">
+<meta property="og:url" content="http://xubojoy.github.io/2018/08/06/iOS总结-一/index.html">
 <meta property="og:site_name" content="枫林飘雪">
-<meta property="og:description" content="关于KVC在Apple提供的API文档中如下：  Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-valu">
+<meta property="og:description" content="“温故而知新”,最近有空会持续总结一下iOS常见的概念及遇到的问题，帮助自己回顾下iOS知识体系，也会持续总结一些面试之类是题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-06T05:44:59.536Z">
+<meta property="og:updated_time" content="2018-08-06T03:26:45.822Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KVC实现原理">
-<meta name="twitter:description" content="关于KVC在Apple提供的API文档中如下：  Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-valu">
+<meta name="twitter:title" content="iOS总结(一)">
+<meta name="twitter:description" content="“温故而知新”,最近有空会持续总结一下iOS常见的概念及遇到的问题，帮助自己回顾下iOS知识体系，也会持续总结一些面试之类是题。">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://xubojoy.github.io/2018/03/05/KVC实现原理/"/>
+  <link rel="canonical" href="http://xubojoy.github.io/2018/08/06/iOS总结-一/"/>
 
 
 
 
 
-  <title>KVC实现原理 | 枫林飘雪</title>
+  <title>iOS总结(一) | 枫林飘雪</title>
   
 
 
@@ -349,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2018/03/05/KVC实现原理/">
+    <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2018/08/06/iOS总结-一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="枫林飘雪">
@@ -366,7 +366,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">KVC实现原理</h1>
+          <h1 class="post-title" itemprop="name headline">iOS总结(一)</h1>
         
 
         <div class="post-meta">
@@ -378,8 +378,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T15:32:52+08:00">
-                2018-03-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-06T10:54:00+08:00">
+                2018-08-06
               </time>
             
 
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,136
+                  1,878
                 </span>
               
 
@@ -448,7 +448,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  7
                 </span>
               
             </div>
@@ -469,48 +469,57 @@
       
 
       
-        <p>关于KVC在Apple提供的API文档中如下：</p>
-<blockquote>
-<p>Key-value coding is a mechanism enabled by the NSKeyValueCoding informal protocol that objects adopt to provide indirect access to their properties. When an object is key-value coding compliant, its properties are addressable via string parameters through a concise, uniform messaging interface. This indirect access mechanism supplements the direct access afforded by instance variables and their associated accessor methods.</p>
-</blockquote>
+        <p>“温故而知新”,最近有空会持续总结一下iOS常见的概念及遇到的问题，帮助自己回顾下iOS知识体系，也会持续总结一些面试之类是题。</p>
 <a id="more"></a>
-<p>文档中可以大致了解到，键值编码是一种由NSKeyValueCoding非正式协议所支持的机制，对象采用该协议来提供对其属性的间接访问。当一个对象的键值编码兼容时，它的属性通过一个简洁的、统一的消息传递接口通过字符串参数寻址。这种间接访问机制补充了实例变量及其相关访问方法所提供的直接访问。</p>
-<p>官方文档给出的🌰：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@interface BankAccount : NSObject</span><br><span class="line"> </span><br><span class="line">@property (nonatomic) NSNumber* currentBalance;              // An attribute</span><br><span class="line">@property (nonatomic) Person* owner;                         // A to-one relation</span><br><span class="line">@property (nonatomic) NSArray&lt; Transaction* &gt;* transactions; // A to-many relation</span><br><span class="line"> </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>我们可以通过set方法直接给属性赋值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[myAccount setCurrentBalance:@(100.0)];</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>This is direct, but lacks flexibility. A key-value coding compliant object, on the other hand, offers a more general mechanism to access an object’s properties using string identifiers.</p>
-</blockquote>
-<p>这是直接的，但缺乏灵活性。另一方面，一个键值编码兼容的对象提供了一种更通用的机制，可以使用字符串标识符访问对象的属性。</p>
-<h5 id="通过kvc-可直接将属性当做key，来对属性进行赋值"><a href="#通过kvc-可直接将属性当做key，来对属性进行赋值" class="headerlink" title="通过kvc 可直接将属性当做key，来对属性进行赋值"></a>通过kvc 可直接将属性当做key，来对属性进行赋值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[myAccount setValue:@(100.0) forKeyPath:@&quot;currentBalance&quot;];</span><br></pre></td></tr></table></figure>
-<h5 id="除了对当前对象的属性进行赋值外，还可以对其更“深层”的对象进行赋值。"><a href="#除了对当前对象的属性进行赋值外，还可以对其更“深层”的对象进行赋值。" class="headerlink" title="除了对当前对象的属性进行赋值外，还可以对其更“深层”的对象进行赋值。"></a>除了对当前对象的属性进行赋值外，还可以对其更“深层”的对象进行赋值。</h5><p>例如对当前对象的owner属性address的属性street属性进行赋值。KVC进行多级访问时，直接类似于属性调用一样用点语法进行访问即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BankAccount *myAccount = [BankAccount new];</span><br><span class="line">Person *person = [Person new];</span><br><span class="line">Address *address = [Address new];</span><br><span class="line">myAccount.owner = person;</span><br><span class="line">myAccount.owner.address = address;</span><br><span class="line">[myAccount setValue:@&quot;海淀&quot; forKeyPath:@&quot;owner.address.street&quot;];</span><br></pre></td></tr></table></figure>
-<p>如果数组中存储的对象类型都相同，可以通过<code>valueForKeyPath:</code>方法指定取出数组中所有对象的某个字段。例如下面例子中，通过<code>valueForKeyPath:</code>将数组中所有对象的<code>currentBalance</code>属性值取出，并放入一个数组中返回。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BankAccount *myAccount1 = [[BankAccount alloc] init];</span><br><span class="line">[myAccount1 setValue:@(100.0) forKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">BankAccount *myAccount2 = [[BankAccount alloc] init];</span><br><span class="line">[myAccount2 setValue:@(200.0) forKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">BankAccount *myAccount3 = [[BankAccount alloc] init];</span><br><span class="line">[myAccount3 setValue:@(300.0) forKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">NSArray *array = [NSArray arrayWithObjects:myAccount1,myAccount2,myAccount3, nil];</span><br><span class="line">NSArray *accountArray = [array valueForKeyPath:@&quot;currentBalance&quot;];</span><br><span class="line">NSLog(@&quot;-------------%@&quot;,accountArray);</span><br></pre></td></tr></table></figure>
-<p>打印结果：</p>
-<blockquote>
-<p>————-(<br>    100,<br>    200,<br>    300<br>)</p>
-</blockquote>
-<h5 id="通过KVC进行批量赋值。"><a href="#通过KVC进行批量赋值。" class="headerlink" title="通过KVC进行批量赋值。"></a>通过<code>KVC</code>进行批量赋值。</h5><p>在对象调用<code>setValuesForKeysWithDictionary:</code>方法时，可以传入一个包含<code>key</code>、<code>value</code>的字典进去，<code>KVC</code>可以将所有数据按照属性名和字典的<code>key</code>进行匹配，并将<code>value</code>给<code>User</code>对象的属性赋值。</p>
-<blockquote>
-<p>- (void)setValuesForKeysWithDictionary:(NSDictionary<nsstring *,="" id=""> *)keyedValues;</nsstring></p>
-</blockquote>
-<h5 id="实用实例"><a href="#实用实例" class="headerlink" title="实用实例"></a>实用实例</h5><p>项目中通常会用到字典转模型的需求，如果在自定义的init方法里逐个赋值，这样每次数据发生改变还需要改赋值语句。然而通过KVC为我们提供的赋值API，可以对数据进行批量赋值。</p>
-<p>例如有如下JSON数据：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSDictionary *dict = @&#123;</span><br><span class="line">                           @&quot;username&quot;: @&quot;joy&quot;,</span><br><span class="line">                           @&quot;age&quot;: @(20),</span><br><span class="line">                           @&quot;id&quot;: @(10)</span><br><span class="line">                           &#125;;</span><br></pre></td></tr></table></figure>
-<p>把以上数据转化成User对象模型，我们可以建立User类(此处类的属性特殊化一下，有些字段没有按JSON数据字段)：<br>赋值时会遇到一些问题，例如服务器会返回一个id字段，但是对于客户端来说id是系统保留字段，可以重写setValue:forUndefinedKey:方法并在内部处理id参数的赋值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@interface User : NSObject</span><br><span class="line">@property (nonatomic, copy) NSString *name;</span><br><span class="line">@property (nonatomic, assign) NSString age;</span><br><span class="line">@property (nonatomic, assign) NSInteger userId;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>那么在User类的.m中需要做如下处理：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@implementation User</span><br><span class="line">- (void)setValue:(id)value forUndefinedKey:(NSString *)key &#123;</span><br><span class="line">    if ([key isEqualToString:@&quot;id&quot;]) &#123;</span><br><span class="line">        self.userId = [value integerValue];</span><br><span class="line">    &#125;else if ([key isEqualToString:@&quot;username&quot;])&#123;</span><br><span class="line">        self.name = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>以此来对应数据。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User *user = [[User alloc] init];</span><br><span class="line">[user setValuesForKeysWithDictionary:dict];</span><br><span class="line">NSLog(@&quot;---------------%@-------%@----%d---%ld&quot;,user,user.name,user.age,(long)user.userId);</span><br></pre></td></tr></table></figure>
-<p>调用打印：</p>
-<blockquote>
-<p>2018-03-06 10:49:15.422367+0800 RuntimeTest[4589:1486047] —————\<user: 0x1c02266a0="">——-joy—-20—10</user:></p>
-</blockquote>
-<p>转换时需要服务器数据和类定义匹配，字段数量和字段名都应该匹配。如果User比服务器数据多，则服务器没传的字段为空。如果服务端传递的数据User中没有定义，则会导致崩溃。</p>
-<p>在KVC进行属性赋值时，内部会对基础数据类型做处理，不需要手动做NSNumber的转换。需要注意的是，NSArray和NSDictionary等集合对象，value都不能是nil，否则会导致Crash。</p>
+<h4 id="一、属性修饰关键词的作用"><a href="#一、属性修饰关键词的作用" class="headerlink" title="一、属性修饰关键词的作用"></a>一、属性修饰关键词的作用</h4><ul>
+<li>assgin</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">此标记说明设置器直接进行赋值，这也是默认值且setter方法直接将传入参数赋值给实例变量，不涉及引用计数的变化，也没有引用技术可以供管理；</span><br><span class="line">主要用于非指针变量(也可以修饰指针变量，但是平时都不这么用)，即用于基础数据类型(例如NSInteger)和C的数据类型(int, float, double, char)另外还有id类型的属性，总而言之，前面不需要加&quot;*&quot;的就可以用assign修饰；</span><br></pre></td></tr></table></figure>
+<ul>
+<li>retian </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">表示持有特性，一般用于指针对象，例如数组（NSMutableArray，NSArray），字典对象，视图对象（UIView ），控制器对象（UIViewController）等，这些属性需要保存引用计数；</span><br><span class="line">就是说你定义了一个变量，然后这个变量在程序的运行过程中会被更改，并且影响到其他方法，当用retain时，会释放旧的对象，将输入对象的索引计数+1，然后将输入对象的值赋予新对象。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>copy</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">其setter方法是进行Copy操作，与retain处理流程基本一样，先旧对象release，再Copy出新的对象，retainCount为1，这是为了减少对上下文的依赖而引入的机制，区别在于copy主要用于NSString；retain是指针拷贝，copy是内容拷贝然后新的对象开辟新内存，引用计数为1，原来对象计数不变</span><br></pre></td></tr></table></figure>
+<ul>
+<li>weak</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">weak是弱引用，是由ARC引入的对象变量的属性，相当于assign，只有在你打开ARC时才会被要求使用(但是weak只能修饰对象即指针类型的属性和id类型的属性，所以在ARC中修饰基本数据类型的属性还是要用assign)；</span><br><span class="line">weak比assign多了一个功能，就是对象消失后把指针置为nil，避免了野指针，不是null指针，是指向“垃圾”内存（不可用的内存）的指针；</span><br></pre></td></tr></table></figure>
+<ul>
+<li>strong</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">strong是强引用，是ARC新引入的对象变量属性，简单讲strong等同retain，只有在你打开ARC时才会被要求使用；</span><br><span class="line">但是对于strong来说，它会自己判断是选择retain还是copy，比较方便。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>readonly</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">此标记说明属性是只读的，默认的标记是读写，如果你指定了只读，在@implementation中只需要一个读取器，如果你使用@synthesize关键字，也只有读取器方法被解析，即只会生成getter方法，不会生成setter方法；</span><br><span class="line">不希望属性在类外改变时候使用。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>readwrite</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">此标记说明属性会被当成读写的，这也是默认属性。设置器和读取器都需要在@implementation中实现。如果使用@synthesize关键字，读取器和设置器都会被解析，即会同时生成getter和setter方法；</span><br></pre></td></tr></table></figure>
+<ul>
+<li>nonatomic</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">非原子性访问，对属性赋值的时候不加锁，不加同步，多线程并发访问会提高性能。如果不加此属性，则默认是两个访问方法都为原子型事务访问；</span><br><span class="line">非原子操作，会简单的操作属性的值，这会加快属性存取的速度，但没办法保证在多线程环境下不出错。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>atomic</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">原子操作，这是默认的，在多线程环境下，本方法设定为原子操作提供了可靠的属性存取方法，而不用担心并发时会产生问题；</span><br><span class="line">这也就是说，在多线程环境下，解析的访问器提供一个对属性的安全访问，从获取器得到的返回值或者通过设置器设置的值可以一次完成，即便是别的线程也正在对其进行访问。</span><br></pre></td></tr></table></figure>
+<h4 id="二、有关线程和进程"><a href="#二、有关线程和进程" class="headerlink" title="二、有关线程和进程"></a>二、有关线程和进程</h4><h5 id="1-说下线程和进程的区别"><a href="#1-说下线程和进程的区别" class="headerlink" title="1.说下线程和进程的区别"></a>1.说下线程和进程的区别</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">（1）一个线程只能属于一个进程，而一个进程可以有多个线程，但至少有一个线程。线程是操作系统可识别的最小执行和调度单位。</span><br><span class="line"></span><br><span class="line">（2）资源分配给进程，同一进程的所有线程共享该进程的所有资源。 同一进程中的多个线程共享代码段(代码和常量)，数据段(全局变量和静态变量)，扩展段(堆存储)。但是每个线程拥有自己的栈段，栈段又叫运行时段，用来存放所有局部变量和临时变量。</span><br><span class="line"></span><br><span class="line">（3）处理机分给线程，即真正在处理机上运行的是线程。</span><br><span class="line"></span><br><span class="line">（4）线程在执行过程中，需要协作同步。不同进程的线程间要利用消息通信的办法实现同步。</span><br></pre></td></tr></table></figure>
+<h5 id="2-如何保证线程安全"><a href="#2-如何保证线程安全" class="headerlink" title="2.如何保证线程安全"></a>2.如何保证线程安全</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一块资源可能会被多个线程共享，也就是多个线程可能会访问同一块资源，比如多个线程访问同一个对象、同一个变量、同一个文件。当多个线程访问同一块资源时，很容易引发数据错乱和数据安全问题。此时，我们需要用线程锁来解决。</span><br></pre></td></tr></table></figure>
+<p>（1）<code>nonatomic</code> <code>atomic</code>：使用atomic多线程原子性控制，atomic的原理给setter加上锁，getter不会加锁。OC在定义属性时有<code>nonatomic</code>和<code>atomic</code>两种选择</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">atomic：原子属性，为setter方法加锁（默认就是atomic）</span><br><span class="line"></span><br><span class="line">nonatomic：非原子属性，不会为setter方法加锁</span><br></pre></td></tr></table></figure>
+<p>(2) 使用<code>GCD</code>实现atomic操作：给某字段的setter和getter方法加上同步队列:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (void)setCount:(NSInteger)newcount&#123;</span><br><span class="line">    dispatch_sync(_synQueue, ^&#123; count = newcount; &#125;);</span><br><span class="line">&#125;</span><br><span class="line">- (NSInteger)count</span><br><span class="line">&#123;</span><br><span class="line">   __block NSInteger localCount;</span><br><span class="line">   dispatch_sync(_synQueue, ^&#123;</span><br><span class="line">        localCount = count;</span><br><span class="line">   &#125;);</span><br><span class="line">   return localCount;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-互斥锁的优缺点"><a href="#3-互斥锁的优缺点" class="headerlink" title="3.互斥锁的优缺点"></a>3.互斥锁的优缺点</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">优点：能有效防止因多线程抢夺资源造成的数据安全问题</span><br><span class="line">缺点：需要消耗大量的CPU资源</span><br></pre></td></tr></table></figure>
+<h4 id="三、设计模式"><a href="#三、设计模式" class="headerlink" title="三、设计模式"></a>三、设计模式</h4><h5 id="1-代理模式"><a href="#1-代理模式" class="headerlink" title="1.代理模式"></a>1.代理模式</h5><h5 id="2-观察者模式"><a href="#2-观察者模式" class="headerlink" title="2.观察者模式"></a>2.观察者模式</h5><h5 id="3-MVC模式"><a href="#3-MVC模式" class="headerlink" title="3.MVC模式"></a>3.MVC模式</h5><h5 id="4-单例模式"><a href="#4-单例模式" class="headerlink" title="4.单例模式"></a>4.单例模式</h5><h4 id="四、有关堆栈"><a href="#四、有关堆栈" class="headerlink" title="四、有关堆栈"></a>四、有关堆栈</h4><p>在引入堆和栈之前，先要知道，iOS中的内存管理范围：oc对象需要进行内存管理，非oc对象不需要进行内存管理，比如基本数据类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">OC对象存放于堆里面(堆内存要程序员手动回收)</span><br><span class="line">非OC对象一般放在栈里面(栈内存会被系统自动回收)</span><br><span class="line">堆里面的内存是动态分配的，所以也就需要程序员手动的去添加内存、回收内存</span><br></pre></td></tr></table></figure>
+<h5 id="1-堆和栈的区别"><a href="#1-堆和栈的区别" class="headerlink" title="1.堆和栈的区别"></a>1.堆和栈的区别</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">栈是 LIFO(先进后出)</span><br><span class="line">堆是 FIFO(先进先出)</span><br></pre></td></tr></table></figure>
+<h4 id="五、有关copy"><a href="#五、有关copy" class="headerlink" title="五、有关copy"></a>五、有关copy</h4><h5 id="1-copy-MutableCopy的区别"><a href="#1-copy-MutableCopy的区别" class="headerlink" title="1.copy,MutableCopy的区别"></a>1.copy,MutableCopy的区别</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">浅复制：不拷贝对象本身，仅仅是拷贝指向对象的指针</span><br><span class="line">深复制：是直接拷贝整个对象内存到另一块内存中</span><br></pre></td></tr></table></figure>
+<h5 id="2-copy关键字的特点"><a href="#2-copy关键字的特点" class="headerlink" title="2.copy关键字的特点"></a>2.copy关键字的特点</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">修改源对象的属性和行为，不会影响副本对象</span><br><span class="line">修改副本对象的属性和行为，不会影响源对象</span><br><span class="line">一个对象可以通过copy和mutableCopy方法来创建一个副本对象</span><br><span class="line">copy:创建的是不可变副本（NSString，NSArray，NSDictionary）</span><br><span class="line">mutableCopy：创建的是可变副本（NSMutableString，NSMutableArray，NSMutableDictionary）</span><br></pre></td></tr></table></figure>
+<h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a href="https://www.jianshu.com/p/795b317efa3a" target="_blank" rel="noopener">iOS 面试题总结2018</a></p>
 
       
     </div>
@@ -587,8 +596,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/05/KVO实现原理/" rel="next" title="KVO实现原理">
-                <i class="fa fa-chevron-left"></i> KVO实现原理
+              <a href="/2018/07/27/Python3爬取某API数据并存储到MySQL数据库/" rel="next" title="Python3爬取某API数据并存储到MySQL数据库">
+                <i class="fa fa-chevron-left"></i> Python3爬取某API数据并存储到MySQL数据库
               </a>
             
           </div>
@@ -596,10 +605,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/19/说说你理解weak属性？/" rel="prev" title="说说你理解weak属性？">
-                说说你理解weak属性？ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -820,7 +825,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#通过kvc-可直接将属性当做key，来对属性进行赋值"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x901A;&#x8FC7;kvc-&#x53EF;&#x76F4;&#x63A5;&#x5C06;&#x5C5E;&#x6027;&#x5F53;&#x505A;key&#xFF0C;&#x6765;&#x5BF9;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;" class="headerlink" title="&#x901A;&#x8FC7;kvc &#x53EF;&#x76F4;&#x63A5;&#x5C06;&#x5C5E;&#x6027;&#x5F53;&#x505A;key&#xFF0C;&#x6765;&#x5BF9;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;"></a>&#x901A;&#x8FC7;kvc &#x53EF;&#x76F4;&#x63A5;&#x5C06;&#x5C5E;&#x6027;&#x5F53;&#x505A;key&#xFF0C;&#x6765;&#x5BF9;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#除了对当前对象的属性进行赋值外，还可以对其更“深层”的对象进行赋值。"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x9664;&#x4E86;&#x5BF9;&#x5F53;&#x524D;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x5916;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5BF9;&#x5176;&#x66F4;&#x201C;&#x6DF1;&#x5C42;&#x201D;&#x7684;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x3002;" class="headerlink" title="&#x9664;&#x4E86;&#x5BF9;&#x5F53;&#x524D;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x5916;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5BF9;&#x5176;&#x66F4;&#x201C;&#x6DF1;&#x5C42;&#x201D;&#x7684;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x3002;"></a>&#x9664;&#x4E86;&#x5BF9;&#x5F53;&#x524D;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x5916;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5BF9;&#x5176;&#x66F4;&#x201C;&#x6DF1;&#x5C42;&#x201D;&#x7684;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x3002;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过KVC进行批量赋值。"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x901A;&#x8FC7;KVC&#x8FDB;&#x884C;&#x6279;&#x91CF;&#x8D4B;&#x503C;&#x3002;" class="headerlink" title="&#x901A;&#x8FC7;KVC&#x8FDB;&#x884C;&#x6279;&#x91CF;&#x8D4B;&#x503C;&#x3002;"></a>&#x901A;&#x8FC7;<code>KVC</code>&#x8FDB;&#x884C;&#x6279;&#x91CF;&#x8D4B;&#x503C;&#x3002;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实用实例"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5B9E;&#x7528;&#x5B9E;&#x4F8B;" class="headerlink" title="&#x5B9E;&#x7528;&#x5B9E;&#x4F8B;"></a>&#x5B9E;&#x7528;&#x5B9E;&#x4F8B;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、属性修饰关键词的作用"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;&#x5C5E;&#x6027;&#x4FEE;&#x9970;&#x5173;&#x952E;&#x8BCD;&#x7684;&#x4F5C;&#x7528;" class="headerlink" title="&#x4E00;&#x3001;&#x5C5E;&#x6027;&#x4FEE;&#x9970;&#x5173;&#x952E;&#x8BCD;&#x7684;&#x4F5C;&#x7528;"></a>&#x4E00;&#x3001;&#x5C5E;&#x6027;&#x4FEE;&#x9970;&#x5173;&#x952E;&#x8BCD;&#x7684;&#x4F5C;&#x7528;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、有关线程和进程"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;&#x6709;&#x5173;&#x7EBF;&#x7A0B;&#x548C;&#x8FDB;&#x7A0B;" class="headerlink" title="&#x4E8C;&#x3001;&#x6709;&#x5173;&#x7EBF;&#x7A0B;&#x548C;&#x8FDB;&#x7A0B;"></a>&#x4E8C;&#x3001;&#x6709;&#x5173;&#x7EBF;&#x7A0B;&#x548C;&#x8FDB;&#x7A0B;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-说下线程和进程的区别"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#1-&#x8BF4;&#x4E0B;&#x7EBF;&#x7A0B;&#x548C;&#x8FDB;&#x7A0B;&#x7684;&#x533A;&#x522B;" class="headerlink" title="1.&#x8BF4;&#x4E0B;&#x7EBF;&#x7A0B;&#x548C;&#x8FDB;&#x7A0B;&#x7684;&#x533A;&#x522B;"></a>1.&#x8BF4;&#x4E0B;&#x7EBF;&#x7A0B;&#x548C;&#x8FDB;&#x7A0B;&#x7684;&#x533A;&#x522B;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-如何保证线程安全"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#2-&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;" class="headerlink" title="2.&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;"></a>2.&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-互斥锁的优缺点"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#3-&#x4E92;&#x65A5;&#x9501;&#x7684;&#x4F18;&#x7F3A;&#x70B9;" class="headerlink" title="3.&#x4E92;&#x65A5;&#x9501;&#x7684;&#x4F18;&#x7F3A;&#x70B9;"></a>3.&#x4E92;&#x65A5;&#x9501;&#x7684;&#x4F18;&#x7F3A;&#x70B9;</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、设计模式"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E09;&#x3001;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;" class="headerlink" title="&#x4E09;&#x3001;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;"></a>&#x4E09;&#x3001;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-代理模式"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#1-&#x4EE3;&#x7406;&#x6A21;&#x5F0F;" class="headerlink" title="1.&#x4EE3;&#x7406;&#x6A21;&#x5F0F;"></a>1.&#x4EE3;&#x7406;&#x6A21;&#x5F0F;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-观察者模式"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#2-&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;" class="headerlink" title="2.&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;"></a>2.&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-MVC模式"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#3-MVC&#x6A21;&#x5F0F;" class="headerlink" title="3.MVC&#x6A21;&#x5F0F;"></a>3.MVC&#x6A21;&#x5F0F;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-单例模式"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#4-&#x5355;&#x4F8B;&#x6A21;&#x5F0F;" class="headerlink" title="4.&#x5355;&#x4F8B;&#x6A21;&#x5F0F;"></a>4.&#x5355;&#x4F8B;&#x6A21;&#x5F0F;</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、有关堆栈"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x56DB;&#x3001;&#x6709;&#x5173;&#x5806;&#x6808;" class="headerlink" title="&#x56DB;&#x3001;&#x6709;&#x5173;&#x5806;&#x6808;"></a>&#x56DB;&#x3001;&#x6709;&#x5173;&#x5806;&#x6808;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-堆和栈的区别"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#1-&#x5806;&#x548C;&#x6808;&#x7684;&#x533A;&#x522B;" class="headerlink" title="1.&#x5806;&#x548C;&#x6808;&#x7684;&#x533A;&#x522B;"></a>1.&#x5806;&#x548C;&#x6808;&#x7684;&#x533A;&#x522B;</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、有关copy"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x4E94;&#x3001;&#x6709;&#x5173;copy" class="headerlink" title="&#x4E94;&#x3001;&#x6709;&#x5173;copy"></a>&#x4E94;&#x3001;&#x6709;&#x5173;copy</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-copy-MutableCopy的区别"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#1-copy-MutableCopy&#x7684;&#x533A;&#x522B;" class="headerlink" title="1.copy,MutableCopy&#x7684;&#x533A;&#x522B;"></a>1.copy,MutableCopy&#x7684;&#x533A;&#x522B;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-copy关键字的特点"><span class="nav-number">5.2.</span> <span class="nav-text"><a href="#2-copy&#x5173;&#x952E;&#x5B57;&#x7684;&#x7279;&#x70B9;" class="headerlink" title="2.copy&#x5173;&#x952E;&#x5B57;&#x7684;&#x7279;&#x70B9;"></a>2.copy&#x5173;&#x952E;&#x5B57;&#x7684;&#x7279;&#x70B9;</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考："><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x53C2;&#x8003;&#xFF1A;" class="headerlink" title="&#x53C2;&#x8003;&#xFF1A;"></a>&#x53C2;&#x8003;&#xFF1A;</span></a></li></ol></div>
             
 
           </div>
