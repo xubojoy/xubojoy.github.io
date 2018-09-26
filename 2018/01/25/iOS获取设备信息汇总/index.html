@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="关于获取iPhone手机设备信息的汇总：  屏幕宽度 屏幕高度 获取设备分辨率 获取设备版本号 获取iPhone名称 获取app版本号 获取电池电量 当前系统名称 当前系统版本号 通用唯一识别码UUID 获取当前设备IP 获取总内存大小 获取当前可用内存 获取精准电池电量 获取电池当前的状态，共有4种状态 获取当前语言 获取设备IDFA  (Appstore禁止不使用广告而采集IDFA的app上架">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-01T07:03:38.055Z">
+<meta property="og:updated_time" content="2018-09-26T03:06:59.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS获取设备信息汇总">
 <meta name="twitter:description" content="关于获取iPhone手机设备信息的汇总：  屏幕宽度 屏幕高度 获取设备分辨率 获取设备版本号 获取iPhone名称 获取app版本号 获取电池电量 当前系统名称 当前系统版本号 通用唯一识别码UUID 获取当前设备IP 获取总内存大小 获取当前可用内存 获取精准电池电量 获取电池当前的状态，共有4种状态 获取当前语言 获取设备IDFA  (Appstore禁止不使用广告而采集IDFA的app上架">
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,964
+                  2,087
                 </span>
               
 
@@ -496,8 +496,10 @@
 </blockquote>
 <ul>
 <li>获取设备MAC  <code>(iOS 7 之后无法获取！！！)</code></li>
+<li>获取WIFI MAC</li>
 <li>获取设备UUID</li>
 <li>获取设备UDID  <code>(审核会被拒的！！！)</code></li>
+<li>是否是虚拟机</li>
 </ul>
 <a id="more"></a>
 <p>具体代码实现：</p>
@@ -991,6 +993,29 @@ if([platform isEqualToString:@"x86_64"])  return@"iPhone Simulator";
 }
 </pre>
 
+
+<ul>
+<li>获取WIFI MAC</li>
+</ul>
+<pre>
++ (NSString *)getWIFIMAC{
+    NSArray *ifs = (__bridge_transfer NSArray *)CNCopySupportedInterfaces();
+    NSDictionary *info = nil;
+    for (NSString *ifnam in ifs) {
+        info = (__bridge_transfer NSDictionary *)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
+
+        if (info && [info count]) {
+            break;
+        }
+    }
+    NSLog(@"dict:%@",info);
+    NSString *SSID = info[@"SSID"];//WiFi名称
+    NSString *BSSID = info[@"BSSID"];//无线网的MAC地址
+    NSLog(@"SSID:%@     BSSID:%@",SSID,BSSID);
+    return BSSID;
+}
+</pre>
+
 <ul>
 <li>获取设备UUID</li>
 </ul>
@@ -1020,6 +1045,10 @@ if([platform isEqualToString:@"x86_64"])  return@"iPhone Simulator";
 <li>获取精准电池电量</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">+ (CGFloat)getCurrentBatteryLevel &#123;</span><br><span class="line">    UIApplication *app = [UIApplication sharedApplication];</span><br><span class="line">    if (app.applicationState == UIApplicationStateActive||app.applicationState==UIApplicationStateInactive)&#123;</span><br><span class="line">        Ivar ivar=  class_getInstanceVariable([app class],&quot;_statusBar&quot;);</span><br><span class="line">        id status  = object_getIvar(app, ivar);</span><br><span class="line">        for (id aview in [status subviews])&#123;</span><br><span class="line">            int batteryLevel = 0;</span><br><span class="line">            for (id bview in [aview subviews])&#123;</span><br><span class="line">                if ([NSStringFromClass([bview class]) caseInsensitiveCompare:@&quot;UIStatusBarBatteryItemView&quot;] == NSOrderedSame&amp;&amp;[[[UIDevice currentDevice] systemVersion] floatValue] &gt;=6.0)&#123;</span><br><span class="line">                    Ivar ivar=  class_getInstanceVariable([bview class],&quot;_capacity&quot;);</span><br><span class="line">                    if(ivar)&#123;</span><br><span class="line">                        batteryLevel = ((int (*)(id, Ivar))object_getIvar)(bview, ivar);</span><br><span class="line">                        if (batteryLevel &gt; 0 &amp;&amp; batteryLevel &lt;= 100)&#123;</span><br><span class="line">                           return batteryLevel;</span><br><span class="line">                        &#125;else&#123;</span><br><span class="line">                            return 0;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>判断是否是虚拟机</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+ (NSString *) isVirtualMachine&#123;</span><br><span class="line">    struct utsname systemInfo;</span><br><span class="line">    uname(&amp;systemInfo);</span><br><span class="line">    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];</span><br><span class="line">    if ([deviceString isEqualToString:@&quot;i386&quot;] || [deviceString isEqualToString:@&quot;x86_64&quot;]) &#123;</span><br><span class="line">        return @&quot;01&quot;; //是虚拟机</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        return @&quot;02&quot;; //不是虚拟机</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1339,7 +1368,7 @@ if([platform isEqualToString:@"x86_64"])  return@"iPhone Simulator";
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">58.8k字</span>
+    <span title="博客全站共">59.0k字</span>
   
 </div>
 
