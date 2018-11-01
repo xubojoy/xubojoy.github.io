@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ios," />
 
 
 
@@ -86,14 +86,20 @@
 
 
 
+<meta name="description" content="今天所要分享的是一款纯自动化打包IPA脚本，并上传到蒲公英做分发测试，适合自己项目用的才是最好的! 废话不多说先上源码">
+<meta name="keywords" content="ios">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用shell脚本打包IPA，导出并上传到蒲公英">
 <meta property="og:url" content="http://xubojoy.github.io/2018/11/01/使用shell脚本打包IPA，导出并上传到蒲公英/index.html">
 <meta property="og:site_name" content="枫林飘雪">
+<meta property="og:description" content="今天所要分享的是一款纯自动化打包IPA脚本，并上传到蒲公英做分发测试，适合自己项目用的才是最好的! 废话不多说先上源码">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-01T06:30:48.704Z">
+<meta property="og:image" content="http://xubojoy.github.io/2018/11/01/使用shell脚本打包IPA，导出并上传到蒲公英/bitcode.png">
+<meta property="og:updated_time" content="2018-11-01T07:07:42.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用shell脚本打包IPA，导出并上传到蒲公英">
+<meta name="twitter:description" content="今天所要分享的是一款纯自动化打包IPA脚本，并上传到蒲公英做分发测试，适合自己项目用的才是最好的! 废话不多说先上源码">
+<meta name="twitter:image" content="http://xubojoy.github.io/2018/11/01/使用shell脚本打包IPA，导出并上传到蒲公英/bitcode.png">
 
 
 
@@ -385,6 +391,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -406,7 +434,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  1,235
                 </span>
               
 
@@ -422,7 +450,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  6
                 </span>
               
             </div>
@@ -443,7 +471,231 @@
       
 
       
-        
+        <p>今天所要分享的是一款纯自动化打包IPA脚本，并上传到蒲公英做分发测试，适合自己项目用的才是最好的!</p>
+<h4 id="废话不多说先上源码"><a href="#废话不多说先上源码" class="headerlink" title="废话不多说先上源码"></a>废话不多说先上源码</h4><a id="more"></a>
+<p>暂且命名为<code>distr.sh</code></p>
+<pre>
+
+#!/bin/sh
+
+# 使用方法:
+# step1: 将该脚本放在工程的根目录下（跟.xcworkspace文件or .xcodeproj文件同目录）
+# step2: 根据情况修改下面的参数
+# step3: 打开终端，执行脚本。（输入sh ，然后将脚本文件拉到终端，会生成文件路径，然后enter就可）
+
+# =============项目自定义部分(自定义好下列参数后再执行该脚本)=================== #
+
+# 是否编译工作空间 (例:若是用Cocopods管理的.xcworkspace项目,赋值true;用Xcode默认创建的.xcodeproj,赋值false)
+is_workspace="true"
+
+# .xcworkspace的名字，如果is_workspace为true，则必须填。否则可不填
+workspace_name="YBMiniSteward"
+
+# .xcodeproj的名字，如果is_workspace为false，则必须填。否则可不填
+project_name="YBMiniSteward"
+
+# 指定项目的scheme名称（也就是工程的target名称），必填
+scheme_name="YBMiniSteward"
+
+# 指定要打包编译的方式 : Release,Debug。一般用Release。必填
+build_configuration="Release"
+
+# method，打包的方式。方式分别为 development, ad-hoc, app-store, enterprise 。必填
+method="development"
+
+
+#  下面两个参数只是在手动指定Pofile文件的时候用到，如果使用Xcode自动管理Profile,直接留空就好
+# (跟method对应的)mobileprovision文件名，需要先双击安装.mobileprovision文件.手动管理Profile时必填
+mobileprovision_name=""
+
+# 项目的bundleID，手动管理Profile时必填
+#com.yibao.YBMiniSteward
+bundle_identifier=""
+
+#以下两个参数为蒲公英平台分配可以在账户这只里查看
+#API Key
+apiKey="eafd842e75c3f272af801d204577050a"
+#User Key
+uKey="b7ba4f078e094d53e0928934cc7ca8f4"
+
+
+echo "--------------------脚本配置参数检查--------------------"
+echo "\033[33;1mis_workspace=${is_workspace} "
+echo "workspace_name=${workspace_name}"
+echo "project_name=${project_name}"
+echo "scheme_name=${scheme_name}"
+echo "build_configuration=${build_configuration}"
+echo "bundle_identifier=${bundle_identifier}"
+echo "method=${method}"
+echo "mobileprovision_name=${mobileprovision_name} \033[0m"
+
+
+# =======================脚本的一些固定参数定义(无特殊情况不用修改)====================== #
+
+# 获取当前脚本所在目录
+script_dir="$( cd "$( dirname "$0"  )" && pwd  )"
+# 工程根目录
+project_dir=$script_dir
+
+# 时间
+DATE=`date '+%Y%m%d_%H%M%S'`
+# 指定输出导出文件夹路径
+export_path="$project_dir/Package/$scheme_name-$DATE"
+# 指定输出归档文件路径
+export_archive_path="$export_path/$scheme_name.xcarchive"
+# 指定输出ipa文件夹路径
+export_ipa_path="$export_path"
+# 指定输出ipa名称
+ipa_name="${scheme_name}_${DATE}"
+# 指定导出ipa包需要用到的plist配置文件的路径
+export_options_plist_path="$project_dir/ExportOptions.plist"
+
+
+
+
+echo "--------------------脚本固定参数检查--------------------"
+echo "\033[33;1mproject_dir=${project_dir}"
+echo "DATE=${DATE}"
+echo "export_path=${export_path}"
+echo "export_archive_path=${export_archive_path}"
+echo "export_ipa_path=${export_ipa_path}"
+echo "export_options_plist_path=${export_options_plist_path}"
+echo "ipa_name=${ipa_name} \033[0m"
+
+# =======================自动打包部分(无特殊情况不用修改)====================== #
+
+echo "------------------------------------------------------"
+echo "\033[32m开始构建项目  \033[0m"
+# 进入项目工程目录
+cd ${project_dir}
+
+# 指定输出文件目录不存在则创建
+if [ -d "$export_path" ] ; then
+    echo $export_path
+else
+    mkdir -pv $export_path
+fi
+
+# 判断编译的项目类型是workspace还是project
+if $is_workspace ; then
+# 编译前清理工程
+xcodebuild clean -workspace ${workspace_name}.xcworkspace \
+                 -scheme ${scheme_name} \
+                 -configuration ${build_configuration}
+
+xcodebuild archive -workspace ${workspace_name}.xcworkspace \
+                   -scheme ${scheme_name} \
+                   -configuration ${build_configuration} \
+                   -archivePath ${export_archive_path}
+else
+# 编译前清理工程
+xcodebuild clean -project ${project_name}.xcodeproj \
+                 -scheme ${scheme_name} \
+                 -configuration ${build_configuration}
+
+xcodebuild archive -project ${project_name}.xcodeproj \
+                   -scheme ${scheme_name} \
+                   -configuration ${build_configuration} \
+                   -archivePath ${export_archive_path}
+fi
+
+#  检查是否构建成功
+#  xcarchive 实际是一个文件夹不是一个文件所以使用 -d 判断
+if [ -d "$export_archive_path" ] ; then
+    echo "\033[32;1m项目构建成功 🚀 🚀 🚀  \033[0m"
+
+else
+    echo "\033[31;1m项目构建失败 😢 😢 😢  \033[0m"
+    exit 1
+fi
+echo "------------------------------------------------------"
+
+echo "\033[32m开始导出ipa文件 \033[0m"
+
+
+# 先删除export_options_plist文件
+if [ -f "$export_options_plist_path" ] ; then
+    #echo "${export_options_plist_path}文件存在，进行删除"
+    rm -f $export_options_plist_path
+fi
+# 根据参数生成export_options_plist文件
+/usr/libexec/PlistBuddy -c  "Add :method String ${method}"  $export_options_plist_path
+/usr/libexec/PlistBuddy -c  "Add :provisioningProfiles:"  $export_options_plist_path
+/usr/libexec/PlistBuddy -c  "Add :provisioningProfiles:${bundle_identifier} String ${mobileprovision_name}"  $export_options_plist_path
+
+
+xcodebuild  -exportArchive \
+            -archivePath ${export_archive_path} \
+            -exportPath ${export_ipa_path} \
+            -exportOptionsPlist ${export_options_plist_path} \
+            -allowProvisioningUpdates
+
+# 检查ipa文件是否存在
+if [ -f "$export_ipa_path/$scheme_name.ipa" ] ; then
+    echo "\033[32;1mexportArchive ipa包成功,准备进行重命名\033[0m"
+else
+    echo "\033[31;1mexportArchive ipa包失败 😢 😢 😢     \033[0m"
+    exit 1
+fi
+
+# 修改ipa文件名称
+mv $export_ipa_path/$scheme_name.ipa $export_ipa_path/$ipa_name.ipa
+
+# 检查文件是否存在
+if [ -f "$export_ipa_path/$ipa_name.ipa" ] ; then
+    echo "\033[32;1m导出 ${ipa_name}.ipa 包成功 🎉  🎉  🎉   \033[0m"
+    open $export_path
+else
+    echo "\033[31;1m导出 ${ipa_name}.ipa 包失败 😢 😢 😢     \033[0m"
+    exit 1
+fi
+
+# 删除export_options_plist文件（中间文件）
+if [ -f "$export_options_plist_path" ] ; then
+    #echo "${export_options_plist_path}文件存在，准备删除"
+    rm -f $export_options_plist_path
+fi
+
+#上传到蒲公英
+
+echo "\033[32;1m开始上传 ${ipa_name}.ipa 包到蒲公英！！！！  \033[0m"
+
+if [ -f "$export_ipa_path/$ipa_name.ipa" ] ; then
+#蒲公英提供的上传IPA文件接口
+    curl -F "file=@$export_ipa_path/$ipa_name.ipa" -F "uKey=$uKey" -F "_api_key=$apiKey" https://www.pgyer.com/apiv1/app/upload
+    echo "\033[32;1m上传 ${ipa_name}.ipa 包到蒲公英成功 🎉  🎉  🎉   \033[0m"
+else
+    echo "\033[31;1m上传 ${ipa_name}.ipa 包蒲公英失败 😢 😢 😢     \033[0m"
+    exit 1
+fi
+
+# 输出打包总用时
+echo "\033[36;1m使用distribution打包总用时: ${SECONDS}s \033[0m"
+
+exit 0
+
+</pre>
+
+<h4 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h4><p>终端下进入项目目录，运行以下命令</p>
+<pre>
+sh distr.sh
+</pre>
+
+<h4 id="脚本运行可能会出现以下错误"><a href="#脚本运行可能会出现以下错误" class="headerlink" title="脚本运行可能会出现以下错误"></a>脚本运行可能会出现以下错误</h4><pre>
+
+error: exportArchive: The data couldn’t be read because it isn’t in the correct format.
+
+Error Domain=NSCocoaErrorDomain Code=3840 "No value." UserInfo={NSDebugDescription=No value., NSFilePath=/var/folders/0q/_yld3djx5z752q_h5mykv_wm0000gp/T/ipatool-json-filepath-ezaXFc}
+
+** EXPORT FAILED **
+
+</pre>
+
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>将项目里的Bitcode设置为NO即可</p>
+<p><img src="/2018/11/01/使用shell脚本打包IPA，导出并上传到蒲公英/bitcode.png" alt="bitcode"></p>
+<p>参考</p>
+<p><a href="http://www.cocoachina.com/ios/20181026/25298.html" target="_blank" rel="noopener">iOS分享一个ipa打包脚本</a></p>
+
       
     </div>
     
@@ -503,6 +755,12 @@
 
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ios/" rel="tag"><i class="fa fa-tag"></i> ios</a>
+          
+        </div>
       
 
       
@@ -616,8 +874,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -724,6 +991,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#废话不多说先上源码"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5E9F;&#x8BDD;&#x4E0D;&#x591A;&#x8BF4;&#x5148;&#x4E0A;&#x6E90;&#x7801;" class="headerlink" title="&#x5E9F;&#x8BDD;&#x4E0D;&#x591A;&#x8BF4;&#x5148;&#x4E0A;&#x6E90;&#x7801;"></a>&#x5E9F;&#x8BDD;&#x4E0D;&#x591A;&#x8BF4;&#x5148;&#x4E0A;&#x6E90;&#x7801;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行脚本"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x8FD0;&#x884C;&#x811A;&#x672C;" class="headerlink" title="&#x8FD0;&#x884C;&#x811A;&#x672C;"></a>&#x8FD0;&#x884C;&#x811A;&#x672C;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#脚本运行可能会出现以下错误"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x811A;&#x672C;&#x8FD0;&#x884C;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x4EE5;&#x4E0B;&#x9519;&#x8BEF;" class="headerlink" title="&#x811A;&#x672C;&#x8FD0;&#x884C;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x4EE5;&#x4E0B;&#x9519;&#x8BEF;"></a>&#x811A;&#x672C;&#x8FD0;&#x884C;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x4EE5;&#x4E0B;&#x9519;&#x8BEF;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方法"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x89E3;&#x51B3;&#x65B9;&#x6CD5;" class="headerlink" title="&#x89E3;&#x51B3;&#x65B9;&#x6CD5;"></a>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -752,7 +1035,7 @@
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">59.0k字</span>
+    <span title="博客全站共">60.2k字</span>
   
 </div>
 
