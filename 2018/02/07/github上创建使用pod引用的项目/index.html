@@ -86,25 +86,27 @@
 
 
 
-<meta name="description" content="这两天折腾cocoapods，折腾的也是够够的🐶，各种尝试发布自己的框架到github上，供其他人直接用pod安装。现在记录下过程：">
+<meta name="description" content="这两天折腾cocoapods，折腾的也是够够的🐶，各种尝试发布自己的框架到github上，供其他人直接用pod安装。现在记录下过程：2018-11-13有更新">
 <meta name="keywords" content="ios">
 <meta property="og:type" content="article">
 <meta property="og:title" content="github上创建使用pod引用的项目">
 <meta property="og:url" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/index.html">
 <meta property="og:site_name" content="枫林飘雪">
-<meta property="og:description" content="这两天折腾cocoapods，折腾的也是够够的🐶，各种尝试发布自己的框架到github上，供其他人直接用pod安装。现在记录下过程：">
+<meta property="og:description" content="这两天折腾cocoapods，折腾的也是够够的🐶，各种尝试发布自己的框架到github上，供其他人直接用pod安装。现在记录下过程：2018-11-13有更新">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/1.png">
-<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/2.png">
-<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/3.png">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/11.jpg">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/12.jpg">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/13.png">
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/4.png">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/8.jpeg">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/9.jpg">
+<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/10.jpg">
 <meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/5.png">
-<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/6.png">
-<meta property="og:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/7.png">
-<meta property="og:updated_time" content="2018-02-07T10:08:31.376Z">
+<meta property="og:updated_time" content="2018-11-13T08:07:01.169Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="github上创建使用pod引用的项目">
-<meta name="twitter:description" content="这两天折腾cocoapods，折腾的也是够够的🐶，各种尝试发布自己的框架到github上，供其他人直接用pod安装。现在记录下过程：">
+<meta name="twitter:description" content="这两天折腾cocoapods，折腾的也是够够的🐶，各种尝试发布自己的框架到github上，供其他人直接用pod安装。现在记录下过程：2018-11-13有更新">
 <meta name="twitter:image" content="http://xubojoy.github.io/2018/02/07/github上创建使用pod引用的项目/1.png">
 
 
@@ -440,7 +442,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  422
+                  523
                 </span>
               
 
@@ -477,14 +479,15 @@
       
 
       
-        <p>这两天折腾cocoapods，折腾的也是够够的🐶，各种尝试发布自己的框架到github上，供其他人直接用pod安装。现在记录下过程：</p>
+        <p>这两天折腾cocoapods，折腾的也是够够的🐶，各种尝试发布自己的框架到github上，供其他人直接用pod安装。现在记录下过程：2018-11-13有更新</p>
 <a id="more"></a>
 <p>首先必备技能：玩转<code>git</code>及<code>github</code></p>
-<p>一、打开<a href="https://github.com/" target="_blank" rel="noopener">www.github.com</a>,创建自己的项目仓库<br><img src="/2018/02/07/github上创建使用pod引用的项目/1.png" alt=""><br>大致就是这个样子，本文仓库名<code>FJAlertView</code><br>有关开原协议，这里采用<code>MIT License</code>,然后使用<code>git clone [仓库地址]</code>,将仓库克隆到本地。<br>二、将要测试的demo及要发布的开元框架放到仓库<code>FJAlertView</code>里,并创建<code>.podspec</code>文件<br><img src="/2018/02/07/github上创建使用pod引用的项目/2.png" alt=""><br><code>.podspec</code>文件的创建：</p>
-<p><code>pod spec create FJAlertView</code></p>
-<p><img src="/2018/02/07/github上创建使用pod引用的项目/3.png" alt=""><br>此时的<code>FJAlertView</code>就是之后可以被搜索的pod名字</p>
+<p>一、打开<a href="https://github.com/" target="_blank" rel="noopener">www.github.com</a>,创建自己的项目仓库<br><img src="/2018/02/07/github上创建使用pod引用的项目/1.png" alt=""><br>大致就是这个样子，本文仓库名<code>JOYGCDTimer</code><br>有关开原协议，这里采用<code>Apache License, Version 2.0</code>,然后使用<code>git clone [仓库地址]</code>,将仓库克隆到本地。<br>二、将要测试的demo及要发布的开元框架放到仓库<code>JOYGCDTimer</code>里,并创建<code>.podspec</code>文件<br><img src="/2018/02/07/github上创建使用pod引用的项目/11.jpg" alt=""><br><code>.podspec</code>文件的创建：</p>
+<p><code>pod spec create JOYGCDTimer</code></p>
+<p><img src="/2018/02/07/github上创建使用pod引用的项目/12.jpg" alt=""><br>此时的<code>FJAlertView</code>就是之后可以被搜索的pod名字</p>
 <p>三、配置<code>.podspec</code>文件，这是我使用的是<code>Sublime Text</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |s|</span><br><span class="line">  s.name         = &quot;FJAlertView&quot;</span><br><span class="line">  s.version      = &quot;0.0.4&quot;</span><br><span class="line">  s.summary      = &quot;a custom view for everyone FJAlertView.&quot;</span><br><span class="line">  s.description  = &lt;&lt;-DESC</span><br><span class="line">                    自定义AlertView   a custom view for everyone FJAlertView.</span><br><span class="line">                   DESC</span><br><span class="line"></span><br><span class="line">  s.homepage     = &quot;https://github.com/xubojoy/FJAlertView&quot;</span><br><span class="line">  s.license      = &quot;MIT&quot;</span><br><span class="line">  s.author             = &#123; &quot;xubojoy&quot; =&gt; &quot;xubojoy1112@163.com&quot; &#125;</span><br><span class="line">  s.platform     = :ios, &quot;7.0&quot;</span><br><span class="line">  s.source       = &#123; :git =&gt; &quot;https://github.com/xubojoy/FJAlertView.git&quot;, :tag =&gt; &quot;#&#123;s.version&#125;&quot; &#125;</span><br><span class="line">  s.source_files  = &quot;FJAlertView/*.&#123;h,m&#125;&quot;</span><br><span class="line">  s.dependency &quot;Masonry&quot;, &quot;~&gt; 1.1.0&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |s|</span><br><span class="line">  s.name         = &quot;JOYGCDTimer&quot;</span><br><span class="line">  s.version      = &quot;0.0.4&quot;</span><br><span class="line">  s.summary      = &quot;JOYGCDTimer.&quot;</span><br><span class="line">  s.description  = &lt;&lt;-DESC</span><br><span class="line">                    一段关于用GCD编写的倒计时</span><br><span class="line">                   DESC</span><br><span class="line"></span><br><span class="line">  s.homepage     = &quot;https://github.com/xubojoy/JOYGCDTimer&quot;</span><br><span class="line">  s.license      = &quot;Apache License, Version 2.0&quot;</span><br><span class="line">  s.author       = &#123; &quot;xubojoy&quot; =&gt; &quot;xubojoy1112@163.com&quot; &#125;</span><br><span class="line">  s.platform     = :ios, &quot;7.0&quot;</span><br><span class="line">  s.source       = &#123; :git =&gt; &quot;https://github.com/xubojoy/JOYGCDTimer.git&quot;, :tag =&gt; &quot;#&#123;s.version&#125;&quot; &#125;</span><br><span class="line">  s.source_files  = &quot;JOYGCDTimer&quot;, &quot;JOYGCDTimer/JOYGCDTimer/JOYGCDTimer/**/*.&#123;h,m&#125;&quot;</span><br><span class="line">  s.dependency &quot;Masonry&quot;, &quot;~&gt; 1.1.0&quot;</span><br></pre></td></tr></table></figure>
+<p>关于s.source_files设置可参考<br><img src="/2018/02/07/github上创建使用pod引用的项目/13.png" alt=""></p>
 <ul>
 <li>name:类库的名称</li>
 <li>version:库的版本</li>
@@ -494,20 +497,21 @@
 <li>author:作者</li>
 <li>platform:运行的平台及最低支持版本</li>
 <li>source:Github上项目的https链接地址</li>
-<li>source_files:要共享的代码，这里是FJAlertView下面的所有代码。</li>
+<li>source_files:要共享的代码，这里是JOYGCDTimer下面的所有代码。</li>
 <li>dependency：第三方依赖库</li>
 </ul>
 <p>四、创建相应的分支及tag标签<br><img src="/2018/02/07/github上创建使用pod引用的项目/4.png" alt=""></p>
-<p>五、执行验证命令：</p>
-<p><code>pod lib lint FJAlertView.podspec</code></p>
+<p>五、在收到的邮件里面有一个 Getting setup with Trunk，注册 trunk,它的作用是能够让我们把本地的 spec 文件上传到 gitHub的远程索引库</p>
+<p><code>pod trunk register xubojoy1112@163.com &#39;xubojoy&#39; --description=&quot;倒计时&quot; --verbose</code><br><img src="/2018/02/07/github上创建使用pod引用的项目/8.jpeg" alt=""><br>打开邮件连接，之后返回到终端执行以下命令</p>
+<p><code>pod trunk push JOYGCDTimer.podspec</code></p>
+<p><img src="/2018/02/07/github上创建使用pod引用的项目/9.jpg" alt=""><br>此时已基本成功了！</p>
+<p>六、验证podspec</p>
+<p><code>pod spec lint JOYGCDTimer.podspec</code></p>
+<p><img src="/2018/02/07/github上创建使用pod引用的项目/10.jpg" alt=""></p>
+<p>七、执行验证命令：</p>
+<p><code>pod lib lint JOYGCDTimer.podspec</code></p>
 <p><img src="/2018/02/07/github上创建使用pod引用的项目/5.png" alt=""></p>
 <p>如上则就是验证成功！</p>
-<p>六、验证podspec</p>
-<p><code>pod spec lint FJAlertView.podspec</code></p>
-<p><img src="/2018/02/07/github上创建使用pod引用的项目/6.png" alt=""></p>
-<p>七、提交公有库</p>
-<p><code>pod trunk push FJAlertView.podspec</code></p>
-<p><img src="/2018/02/07/github上创建使用pod引用的项目/7.png" alt=""></p>
 <p>整个过程到此完结，可以开始装逼了！！！🙃🙃🙃🙃🙃———-</p>
 
       
@@ -828,7 +832,7 @@
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">60.2k字</span>
+    <span title="博客全站共">60.3k字</span>
   
 </div>
 
