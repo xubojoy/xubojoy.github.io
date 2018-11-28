@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[解决Xcode10 #import不提示问题]]></title>
     <url>%2F2018%2F11%2F27%2F%E8%A7%A3%E5%86%B3Xcode10-import%E4%B8%8D%E6%8F%90%E7%A4%BA%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[Xcode更新到10，苹果粑粑有开始闹了，除了libstdc-报错外，#import提示也不好使了，于是就有了下面的一种解决方式。 关于libstdc-库，可参考以下git仓库 作者修改了添加方式，可直接运行shell命令添加了 libstdc- 至于#import不提示问题 找到Xcode导航File---&gt;Workspace Settings 接着修改 Build System 为 Legacy Build System ———-ok了！———-]]></content>
+    <content type="text"><![CDATA[Xcode更新到10，苹果粑粑有开始闹了，除了libstdc-报错外，#import提示也不好使了，于是就有了下面的一种解决方式。 关于libstdc-库，可参考以下git仓库 作者修改了添加方式，可直接运行shell命令添加了 直接运行 sh install.sh 即可 libstdc- 至于#import不提示问题 找到Xcode导航File---&gt;Workspace Settings 接着修改 Build System 为 Legacy Build System ———-ok了！———-]]></content>
       <categories>
         <category>ios</category>
       </categories>
