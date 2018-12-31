@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[写在2019年的开端]]></title>
+    <url>%2F2019%2F01%2F01%2F%E5%86%99%E5%9C%A82019%E5%B9%B4%E7%9A%84%E5%BC%80%E7%AB%AF%2F</url>
+    <content type="text"><![CDATA[再见，2018，你好，2019！ 新一年的开始大家都会不由得跟过去来一场告别！刚过零点，打开朋友圈，被一波告别2018刷了屏，看着每个人的告别话语，像是这一年大家都经历了太多，有的晒娃儿，或许这一年还是幸福多一些，有的晒自己，希望新的一年能对自己好一点儿，有的只是简答的配图告别过去，或许是无奈，或许是期待。2018已然过去，有幸福时刻，也有太多的遗憾，比如今晚想去看跨年灯光秀，结果被告知今年取消了，事实已无法改变，只愿往事清零，祝你新的一年，一切如愿！]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[解决Xcode10 #import不提示问题]]></title>
     <url>%2F2018%2F11%2F27%2F%E8%A7%A3%E5%86%B3Xcode10-import%E4%B8%8D%E6%8F%90%E7%A4%BA%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[Xcode更新到10，苹果粑粑有开始闹了，除了libstdc-报错外，#import提示也不好使了，于是就有了下面的一种解决方式。 关于libstdc-库，可参考以下git仓库 作者修改了添加方式，可直接运行shell命令添加了 直接运行 sh install.sh 即可 libstdc- 至于#import不提示问题 找到Xcode导航File---&gt;Workspace Settings 接着修改 Build System 为 Legacy Build System ———-ok了！———-]]></content>
