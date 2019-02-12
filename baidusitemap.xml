@@ -1,1260 +1,193 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-
-    
   <url>
     <loc>http://xubojoy.github.io/2019/01/29/%E6%96%B0%E5%B9%B4%E6%9D%A5%E5%9C%BA%E4%B8%8E-%E9%9D%A2%E8%AF%95-%E6%9C%89%E5%85%B3%E7%9A%84%E7%BA%A6%E4%BC%9A/</loc>
-    <lastmod>2019-01-29T05:55:56.920Z</lastmod>
-    <data>
-        <display>
-        <title>新年来场与'面试'有关的约会</title>
-        <pubTime>2019-01-29T05:45:05.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2019-01-29</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2019/01/01/%E5%86%99%E5%9C%A82019%E5%B9%B4%E7%9A%84%E5%BC%80%E7%AB%AF/</loc>
-    <lastmod>2018-12-31T17:16:23.324Z</lastmod>
-    <data>
-        <display>
-        <title>写在2019年的开端</title>
-        <pubTime>2018-12-31T16:37:06.000Z</pubTime>
-        
-        <tag>生活</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活" url="http://xubojoy.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-12-31</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/08/06/iOS%E6%80%BB%E7%BB%93-%E4%B8%80/</loc>
-    <lastmod>2018-12-23T05:31:46.644Z</lastmod>
-    <data>
-        <display>
-        <title>iOS总结(一)</title>
-        <pubTime>2016-08-06T02:54:00.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-12-23</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/11/27/%E8%A7%A3%E5%86%B3Xcode10-import%E4%B8%8D%E6%8F%90%E7%A4%BA%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2018-11-28T05:28:44.042Z</lastmod>
-    <data>
-        <display>
-        <title>解决Xcode10 #import不提示问题</title>
-        <pubTime>2018-11-27T02:10:54.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-11-28</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/02/07/github%E4%B8%8A%E5%88%9B%E5%BB%BA%E4%BD%BF%E7%94%A8pod%E5%BC%95%E7%94%A8%E7%9A%84%E9%A1%B9%E7%9B%AE/</loc>
-    <lastmod>2018-11-14T05:47:11.853Z</lastmod>
-    <data>
-        <display>
-        <title>github上创建使用pod引用的项目</title>
-        <pubTime>2018-02-07T08:03:34.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-11-14</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/11/01/%E4%BD%BF%E7%94%A8shell%E8%84%9A%E6%9C%AC%E6%89%93%E5%8C%85IPA%EF%BC%8C%E5%AF%BC%E5%87%BA%E5%B9%B6%E4%B8%8A%E4%BC%A0%E5%88%B0%E8%92%B2%E5%85%AC%E8%8B%B1/</loc>
-    <lastmod>2018-11-01T07:07:42.554Z</lastmod>
-    <data>
-        <display>
-        <title>使用shell脚本打包IPA，导出并上传到蒲公英</title>
-        <pubTime>2018-11-01T06:30:48.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-11-01</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/23/iOS-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
-    <lastmod>2018-10-24T08:20:22.397Z</lastmod>
-    <data>
-        <display>
-        <title>iOS 常用正则表达式</title>
-        <pubTime>2017-12-23T07:22:30.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-10-24</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/01/25/iOS%E8%8E%B7%E5%8F%96%E8%AE%BE%E5%A4%87%E4%BF%A1%E6%81%AF%E6%B1%87%E6%80%BB/</loc>
-    <lastmod>2018-09-26T03:06:59.051Z</lastmod>
-    <data>
-        <display>
-        <title>iOS获取设备信息汇总</title>
-        <pubTime>2018-01-25T09:12:17.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-09-26</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/08/13/SDWebImage%E5%8E%9F%E7%90%86%E5%92%8C%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/</loc>
-    <lastmod>2018-08-13T07:32:53.051Z</lastmod>
-    <data>
-        <display>
-        <title>SDWebImage原理和缓存机制</title>
-        <pubTime>2018-08-13T06:39:00.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-08-13</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/07/27/Python3%E7%88%AC%E5%8F%96%E6%9F%90API%E6%95%B0%E6%8D%AE%E5%B9%B6%E5%AD%98%E5%82%A8%E5%88%B0MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2018-07-27T08:33:40.550Z</lastmod>
-    <data>
-        <display>
-        <title>Python3爬取某API数据并存储到MySQL数据库</title>
-        <pubTime>2018-07-27T08:03:50.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python" url="http://xubojoy.github.io/categories/Python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-07-27</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/07/05/MySQL%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/</loc>
-    <lastmod>2018-07-20T09:14:41.212Z</lastmod>
-    <data>
-        <display>
-        <title>MySQL基础用法</title>
-        <pubTime>2018-07-05T02:00:53.000Z</pubTime>
-        
-        <tag>数据库</tag>
-         
-         
-           
-             
-              <breadCrumb title="数据库" url="http://xubojoy.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-07-20</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/07/11/OC%E8%BD%ACSwift%EF%BC%8C%E4%BD%A0%E9%9C%80%E8%A6%81%E6%8D%A2%E4%B8%AA%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F%EF%BC%81/</loc>
-    <lastmod>2018-07-11T08:41:17.583Z</lastmod>
-    <data>
-        <display>
-        <title>OC转Swift，你需要换个思考方式！</title>
-        <pubTime>2018-07-11T03:13:25.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-07-11</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/06/27/Swift%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE%E5%AE%9A%E4%BD%8D%E5%A4%84%E7%90%86/</loc>
-    <lastmod>2018-07-05T02:18:54.951Z</lastmod>
-    <data>
-        <display>
-        <title>Swift当前位置定位处理</title>
-        <pubTime>2018-06-27T08:22:21.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-07-05</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/03/19/%E8%AF%B4%E8%AF%B4%E4%BD%A0%E7%90%86%E8%A7%A3weak%E5%B1%9E%E6%80%A7%EF%BC%9F/</loc>
-    <lastmod>2018-06-27T08:17:31.380Z</lastmod>
-    <data>
-        <display>
-        <title>说说你理解weak属性？</title>
-        <pubTime>2018-03-19T05:11:19.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-06-27</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/28/SVN%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2018-03-14T02:12:32.292Z</lastmod>
-    <data>
-        <display>
-        <title>SVN命令行操作</title>
-        <pubTime>2017-12-28T07:34:46.000Z</pubTime>
-        
-        <tag>服务器</tag>
-         
-         
-           
-             
-              <breadCrumb title="服务器" url="http://xubojoy.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-14</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/03/05/KVO%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</loc>
-    <lastmod>2018-03-07T10:24:19.528Z</lastmod>
-    <data>
-        <display>
-        <title>KVO实现原理</title>
-        <pubTime>2018-03-05T07:22:17.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-07</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/03/05/KVC%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</loc>
-    <lastmod>2018-03-06T05:44:59.536Z</lastmod>
-    <data>
-        <display>
-        <title>KVC实现原理</title>
-        <pubTime>2018-03-05T07:32:52.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-06</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/03/05/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E4%BB%A5%E5%8F%8Anonatomic%E5%92%8Catomic/</loc>
-    <lastmod>2018-03-05T07:04:58.959Z</lastmod>
-    <data>
-        <display>
-        <title>线程安全以及nonatomic和atomic</title>
-        <pubTime>2018-03-05T06:44:10.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-03-05</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/02/26/%E5%A6%82%E4%BD%95%E7%94%A8HTTP%E5%AE%9E%E7%8E%B0%E9%95%BF%E8%BF%9E%E6%8E%A5/</loc>
-    <lastmod>2018-02-26T06:02:23.154Z</lastmod>
-    <data>
-        <display>
-        <title>如何用HTTP实现长连接</title>
-        <pubTime>2018-02-26T05:44:09.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-02-26</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/02/26/%E5%A6%82%E4%BD%95%E8%AE%BE%E5%AE%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%95%B0%E7%9B%AE/</loc>
-    <lastmod>2018-02-26T01:46:23.813Z</lastmod>
-    <data>
-        <display>
-        <title>如何设定线程池中线程的数目</title>
-        <pubTime>2018-02-26T01:39:56.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-02-26</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/02/24/iOS%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%85%AB%E7%A7%8D%E9%94%81-Lock/</loc>
-    <lastmod>2018-02-25T08:13:42.508Z</lastmod>
-    <data>
-        <display>
-        <title>iOS开发中的八种锁(Lock)</title>
-        <pubTime>2018-02-24T05:33:57.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-02-25</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/02/02/iOS%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3/</loc>
-    <lastmod>2018-02-02T06:46:10.942Z</lastmod>
-    <data>
-        <display>
-        <title>iOS字符串相关</title>
-        <pubTime>2018-02-02T06:39:37.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-02-02</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/01/29/iOS%E4%BD%BF%E7%94%A8shell%E5%91%BD%E4%BB%A4%E4%B8%80%E9%94%AE%E6%89%93%E5%8C%85/</loc>
-    <lastmod>2018-01-29T08:02:34.897Z</lastmod>
-    <data>
-        <display>
-        <title>iOS使用shell命令一键打包</title>
-        <pubTime>2018-01-29T06:32:33.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-01-29</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/01/24/iOS%E7%AE%80%E5%8D%95%E5%80%92%E8%AE%A1%E6%97%B6%E5%8A%A8%E7%94%BB/</loc>
-    <lastmod>2018-01-26T06:25:54.190Z</lastmod>
-    <data>
-        <display>
-        <title>iOS简单倒计时动画</title>
-        <pubTime>2018-01-24T02:37:25.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-01-26</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/01/08/iOS%E5%90%AF%E5%8A%A8%E9%A1%B5%E6%B8%90%E6%B6%88%E6%95%88%E6%9E%9C/</loc>
-    <lastmod>2018-01-25T02:16:11.760Z</lastmod>
-    <data>
-        <display>
-        <title>iOS启动页渐消效果</title>
-        <pubTime>2018-01-08T10:33:51.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-01-25</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2018/01/24/%E5%85%B3%E4%BA%8EObjective-C%E4%B8%8ESwift%E6%B7%B7%E7%BC%96%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</loc>
-    <lastmod>2018-01-24T07:27:55.975Z</lastmod>
-    <data>
-        <display>
-        <title>关于Objective-C与Swift混编的那些事儿</title>
-        <pubTime>2018-01-24T05:54:35.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-01-24</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/28/Runtime%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2018-01-12T05:42:15.285Z</lastmod>
-    <data>
-        <display>
-        <title>Runtime知识总结</title>
-        <pubTime>2017-12-28T10:35:31.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2018-01-12</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/24/%E5%B9%B3%E5%AE%89%E5%A4%9C%E7%9A%84%E7%94%9F%E6%97%A5%E7%A4%BC%E7%89%A9%EF%BC%81/</loc>
-    <lastmod>2017-12-24T13:48:08.417Z</lastmod>
-    <data>
-        <display>
-        <title>平安夜的生日礼物！</title>
-        <pubTime>2017-12-24T13:10:56.000Z</pubTime>
-        
-        <tag>生活</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活" url="http://xubojoy.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-24</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/24/block%E5%92%8C-weak%E4%BF%AE%E9%A5%B0%E7%AC%A6%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
-    <lastmod>2017-12-24T12:39:57.021Z</lastmod>
-    <data>
-        <display>
-        <title>__block和__weak修饰符的区别</title>
-        <pubTime>2017-12-24T12:14:32.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-24</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/23/iOS-%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E4%BA%8C/</loc>
-    <lastmod>2017-12-23T10:10:12.603Z</lastmod>
-    <data>
-        <display>
-        <title>iOS 常用正则表达式(二)</title>
-        <pubTime>2017-12-23T09:40:03.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-23</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/20/%E4%BD%BF%E7%94%A8ZipArchive%E5%AF%B9%E6%96%87%E4%BB%B6%E5%8E%8B%E7%BC%A9/</loc>
-    <lastmod>2017-12-20T11:15:15.835Z</lastmod>
-    <data>
-        <display>
-        <title>使用ZipArchive对文件压缩</title>
-        <pubTime>2017-12-20T10:22:08.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-20</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/18/iOS%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87Color/</loc>
-    <lastmod>2017-12-18T10:04:03.231Z</lastmod>
-    <data>
-        <display>
-        <title>iOS获取图片Color</title>
-        <pubTime>2017-12-18T09:32:50.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-18</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/02/19/GitHub-%E4%B8%8A%E6%8E%92%E5%90%8D%E5%89%8D-100-%E7%9A%84-Objective-C-%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B/</loc>
-    <lastmod>2017-12-16T01:56:29.618Z</lastmod>
-    <data>
-        <display>
-        <title>GitHub 上排名前 100 的 Objective-C 项目简介</title>
-        <pubTime>2017-02-19T09:49:38.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-16</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/12/AFNetworking%E7%B3%BB%E5%88%97%E4%B9%8B-%E5%AF%B9%E6%AF%94AFNetwork-3-x-%E4%B8%8E-AFNetwork-2-x/</loc>
-    <lastmod>2017-12-15T15:10:05.170Z</lastmod>
-    <data>
-        <display>
-        <title>AFNetworking系列之--对比AFNetwork 3.x 与 AFNetwork 2.x</title>
-        <pubTime>2017-12-12T10:18:54.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-15</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/15/IOS%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E4%B8%B2%E8%A1%8C-%E5%B9%B6%E8%A1%8C-%E5%90%8C%E6%AD%A5-%E5%BC%82%E6%AD%A5/</loc>
-    <lastmod>2017-12-15T14:51:32.191Z</lastmod>
-    <data>
-        <display>
-        <title>IOS多线程/串行/并行/同步/异步</title>
-        <pubTime>2017-12-15T13:40:59.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-15</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/13/iOS-3D-Touch%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2017-12-14T04:30:02.843Z</lastmod>
-    <data>
-        <display>
-        <title>iOS 3D Touch使用</title>
-        <pubTime>2017-12-13T10:50:33.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-14</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/13/iOS-Touch-ID-%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2017-12-13T10:25:27.374Z</lastmod>
-    <data>
-        <display>
-        <title>iOS Touch ID 使用</title>
-        <pubTime>2017-12-13T10:09:12.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-13</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/12/%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86%E7%AC%A6%EF%BC%88UUID%EF%BC%8BKeyChain%EF%BC%89/</loc>
-    <lastmod>2017-12-12T11:14:05.621Z</lastmod>
-    <data>
-        <display>
-        <title>获取手机唯一标识符（UUID＋KeyChain）</title>
-        <pubTime>2017-12-12T10:56:06.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-12</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/11/HTTPS%E5%A6%82%E4%BD%95%E4%BF%9D%E6%8A%A4%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8/</loc>
-    <lastmod>2017-12-12T10:14:21.995Z</lastmod>
-    <data>
-        <display>
-        <title>HTTPS如何保护数据传输安全</title>
-        <pubTime>2017-12-11T10:55:17.000Z</pubTime>
-        
-        <tag>服务器</tag>
-         
-         
-           
-             
-              <breadCrumb title="服务器" url="http://xubojoy.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-12</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/12/11/%E6%B5%85%E6%9E%90DES%E4%B8%8EAES%E3%80%81RSA%E4%B8%89%E7%A7%8D%E5%85%B8%E5%9E%8B%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83/</loc>
-    <lastmod>2017-12-12T01:19:46.523Z</lastmod>
-    <data>
-        <display>
-        <title>浅析DES与AES、RSA三种典型加密算法的比较</title>
-        <pubTime>2017-12-11T10:06:57.000Z</pubTime>
-        
-        <tag>服务器</tag>
-         
-         
-           
-             
-              <breadCrumb title="服务器" url="http://xubojoy.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
+    <lastmod>2017-12-12</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/11/29/Runtime%E5%A6%99%E7%94%A8%E4%B9%8B-%E5%BD%92%E6%A1%A3/</loc>
-    <lastmod>2017-12-09T16:07:27.106Z</lastmod>
-    <data>
-        <display>
-        <title>Runtime妙用之-归档</title>
-        <pubTime>2017-11-29T10:29:00.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-09</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/05/01/Mac%E6%9C%AC%E5%9C%B0%E6%90%AD%E5%BB%BAIPv6%E7%8E%AF%E5%A2%83/</loc>
-    <lastmod>2017-12-09T16:07:07.225Z</lastmod>
-    <data>
-        <display>
-        <title>Mac本地搭建IPv6环境</title>
-        <pubTime>2017-04-30T16:08:49.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-09</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/06/08/iOS-APP%E8%BD%AC%E8%AE%A9/</loc>
-    <lastmod>2017-12-09T16:06:39.376Z</lastmod>
-    <data>
-        <display>
-        <title>iOS APP转让</title>
-        <pubTime>2016-06-08T07:03:05.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-09</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/04/19/%E6%B8%85%E6%98%8E%E6%A1%82%E6%9E%97%E4%B9%8B%E6%97%85/</loc>
-    <lastmod>2017-12-09T16:05:25.261Z</lastmod>
-    <data>
-        <display>
-        <title>清明桂林之旅</title>
-        <pubTime>2017-04-19T13:16:09.000Z</pubTime>
-        
-        <tag>生活</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活" url="http://xubojoy.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-09</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/07/18/%E6%B8%85%E7%90%86Xcode%E5%A4%9A%E4%BD%99%E7%9A%84%E8%AF%81%E4%B9%A6/</loc>
-    <lastmod>2017-12-09T16:02:53.542Z</lastmod>
-    <data>
-        <display>
-        <title>清理Xcode多余的证书</title>
-        <pubTime>2016-07-18T14:17:16.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-09</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/06/26/%E3%80%8A%E6%B4%BB%E7%9D%80%E3%80%8B/</loc>
-    <lastmod>2017-12-09T16:02:22.149Z</lastmod>
-    <data>
-        <display>
-        <title>《活着》</title>
-        <pubTime>2016-06-26T13:11:32.000Z</pubTime>
-        
-        <tag>生活</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活" url="http://xubojoy.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-12-09</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/11/30/iOS%E5%88%A4%E6%96%AD%E6%89%8B%E6%9C%BA%E6%98%AF%E5%90%A6%E8%B6%8A%E7%8B%B1/</loc>
-    <lastmod>2017-12-09T16:00:37.957Z</lastmod>
-    <data>
-        <display>
-        <title>iOS判断手机是否越狱</title>
-        <pubTime>2017-11-30T09:29:18.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-    
-  <url>
+    <lastmod>2017-12-09</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/08/17/%E5%A4%9A%E8%AE%BE%E5%A4%87%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2017-08-16T16:15:13.000Z</lastmod>
-    <data>
-        <display>
-        <title>多设备更新博客</title>
-        <pubTime>2017-08-16T16:12:17.000Z</pubTime>
-        
-        <tag>服务器</tag>
-         
-         
-           
-             
-              <breadCrumb title="服务器" url="http://xubojoy.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-08-16</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/04/23/Python%E7%8C%9C%E6%95%B0%E5%B0%8F%E6%B8%B8%E6%88%8F/</loc>
-    <lastmod>2017-04-23T02:59:07.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python猜数小游戏</title>
-        <pubTime>2017-04-23T02:57:15.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python" url="http://xubojoy.github.io/categories/Python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-04-23</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/04/24/%E5%9F%BA%E4%BA%8EHexo-Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84blog/</loc>
-    <lastmod>2017-04-23T02:51:48.000Z</lastmod>
-    <data>
-        <display>
-        <title>基于Hexo+Github搭建自己的blog</title>
-        <pubTime>2016-04-24T14:01:34.000Z</pubTime>
-        
-        <tag>随笔</tag>
-         
-         
-           
-             
-              <breadCrumb title="随笔" url="http://xubojoy.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-04-23</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/04/25/%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81/</loc>
-    <lastmod>2017-04-23T02:51:09.000Z</lastmod>
-    <data>
-        <display>
-        <title>一些常见的状态码</title>
-        <pubTime>2016-04-25T05:43:09.000Z</pubTime>
-        
-        <tag>服务器</tag>
-         
-         
-           
-             
-              <breadCrumb title="服务器" url="http://xubojoy.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-04-23</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/05/27/iOS%E8%AE%A1%E7%AE%97%E9%97%B4%E9%9A%94%E6%97%B6%E9%97%B4/</loc>
-    <lastmod>2017-04-23T02:49:26.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS计算间隔时间</title>
-        <pubTime>2016-05-27T03:41:01.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-04-23</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/02/19/yyyy%E5%92%8C-YYYY%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/</loc>
-    <lastmod>2017-04-23T02:47:52.000Z</lastmod>
-    <data>
-        <display>
-        <title>@yyyy和@YYYY之间有什么区别</title>
-        <pubTime>2017-02-19T10:15:17.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-04-23</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/04/21/Python%E5%87%A0%E7%A7%8D%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA/</loc>
-    <lastmod>2017-04-21T14:41:47.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python几种格式化输出</title>
-        <pubTime>2017-04-21T14:38:23.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="Python" url="http://xubojoy.github.io/categories/Python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-04-21</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/07/25/%E8%AE%A1%E7%AE%97%E4%B8%A4%E6%97%A5%E6%9C%9F%E7%9B%B8%E5%B7%AE%E5%A4%A9%E6%95%B0/</loc>
-    <lastmod>2017-04-19T13:32:31.000Z</lastmod>
-    <data>
-        <display>
-        <title>计算两日期相差天数</title>
-        <pubTime>2016-07-25T14:27:09.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-04-19</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/07/28/%E6%A3%80%E6%B5%8B%E6%89%8B%E6%9C%BA%E8%93%9D%E7%89%99%E6%98%AF%E5%90%A6%E5%BC%80%E5%90%AF/</loc>
-    <lastmod>2017-04-19T13:31:37.000Z</lastmod>
-    <data>
-        <display>
-        <title>检测手机蓝牙是否开启</title>
-        <pubTime>2016-07-28T12:54:06.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-04-19</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2017/04/12/ios%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/</loc>
-    <lastmod>2017-04-19T13:28:11.000Z</lastmod>
-    <data>
-        <display>
-        <title>ios数据存储</title>
-        <pubTime>2017-04-12T13:43:15.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2017-04-19</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/07/14/ios%E9%99%90%E5%88%B6%E5%B0%8F%E6%95%B0%E7%82%B9%E5%90%8E%E5%8F%AA%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%A4%E4%BD%8D/</loc>
-    <lastmod>2016-07-14T15:01:20.000Z</lastmod>
-    <data>
-        <display>
-        <title>ios限制小数点后只能输入两位</title>
-        <pubTime>2016-07-14T13:53:01.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2016-07-14</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/07/04/%E6%91%98%E5%BD%95/</loc>
-    <lastmod>2016-07-05T13:50:19.000Z</lastmod>
-    <data>
-        <display>
-        <title>摘录</title>
-        <pubTime>2016-07-04T14:22:57.000Z</pubTime>
-        
-        <tag>生活</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活" url="http://xubojoy.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-    
-  <url>
+    <lastmod>2016-07-05</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/04/24/ios-%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2016-06-23T07:01:32.000Z</lastmod>
-    <data>
-        <display>
-        <title>ios 错误总结</title>
-        <pubTime>2016-04-24T09:54:02.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2016-06-23</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/04/30/ios%E5%AF%B9%E5%AD%97%E5%85%B8%E8%BF%9B%E8%A1%8C%E9%87%8D%E6%96%B0%E6%8E%92%E5%BA%8F/</loc>
-    <lastmod>2016-06-23T07:01:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>ios对字典进行重新排序</title>
-        <pubTime>2016-04-30T07:18:29.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2016-06-23</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/06/16/xcode-%E2%80%9CThe-file-couldn-t-be-opened%E2%80%9D/</loc>
-    <lastmod>2016-06-23T07:01:10.000Z</lastmod>
-    <data>
-        <display>
-        <title>xcode “The file couldn't be opened”</title>
-        <pubTime>2016-06-16T04:29:51.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
+    <lastmod>2016-06-23</lastmod>
+  </url>  <url>
     <loc>http://xubojoy.github.io/2016/04/26/iOS%E5%85%B3%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%8F%E8%AE%AE/</loc>
-    <lastmod>2016-06-23T06:59:29.000Z</lastmod>
-    <data>
-        <display>
-        <title>iOS关于自定义协议</title>
-        <pubTime>2016-04-26T11:45:14.000Z</pubTime>
-        
-        <tag>ios</tag>
-         
-         
-           
-             
-              <breadCrumb title="ios" url="http://xubojoy.github.io/categories/ios/"/>
-          
-        </display>
-    </data>
-    </url>
-
+    <lastmod>2016-06-23</lastmod>
+  </url>
 </urlset>

@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head> 
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0"> 
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -27,8 +27,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -47,7 +47,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -55,9 +55,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="ios," />
+  <meta name="keywords" content="ios,">
 
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="http://xubojoy.github.io/2018/03/05/KVO实现原理/"/>
+  <link rel="canonical" href="http://xubojoy.github.io/2018/03/05/KVO实现原理/">
 
 
 
@@ -158,7 +158,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -173,13 +173,13 @@
 
     <!-- <a href="https://github.com/xubojoy"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
  -->
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">枫林飘雪</span>
         <span class="logo-line-after"><i></i></span>
@@ -209,7 +209,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -219,7 +219,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -229,7 +229,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -239,7 +239,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -249,7 +249,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -259,7 +259,7 @@
         <li class="menu-item menu-item-schedule">
           <a href="/schedule/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
             
             日程表
           </a>
@@ -269,7 +269,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
             
             站点地图
           </a>
@@ -279,7 +279,7 @@
         <li class="menu-item menu-item-commonweal">
           <a href="/404/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
             
             公益404
           </a>
@@ -292,7 +292,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -313,9 +313,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -347,20 +345,20 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xubojoy.github.io/2018/03/05/KVO实现原理/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="枫林飘雪">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/img/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="枫林飘雪">
     </span>
 
@@ -392,7 +390,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -403,7 +401,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/ios/" itemprop="url" rel="index">
                     <span itemprop="name">ios</span>
                   </a>
@@ -435,7 +433,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4,592
+                  4.6k
                 </span>
               
 
@@ -451,7 +449,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  18
+                  17
                 </span>
               
             </div>
@@ -517,8 +515,14 @@
 <p>options：是一些配置选项，用来指明通知发出的时机和通知响应方法<br><code>observeValueForKeyPath:ofObject:change:context:</code>的change字典中包含哪些值，它的取值有4个，定义在<code>NSKeyValueObservingOptions</code>中，可以用|符号连接，如下：</p>
 <blockquote>
 <p><code>NSKeyValueObservingOptionNew</code>：指明接受通知方法参数中的change字典中应该包含改变后的新值。</p>
+</blockquote>
+<blockquote>
 <p><code>NSKeyValueObservingOptionOld</code>: 指明接受通知方法参数中的change字典中应该包含改变前的旧值。</p>
+</blockquote>
+<blockquote>
 <p><code>NSKeyValueObservingOptionInitial</code>: 当指定了这个选项时，在addObserver:forKeyPath:options:context:消息被发出去后，甚至不用等待这个消息返回，监听者对象会马上收到一个通知。这种通知只会发送一次，你可以利用这种“一次性“的通知来确定要监听属性的初始值。当同时制定这3个选项时，这种通知的change字典中只会包含新值，而不会包含旧值。虽然这时候的新值实际上是改变前的’旧值’，但是这个值对于监听者来说是新的。</p>
+</blockquote>
+<blockquote>
 <p><code>NSKeyValueObservingOptionPrior</code>：当指定了这个选项时，在被监听的属性被改变前，监听者对象就会收到一个通知（一般的通知发出时机都是在属性改变后，虽然change字典中包含了新值和旧值，但是通知还是在属性改变后才发出），这个通知会包含一个<code>NSKeyValueChangeNotificationIsPriorKeykey</code>，其对应的值为一个NSNumber类型的YES。当同时指定该值、new和old的话，change字典会包含旧值而不会包含新值。你可以在这个通知中调用</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)willChangeValueForKey:(NSString *)key;</span><br></pre></td></tr></table></figure>
@@ -527,7 +531,7 @@
 <p>然后，结合上面Person，account的例子，我们可以给Account对象添加监听：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (void)registerAsObserverForAccount:(Account*)account &#123;</span><br><span class="line">  [account addObserver:self</span><br><span class="line">            forKeyPath:@&quot;balance&quot;</span><br><span class="line">               options:(NSKeyValueObservingOptionNew |</span><br><span class="line">                        NSKeyValueObservingOptionOld)</span><br><span class="line">               context:PersonAccountBalanceContext];</span><br><span class="line"> </span><br><span class="line">  [account addObserver:self</span><br><span class="line">            forKeyPath:@&quot;interestRate&quot;</span><br><span class="line">               options:(NSKeyValueObservingOptionNew |</span><br><span class="line">                        NSKeyValueObservingOptionOld)</span><br><span class="line">                context:PersonAccountInterestRateContext];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>需要注意的是，添加监听的方法<code>addObserver:forKeyPath:options:context:</code>并不会对监听和被监听的对象以及context做强引用，你必须自己保证他们在监听过程中不被释放。</p>
-<ol>
+<ol start="2">
 <li>接受通知</li>
 </ol>
 <p>前面说过了，每一个监听者对象都必须实现下面这个方法来接收通知：</p>
@@ -547,7 +551,7 @@
 <p>继续用上面的例子实现接受通知如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath</span><br><span class="line">                      ofObject:(id)object</span><br><span class="line">                        change:(NSDictionary *)change</span><br><span class="line">                       context:(void *)context &#123;</span><br><span class="line"> </span><br><span class="line">   if (context == PersonAccountBalanceContext) &#123;</span><br><span class="line">        // Do something with the balance…</span><br><span class="line"> </span><br><span class="line">    &#125; else if (context == PersonAccountInterestRateContext) &#123;</span><br><span class="line">        // Do something with the interest rate…</span><br><span class="line"> </span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // Any unrecognized context must belong to super</span><br><span class="line">        [super observeValueForKeyPath:keyPath</span><br><span class="line">                             ofObject:object</span><br><span class="line">                               change:change</span><br><span class="line">                               context:context];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>你可以通过context或者keypath来区分不同的通知，但是要注意的是，正如上面实例代码中那样，当接收到一个不能识别的context或者keypath的话，需要调用一下父类的<br><code>observeValueForKeyPath:ofObject:change:context:</code>方法</p>
-<ol>
+<ol start="3">
 <li>移除监听</li>
 </ol>
 <p>当一个监听者完成了它的监听任务之后，就需要注销(移除)监听者，调用以下2个方法来移除监听。通常会在-dealloc方法或者<code>observeValueForKeyPath:ofObject:change:context:</code>方法中移除。</p>
@@ -620,7 +624,7 @@
     
       <div>
         <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/images/xubojoy.jpg" alt="枫林飘雪 wechat" style="width: 200px; max-width: 100%;"/>
+    <img id="wechat_subscriber_qcode" src="/images/xubojoy.jpg" alt="枫林飘雪 wechat" style="width: 200px; max-width: 100%;">
     <div>欢迎您扫一扫上面的微信订阅号，订阅我的博客！</div>
 </div>
 
@@ -638,14 +642,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/wechat-reward-image.png" alt="枫林飘雪 微信支付"/>
+        <img id="wechat_qr" src="/wechat-reward-image.png" alt="枫林飘雪 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/alipay-reward-image.jpg" alt="枫林飘雪 支付宝"/>
+        <img id="alipay_qr" src="/alipay-reward-image.jpg" alt="枫林飘雪 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -789,11 +793,9 @@
 
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/img/avatar.png"
-                alt="枫林飘雪" />
+              <img class="site-author-image" itemprop="image" src="/img/avatar.png" alt="枫林飘雪">
             
               <p class="site-author-name" itemprop="name">枫林飘雪</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -922,7 +924,7 @@
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">60.7k字</span>
+    <span title="博客全站共">60.9k字</span>
   
 </div>
 
