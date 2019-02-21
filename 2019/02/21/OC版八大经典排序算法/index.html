@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="总结一下八大经典排序算法！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-21T03:35:28.548Z">
+<meta property="og:updated_time" content="2019-02-21T05:19:26.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC版八大经典排序算法">
 <meta name="twitter:description" content="总结一下八大经典排序算法！">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  653
+                  822
                 </span>
               
 
@@ -446,7 +446,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -584,48 +584,7 @@
 }
 </pre>
 
-<h5 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h5><pre>
-- (NSMutableArray *)heapSortArray:(NSMutableArray *)array
-{
-    return [self heapSort:array];
-}
-
-- (NSMutableArray *)heapSort:(NSMutableArray *)array
-{
-    NSMutableArray * list = [NSMutableArray arrayWithArray:array];
-    NSInteger endIndex = array.count - 1;
-    //创建大顶堆 把array 转换为大顶堆层次的遍历结果
-    [self heapCreate:list];
-    while (endIndex >= 0) {
-        //交换大顶堆的收尾两个值
-        [list exchangeObjectAtIndex:0 withObjectAtIndex:endIndex];
-        //缩小大顶堆的范围
-        endIndex -- ;
-        [self heapAdjast:list withStartIndex:0 withEndIndex:endIndex + 1];
-    }
-    return list;
-}
-
-//构建大顶堆的层次遍历序列
-- (void)heapCreate:(NSMutableArray *)array
-{
-    NSInteger i = array.count;
-    for (; i > 0; i -- )
-    {
-        [self heapAdjast:array withStartIndex:i - 1 withEndIndex:array.count];
-    }
-}
-
-//对大顶堆的局部调整，使其改节点的所有父类符合大顶堆的特点
-- (void)heapAdjast:(NSMutableArray *)array withStartIndex:(NSInteger)startIndex withEndIndex:(NSInteger)endIndex
-{
-    NSNumber * temp = array[startIndex];
-    //父节点下标
-    NSInteger fatherIndex = startIndex + 1;
-    //左孩子下标
-    NSInteger leftChildIndex = fatherIndex * 2;
-    while (leftChildIndex <= endindex)="" {="" 比较左右节点="" 找出较大的角标="" if="" (leftchildindex="" <="" endindex="" &&="" array[leftchildindex="" -="" 1]="" array[leftchildindex])="" leftchildindex="" ++="" ;="" }="" 如果较大的子节点比根节点大="" 赋值为父节点="" (temp="" 1])="" array[fatherindex="" 1];="" else="" break="" fatherindex="leftChildIndex;" *="" 2;="" pre="">
-
+<h5 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">- (NSMutableArray *)heapSortArray:(NSMutableArray *)array</span><br><span class="line">&#123;</span><br><span class="line">    return [self heapSort:array];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSMutableArray *)heapSort:(NSMutableArray *)array</span><br><span class="line">&#123;</span><br><span class="line">    NSMutableArray * list = [NSMutableArray arrayWithArray:array];</span><br><span class="line">    NSInteger endIndex = array.count - 1;</span><br><span class="line">    //创建大顶堆 把array 转换为大顶堆层次的遍历结果</span><br><span class="line">    [self heapCreate:list];</span><br><span class="line">    while (endIndex &gt;= 0) &#123;</span><br><span class="line">        //交换大顶堆的收尾两个值</span><br><span class="line">        [list exchangeObjectAtIndex:0 withObjectAtIndex:endIndex];</span><br><span class="line">        //缩小大顶堆的范围</span><br><span class="line">        endIndex -- ;</span><br><span class="line">        [self heapAdjast:list withStartIndex:0 withEndIndex:endIndex + 1];</span><br><span class="line">    &#125;</span><br><span class="line">    return list;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//构建大顶堆的层次遍历序列</span><br><span class="line">- (void)heapCreate:(NSMutableArray *)array</span><br><span class="line">&#123;</span><br><span class="line">    NSInteger i = array.count;</span><br><span class="line">    for (; i &gt; 0; i -- )</span><br><span class="line">    &#123;</span><br><span class="line">        [self heapAdjast:array withStartIndex:i - 1 withEndIndex:array.count];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//对大顶堆的局部调整，使其改节点的所有父类符合大顶堆的特点</span><br><span class="line">- (void)heapAdjast:(NSMutableArray *)array withStartIndex:(NSInteger)startIndex withEndIndex:(NSInteger)endIndex</span><br><span class="line">&#123;</span><br><span class="line">    NSNumber * temp = array[startIndex];</span><br><span class="line">    //父节点下标</span><br><span class="line">    NSInteger fatherIndex = startIndex + 1;</span><br><span class="line">    //左孩子下标</span><br><span class="line">    NSInteger leftChildIndex = fatherIndex * 2;</span><br><span class="line">    while (leftChildIndex &lt;= endIndex) &#123;</span><br><span class="line">        //比较左右节点 找出较大的角标</span><br><span class="line">        if (leftChildIndex &lt; endIndex &amp;&amp; array[leftChildIndex - 1] &lt; array[leftChildIndex])</span><br><span class="line">        &#123;</span><br><span class="line">            leftChildIndex ++ ;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        //如果较大的子节点比根节点大 赋值为父节点</span><br><span class="line">        if (temp &lt; array[leftChildIndex - 1])</span><br><span class="line">        &#123;</span><br><span class="line">            array[fatherIndex - 1] = array[leftChildIndex - 1];</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            break ;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        fatherIndex = leftChildIndex;</span><br><span class="line">        leftChildIndex = fatherIndex * 2;</span><br><span class="line">    &#125;</span><br><span class="line">    array[fatherIndex - 1] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h5><pre>
 - (NSMutableArray *)radixSortArray:(NSMutableArray *)array
 {
@@ -645,7 +604,7 @@
     NSInteger maxLength = [self numberLength:maxNumber];
 
     //按照从低位到高位的顺序执行排序过程
-    for (NSInteger digit = 1 ; digit <= 10="" maxlength="" ;="" digit="" ++="" )="" {="" 入桶="" for="" (nsnumber="" *="" item="" in="" array)="" 确定item="" 归属哪个桶="" 以digit位数为基数="" nsinteger="" basenumber="[self" fetchbasenumber:item="" digit:digit];="" nsmutablearray="" mutarray="bucket[baseNumber];" 将数据放入空桶上="" [mutarray="" addobject:item];="" }="" index="0;" 出桶="" (nsinteger="" i="0" <="" bucket.count="" subarray="bucket[i];" 将桶的数据放回待排数组中="" while="" (subarray.count="" !="0)" nsnumber="" number="[subArray" objectatindex:0];="" array[index]="number;" [subarray="" removeobjectatindex:0];="" 创建空桶="" -="" (nsmutablearray="" *)createbucket="" bucket="[NSMutableArray" array];="" array="[NSMutableArray" [bucket="" addobject:array];="" return="" bucket;="" 取列表最大值="" *)listmaxitem:(nsarray="" *)array="" maxnumber="array[0];" if="" (maxnumber="" number)="" maxnumber;="" 数字的位数="" (nsinteger)numberlength:(nsnumber="" *)number="" nsstring="" string="[NSString" stringwithformat:@"%ld",(long)[number="" integervalue]];="" string.length;="" 操作的数字="" 位数="" 返回该位数上的数字="" (nsinteger)fetchbasenumber:(nsnumber="" digit:(nsinteger)digit="" digit为基数位数="" (digit=""> 0 && digit <= [self="" numberlength:number])="" {="" nsmutablearray="" *="" numbersarray="[NSMutableArray" array];="" nsstring="" string="[NSString" stringwithformat:@"%ld",[number="" integervalue]];="" for="" (nsinteger="" index="0" ;="" <="" numberlength:number]="" ++="" )="" temp="[string" substringwithrange:nsmakerange(index,="" 1)];="" [numbersarray="" addobject:temp];="" }="" str="numbersArray[numbersArray.count" -="" digit];="" return="" [str="" integervalue];="" 0;="" pre=""></=></=></pre></=></pre>
+    for (NSInteger digit = 1 ; digit <= 10="" maxlength="" ;="" digit="" ++="" )="" {="" 入桶="" for="" (nsnumber="" *="" item="" in="" array)="" 确定item="" 归属哪个桶="" 以digit位数为基数="" nsinteger="" basenumber="[self" fetchbasenumber:item="" digit:digit];="" nsmutablearray="" mutarray="bucket[baseNumber];" 将数据放入空桶上="" [mutarray="" addobject:item];="" }="" index="0;" 出桶="" (nsinteger="" i="0" <="" bucket.count="" subarray="bucket[i];" 将桶的数据放回待排数组中="" while="" (subarray.count="" !="0)" nsnumber="" number="[subArray" objectatindex:0];="" array[index]="number;" [subarray="" removeobjectatindex:0];="" 创建空桶="" -="" (nsmutablearray="" *)createbucket="" bucket="[NSMutableArray" array];="" array="[NSMutableArray" [bucket="" addobject:array];="" return="" bucket;="" 取列表最大值="" *)listmaxitem:(nsarray="" *)array="" maxnumber="array[0];" if="" (maxnumber="" number)="" maxnumber;="" 数字的位数="" (nsinteger)numberlength:(nsnumber="" *)number="" nsstring="" string="[NSString" stringwithformat:@"%ld",(long)[number="" integervalue]];="" string.length;="" 操作的数字="" 位数="" 返回该位数上的数字="" (nsinteger)fetchbasenumber:(nsnumber="" digit:(nsinteger)digit="" digit为基数位数="" (digit=""> 0 && digit <= [self="" numberlength:number])="" {="" nsmutablearray="" *="" numbersarray="[NSMutableArray" array];="" nsstring="" string="[NSString" stringwithformat:@"%ld",[number="" integervalue]];="" for="" (nsinteger="" index="0" ;="" <="" numberlength:number]="" ++="" )="" temp="[string" substringwithrange:nsmakerange(index,="" 1)];="" [numbersarray="" addobject:temp];="" }="" str="numbersArray[numbersArray.count" -="" digit];="" return="" [str="" integervalue];="" 0;="" pre=""></=></=></pre>
       
     </div>
     
@@ -983,7 +942,7 @@
     
       <span class="post-meta-item-text">博客全站共&#58;</span>
     
-    <span title="博客全站共">61.5k字</span>
+    <span title="博客全站共">61.7k字</span>
   
 </div>
 
