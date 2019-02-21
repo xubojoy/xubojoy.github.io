@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="枫林飘雪">
 <meta property="og:description" content="总结一下八大经典排序算法！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-21T03:32:05.778Z">
+<meta property="og:updated_time" content="2019-02-21T03:35:28.548Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC版八大经典排序算法">
 <meta name="twitter:description" content="总结一下八大经典排序算法！">
@@ -430,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  578
+                  653
                 </span>
               
 
@@ -518,29 +518,7 @@
 }
 </pre>
 
-<h5 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h5><pre>
-- (NSMutableArray *)quicklySort:(NSMutableArray *)array
-{
-    [self quickSort:array leftIndex:0 rightIndex:array.count - 1];
-    return array.copy;
-}
-
-- (void)quickSort:(NSMutableArray *)array leftIndex:(NSInteger)left rightIndex:(NSInteger)right
-{
-    if (left < right)
-    {
-        NSInteger temp = [self getMiddleIndex:array leftIndex:left rightIndex:right];
-        [self quickSort:array leftIndex:left rightIndex:temp - 1];
-        [self quickSort:array leftIndex:temp + 1 rightIndex:right];
-    }
-}
-
-- (NSInteger)getMiddleIndex:(NSMutableArray *)array leftIndex:(NSInteger)left rightIndex:(NSInteger)right
-{
-    NSNumber * temp = array[left];
-    while (left < right) {
-        while (left < right && temp <= array[right])="" {="" right="" --="" ;="" }="" if="" (left="" <="" right)="" array[left]="array[right];" while="" &&="" left="" ++="" array[right]="array[left];" return="" left;="" pre="">
-
+<h5 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">- (NSMutableArray *)quicklySort:(NSMutableArray *)array</span><br><span class="line">&#123;</span><br><span class="line">    [self quickSort:array leftIndex:0 rightIndex:array.count - 1];</span><br><span class="line">    return array.copy;</span><br><span class="line">&#125;</span><br><span class="line">- (void)quickSort:(NSMutableArray *)array leftIndex:(NSInteger)left rightIndex:(NSInteger)right</span><br><span class="line">&#123;</span><br><span class="line">    if (left &lt; right)</span><br><span class="line">    &#123;</span><br><span class="line">        NSInteger temp = [self getMiddleIndex:array leftIndex:left rightIndex:right];</span><br><span class="line">        [self quickSort:array leftIndex:left rightIndex:temp - 1];</span><br><span class="line">        [self quickSort:array leftIndex:temp + 1 rightIndex:right];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">- (NSInteger)getMiddleIndex:(NSMutableArray *)array leftIndex:(NSInteger)left rightIndex:(NSInteger)right</span><br><span class="line">&#123;</span><br><span class="line">    NSNumber * temp = array[left];</span><br><span class="line">    while (left &lt; right) &#123;</span><br><span class="line">        while (left &lt; right &amp;&amp; temp &lt;= array[right]) &#123;</span><br><span class="line">            right -- ;</span><br><span class="line">        &#125;</span><br><span class="line">        if (left &lt; right)</span><br><span class="line">        &#123;</span><br><span class="line">            array[left] = array[right];</span><br><span class="line">        &#125;</span><br><span class="line">        while (left &lt; right &amp;&amp; array[left] &lt;= temp) &#123;</span><br><span class="line">            left ++ ;</span><br><span class="line">        &#125;</span><br><span class="line">        if (left &lt; right)</span><br><span class="line">        &#123;</span><br><span class="line">            array[right] = array[left];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    array[left] = temp;</span><br><span class="line">    return left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h5><pre>
 - (NSMutableArray *)shellSort:(NSMutableArray *)array
 {
@@ -667,7 +645,7 @@
     NSInteger maxLength = [self numberLength:maxNumber];
 
     //按照从低位到高位的顺序执行排序过程
-    for (NSInteger digit = 1 ; digit <= 10="" maxlength="" ;="" digit="" ++="" )="" {="" 入桶="" for="" (nsnumber="" *="" item="" in="" array)="" 确定item="" 归属哪个桶="" 以digit位数为基数="" nsinteger="" basenumber="[self" fetchbasenumber:item="" digit:digit];="" nsmutablearray="" mutarray="bucket[baseNumber];" 将数据放入空桶上="" [mutarray="" addobject:item];="" }="" index="0;" 出桶="" (nsinteger="" i="0" <="" bucket.count="" subarray="bucket[i];" 将桶的数据放回待排数组中="" while="" (subarray.count="" !="0)" nsnumber="" number="[subArray" objectatindex:0];="" array[index]="number;" [subarray="" removeobjectatindex:0];="" 创建空桶="" -="" (nsmutablearray="" *)createbucket="" bucket="[NSMutableArray" array];="" array="[NSMutableArray" [bucket="" addobject:array];="" return="" bucket;="" 取列表最大值="" *)listmaxitem:(nsarray="" *)array="" maxnumber="array[0];" if="" (maxnumber="" number)="" maxnumber;="" 数字的位数="" (nsinteger)numberlength:(nsnumber="" *)number="" nsstring="" string="[NSString" stringwithformat:@"%ld",(long)[number="" integervalue]];="" string.length;="" 操作的数字="" 位数="" 返回该位数上的数字="" (nsinteger)fetchbasenumber:(nsnumber="" digit:(nsinteger)digit="" digit为基数位数="" (digit=""> 0 && digit <= [self="" numberlength:number])="" {="" nsmutablearray="" *="" numbersarray="[NSMutableArray" array];="" nsstring="" string="[NSString" stringwithformat:@"%ld",[number="" integervalue]];="" for="" (nsinteger="" index="0" ;="" <="" numberlength:number]="" ++="" )="" temp="[string" substringwithrange:nsmakerange(index,="" 1)];="" [numbersarray="" addobject:temp];="" }="" str="numbersArray[numbersArray.count" -="" digit];="" return="" [str="" integervalue];="" 0;="" pre=""></=></=></pre></=></pre></=></pre>
+    for (NSInteger digit = 1 ; digit <= 10="" maxlength="" ;="" digit="" ++="" )="" {="" 入桶="" for="" (nsnumber="" *="" item="" in="" array)="" 确定item="" 归属哪个桶="" 以digit位数为基数="" nsinteger="" basenumber="[self" fetchbasenumber:item="" digit:digit];="" nsmutablearray="" mutarray="bucket[baseNumber];" 将数据放入空桶上="" [mutarray="" addobject:item];="" }="" index="0;" 出桶="" (nsinteger="" i="0" <="" bucket.count="" subarray="bucket[i];" 将桶的数据放回待排数组中="" while="" (subarray.count="" !="0)" nsnumber="" number="[subArray" objectatindex:0];="" array[index]="number;" [subarray="" removeobjectatindex:0];="" 创建空桶="" -="" (nsmutablearray="" *)createbucket="" bucket="[NSMutableArray" array];="" array="[NSMutableArray" [bucket="" addobject:array];="" return="" bucket;="" 取列表最大值="" *)listmaxitem:(nsarray="" *)array="" maxnumber="array[0];" if="" (maxnumber="" number)="" maxnumber;="" 数字的位数="" (nsinteger)numberlength:(nsnumber="" *)number="" nsstring="" string="[NSString" stringwithformat:@"%ld",(long)[number="" integervalue]];="" string.length;="" 操作的数字="" 位数="" 返回该位数上的数字="" (nsinteger)fetchbasenumber:(nsnumber="" digit:(nsinteger)digit="" digit为基数位数="" (digit=""> 0 && digit <= [self="" numberlength:number])="" {="" nsmutablearray="" *="" numbersarray="[NSMutableArray" array];="" nsstring="" string="[NSString" stringwithformat:@"%ld",[number="" integervalue]];="" for="" (nsinteger="" index="0" ;="" <="" numberlength:number]="" ++="" )="" temp="[string" substringwithrange:nsmakerange(index,="" 1)];="" [numbersarray="" addobject:temp];="" }="" str="numbersArray[numbersArray.count" -="" digit];="" return="" [str="" integervalue];="" 0;="" pre=""></=></=></pre></=></pre>
       
     </div>
     
