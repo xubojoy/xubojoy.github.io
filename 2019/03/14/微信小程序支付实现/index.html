@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0"> 
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java, 微信小程序,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、 官方流程图">
+<meta name="keywords" content="Java, 微信小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序支付实现">
+<meta property="og:url" content="https://xubojoy.github.io/2019/03/14/微信小程序支付实现/index.html">
+<meta property="og:site_name" content="枫林飘雪">
+<meta property="og:description" content="一、 官方流程图">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://xubojoy.github.io/2019/03/14/微信小程序支付实现/wxpay.jpg">
+<meta property="og:updated_time" content="2019-03-14T07:21:24.378Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序支付实现">
+<meta name="twitter:description" content="一、 官方流程图">
+<meta name="twitter:image" content="https://xubojoy.github.io/2019/03/14/微信小程序支付实现/wxpay.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '6281786317999179000',
+      author: '主编大人'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xubojoy.github.io/2019/03/14/微信小程序支付实现/">
+
+
+
+
+
+  <title>微信小程序支付实现 | 枫林飘雪</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?231ead9ca2b848e1646a6794cc4e7530";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+<!--     <div id="touchme">
+      <button class="button" id="toggle">切换图片</button>
+    </div> -->
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <!-- <a href="https://github.com/xubojoy"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+ -->
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">枫林飘雪</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成事不说，遂事不谏，既往不咎!   继续修行！！！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xubojoy.github.io/2019/03/14/微信小程序支付实现/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="枫林飘雪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫林飘雪">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微信小程序支付实现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T15:15:26+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>一、 官方流程图</strong></p>
+<p><img src="/2019/03/14/微信小程序支付实现/wxpay.jpg" alt=""></p>
+<a id="more"></a>
+<h5 id="商户系统和微信支付系统主要交互："><a href="#商户系统和微信支付系统主要交互：" class="headerlink" title="商户系统和微信支付系统主要交互："></a>商户系统和微信支付系统主要交互：</h5><ol>
+<li><p>小程序内调用登录接口，获取到用户的openid,api参见公共api <a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.login.html" target="_blank" rel="noopener">小程序登录API</a></p>
+</li>
+<li><p>商户server调用支付统一下单，api参见公共api <a href="https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=9_1&amp;index=1" target="_blank" rel="noopener">统一下单API</a></p>
+</li>
+<li><p>商户server调用再次签名，api参见公共api <a href="https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=7_7&amp;index=3" target="_blank" rel="noopener">再次签名</a></p>
+</li>
+<li><p>商户server接收支付通知，api参见公共api <a href="https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=9_7" target="_blank" rel="noopener">支付结果通知API</a></p>
+</li>
+<li><p>商户server查询支付结果，api参见公共api <a href="https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=9_2" target="_blank" rel="noopener">查询订单API</a></p>
+</li>
+</ol>
+<h5 id="当然在开发之前，我们需要有下面这些东西："><a href="#当然在开发之前，我们需要有下面这些东西：" class="headerlink" title="当然在开发之前，我们需要有下面这些东西："></a>当然在开发之前，我们需要有下面这些东西：</h5><ul>
+<li>appId(小程序分配)</li>
+<li>小程序密钥(小程序配置界面获取)</li>
+<li>商户号</li>
+<li>api密钥(商家后台自己设置)</li>
+</ul>
+<p><strong>二、 简单说明</strong></p>
+<blockquote>
+<p>不同的公司需求各有不同，流程也有不同，由于公司是做支付的，因此流程中统一下单之前会经过加签验签服务，保证参数传递的正确性及安全性，验签成功之后，再调用公司商户组服务端的统一下单接口实现的下单（微信的同意下单是有商户组去调用）</p>
+</blockquote>
+<p><strong>三、 支付流程的代码实现</strong></p>
+<ul>
+<li>配置文件类 <code>WxMinPayConfig</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class WxMinPayConfig &#123;</span><br><span class="line"></span><br><span class="line">	//小程序appid</span><br><span class="line">	public static final String appid = &quot;小程序分配&quot;;</span><br><span class="line">	//小程序appSecret</span><br><span class="line">	public static final String appSecret = &quot;微信公众平台小程序密钥&quot;;</span><br><span class="line">	//微信支付的商户id</span><br><span class="line">	public static final String mch_id = &quot;商户号&quot;;</span><br><span class="line">	//微信支付的商户密钥</span><br><span class="line">	public static final String key = &quot;商户密钥&quot;;</span><br><span class="line">    //获取openID接口</span><br><span class="line">	public static final String get_openid_url = &quot;https://api.weixin.qq.com/sns/jscode2session&quot;;</span><br><span class="line">	//支付成功后的服务器回调url</span><br><span class="line">//	public static final String notify_url = &quot;https://??/weixin/wxNotify&quot;;</span><br><span class="line">	//签名方式（视公司而定）默认为MD5，支持HMAC-SHA256和MD5</span><br><span class="line">//	public static final String SIGNTYPE = &quot;MD5&quot;;</span><br><span class="line">	//交易类型</span><br><span class="line">//	public static final String TRADETYPE = &quot;JSAPI&quot;;</span><br><span class="line">	//微信统一下单接口地址（此文章不会直接调用此接口）</span><br><span class="line">//	public static final String pay_url = &quot;https://api.mch.weixin.qq.com/pay/unifiedorder&quot;;</span><br><span class="line"></span><br><span class="line">	//加签接口地址</span><br><span class="line">	public static final String sign_url = &quot;xxxxxxxx&quot;;</span><br><span class="line"></span><br><span class="line">//	验签接口地址</span><br><span class="line">	public static final String verify_url = &quot;xxxxxxx&quot;;</span><br><span class="line"></span><br><span class="line">	//商户下单接口地址</span><br><span class="line">	public static final String create_order_url = &quot;xxxxxx&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>小程序支付所需参数返回的实现类   <code>WeiXinServiceImpl</code>,日志打印直接用      <code>LogFactory</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private static Log log = LogFactory.getLog(WeiXinServiceImpl.class);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>微信小程序支付流程<br>用code调取微信获取openID接口<br>拼接xml调加签验签服务接口<br>验签成功后调用下单接口返回微信小程序支付参数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">	public WXMinPayOut Pay(WXMinPayIn wxMinPayIn, String deviceIp) &#123;</span><br><span class="line">		WXMinPayOut out = new WXMinPayOut();</span><br><span class="line">		try&#123;</span><br><span class="line">			JSONObject jsStr = WeiXinServiceImpl.getOpenId(wxMinPayIn);</span><br><span class="line">			String openid = String.valueOf(jsStr.get(&quot;openid&quot;));</span><br><span class="line">			String session_key = String.valueOf(jsStr.get(&quot;session_key&quot;));</span><br><span class="line">			log.info(&quot;openid :&quot; + openid + &quot;====&quot; +&quot;session_key :&quot; + session_key);</span><br><span class="line">			String xml = WeiXinServiceImpl.paramXml(wxMinPayIn, deviceIp, openid);</span><br><span class="line">			//加签</span><br><span class="line">			JSONObject signParam = new JSONObject();</span><br><span class="line">			signParam.put(&quot;sourceMsg&quot;, xml);</span><br><span class="line">			JSONObject signObject = WeiXinServiceImpl.getJsonObject(WxMinPayConfig.sign_url,signParam);</span><br><span class="line">//			log.info(&quot;=====返回数据=jsonObject=================：&quot; + signObject);</span><br><span class="line">			if (null != signObject.get(&quot;retCode&quot;) &amp;&amp; &quot;0000&quot;.equals(signObject.get(&quot;retCode&quot;)))&#123;</span><br><span class="line">				String signMsg = String.valueOf(signObject.get(&quot;signMsg&quot;));</span><br><span class="line">				//验签</span><br><span class="line">				JSONObject verifyParam = new JSONObject();</span><br><span class="line">				verifyParam.put(&quot;sourceMsg&quot;, xml);</span><br><span class="line">				verifyParam.put(&quot;signMsg&quot;,signMsg);</span><br><span class="line">				JSONObject verifyObject = WeiXinServiceImpl.getJsonObject(WxMinPayConfig.verify_url,verifyParam);</span><br><span class="line">				if (null != verifyObject.get(&quot;retCode&quot;) &amp;&amp; &quot;0000&quot;.equals(verifyObject.get(&quot;retCode&quot;)) &amp;&amp; null != signMsg)&#123;</span><br><span class="line">					xml = xml.replace(&quot;&lt;SIGNED_MSG&gt;&lt;/SIGNED_MSG&gt;&quot;, &quot;&lt;SIGNED_MSG&gt;&quot; + signMsg + &quot;&lt;/SIGNED_MSG&gt;&quot;);</span><br><span class="line">					log.info(&quot;====调用下单接口参数xml=================：&quot; + xml);</span><br><span class="line">					log.info(&quot;====调用下单接口传参appid=================：&quot; + wxMinPayIn.getAppId());</span><br><span class="line">					String xmlStr = WeiXinServiceImpl.httpXmlData(WxMinPayConfig.create_order_url,xml);</span><br><span class="line">					Map map = XmlCommonUtil.xml2map(xmlStr);</span><br><span class="line">//					log.info(&quot;=====返回数据=mPAY_STR=================：&quot; + map.get(&quot;PAY_STR&quot;));</span><br><span class="line">					JSONObject resultMap = JSONObject.parseObject((String)map.get(&quot;PAY_STR&quot;)); //将字符串&#123;“id”：1&#125;</span><br><span class="line">					log.info(&quot;=====调用下单接口返回appId=================：&quot; + resultMap.get(&quot;appId&quot;));</span><br><span class="line">					out.setAppId(String.valueOf(resultMap.get(&quot;appId&quot;)));</span><br><span class="line">					out.setNonceStr(String.valueOf(resultMap.get(&quot;nonceStr&quot;)));</span><br><span class="line">					out.setPackageStr(String.valueOf(resultMap.get(&quot;package&quot;)));</span><br><span class="line">					out.setPaySign(String.valueOf(resultMap.get(&quot;paySign&quot;)));</span><br><span class="line">					out.setSignType(String.valueOf(resultMap.get(&quot;signType&quot;)));</span><br><span class="line">					Long timeStamp = System.currentTimeMillis() / 1000;</span><br><span class="line">					out.setTimeStamp(String.valueOf(timeStamp));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;catch (Exception e)&#123;</span><br><span class="line">			log.error(e.getMessage(), e);</span><br><span class="line">		&#125;</span><br><span class="line">		return out;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>获取openID</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public static JSONObject getOpenId(WXMinPayIn wxMinPayIn)&#123;</span><br><span class="line">		String wxspAppid = wxMinPayIn.getAppId();</span><br><span class="line">		//小程序的 app secret (在微信小程序管理后台获取)</span><br><span class="line">		String wxspSecret = WxMinPayConfig.appSecret;</span><br><span class="line">		String grantType = &quot;authorization_code&quot;;</span><br><span class="line"></span><br><span class="line">		//请求参数</span><br><span class="line">		String params = &quot;appid=&quot; + wxspAppid + &quot;&amp;secret=&quot; + wxspSecret + &quot;&amp;js_code=&quot; + wxMinPayIn.getWxcode() + &quot;&amp;grant_type=&quot; + grantType;</span><br><span class="line">		//发送请求</span><br><span class="line">		String turl = String.format(&quot;%s?%s&quot;,WxMinPayConfig.get_openid_url,params);</span><br><span class="line">		CloseableHttpClient client = HttpClients.createDefault();</span><br><span class="line">		HttpGet get = new HttpGet(turl);</span><br><span class="line">		JSONObject jsStr = null; // 响应内容</span><br><span class="line">		try &#123;</span><br><span class="line">			HttpResponse res = client.execute(get);</span><br><span class="line">			HttpEntity entity = res.getEntity();</span><br><span class="line">			log.info(&quot;WeiXin open id : &quot; + entity);</span><br><span class="line">			String responseContent = EntityUtils.toString(entity, &quot;UTF-8&quot;);</span><br><span class="line">			log.info(&quot;WeiXin getToken response content : &quot; + responseContent);</span><br><span class="line">			jsStr = JSONObject.parseObject(responseContent); //将字符串&#123;“id”：1&#125;</span><br><span class="line">			log.info(&quot;jsStr : &quot; + jsStr.get(&quot;openid&quot;));</span><br><span class="line">		&#125;catch (Exception e)&#123;</span><br><span class="line">			log.info(e.getMessage(),e);</span><br><span class="line">		&#125;</span><br><span class="line">		return jsStr;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>xml参数拼接</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">public static String paramXml(WXMinPayIn wxMinPayIn, String deviceIp, String openid)&#123;</span><br><span class="line">		//生成的随机字符串</span><br><span class="line">		//String nonce_str = StringUtils.getRandomStringByLength(32);</span><br><span class="line">		long rand = RandomUtils.nextInt();</span><br><span class="line">		String nonce_str = DateFormatUtils.format(new Date(), &quot;yyyyMMdd&quot;)+rand;</span><br><span class="line">		//订单日期</span><br><span class="line">		SimpleDateFormat df = new SimpleDateFormat(&quot;yyyyMMdd&quot;);//设置日期格式</span><br><span class="line">		System.out.println(df.format(new Date()));</span><br><span class="line">		String orderDate = df.format(new Date());</span><br><span class="line">		//商品名称</span><br><span class="line">		String body = wxMinPayIn.getOrderSubject();</span><br><span class="line">		//获取本机的ip地址</span><br><span class="line">		String spbill_create_ip = deviceIp;</span><br><span class="line">		//支付金额，单位：分，这边需要转成字符串类型，否则后面的签名会失败,（xml拼接字段依据自己公司需求而定）</span><br><span class="line">		String xml = &quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;&quot;</span><br><span class="line">				+ &quot;&lt;AIPG&gt;&quot;</span><br><span class="line">				+ &quot;&lt;INFO&gt;&quot;</span><br><span class="line">				+ &quot;&lt;TRX_CODE&gt;&quot; + &quot;xxx&quot; +&quot;&lt;/TRX_CODE&gt;&quot;</span><br><span class="line">				+ &quot;&lt;VERSION&gt;&quot;+ &quot;xxx&quot;+&quot;&lt;/VERSION&gt;&quot;</span><br><span class="line">				+ &quot;&lt;DATA_TYPE&gt;&quot;+ &quot;xxx&quot;+ &quot;&lt;/DATA_TYPE&gt;&quot;</span><br><span class="line">				+ &quot;&lt;REQ_SN&gt;&quot; + nonce_str + &quot;&lt;/REQ_SN&gt;&quot;</span><br><span class="line">				+ &quot;&lt;SIGNED_MSG&gt;&quot; + &quot;&quot; + &quot;&lt;/SIGNED_MSG&gt;&quot;</span><br><span class="line">				+ &quot;&lt;/INFO&gt;&quot;</span><br><span class="line">				+ &quot;&lt;BODY&gt;&quot;</span><br><span class="line">				+ &quot;&lt;MERCHANT_ID&gt;&quot; + wxMinPayIn.getMerchantId() + &quot;&lt;/MERCHANT_ID&gt;&quot;</span><br><span class="line">				+ &quot;&lt;MERC_ORDER_NO&gt;&quot; + nonce_str + &quot;&lt;/MERC_ORDER_NO&gt;&quot;</span><br><span class="line">				+ &quot;&lt;MERC_ORDER_DATE&gt;&quot; + orderDate + &quot;&lt;/MERC_ORDER_DATE&gt;&quot;</span><br><span class="line">				+ &quot;&lt;TRANS_AMT&gt;&quot; + wxMinPayIn.getTransAmt() + &quot;&lt;/TRANS_AMT&gt;&quot;</span><br><span class="line">				+ &quot;&lt;PLACE_ORDER_IP&gt;&quot; + spbill_create_ip + &quot;&lt;/PLACE_ORDER_IP&gt;&quot;</span><br><span class="line">				+ &quot;&lt;OPEN_ID&gt;&quot; + openid + &quot;&lt;/OPEN_ID&gt;&quot;</span><br><span class="line">				+ &quot;&lt;APPID&gt;&quot; + wxMinPayIn.getAppId() + &quot;&lt;/APPID&gt;&quot;</span><br><span class="line">				+ &quot;&lt;ORDER_SUBJECT&gt;&quot; + body + &quot;&lt;/ORDER_SUBJECT&gt;&quot;</span><br><span class="line">				+ &quot;&lt;PAY_CHANNEL&gt;&quot; + wxMinPayIn.getPayChannel() + &quot;&lt;/PAY_CHANNEL&gt;&quot;</span><br><span class="line">				+ &quot;&lt;SPLIT_FLAG&gt;&quot; + &quot;xxxx&quot; + &quot;&lt;/SPLIT_FLAG&gt;&quot;</span><br><span class="line">				+ &quot;&lt;ASSURE_FLAG&gt;&quot; + &quot;xxxx&quot; + &quot;&lt;/ASSURE_FLAG&gt;&quot;</span><br><span class="line">				+ &quot;&lt;/BODY&gt;&quot;</span><br><span class="line">				+ &quot;&lt;/AIPG&gt;&quot;;</span><br><span class="line">		log.info(&quot;调试模式_统一下单接口 请求XML数据：&quot; + xml);</span><br><span class="line">		return xml;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>加签验签</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public static JSONObject getJsonObject(String url, JSONObject jsonParam)&#123;</span><br><span class="line">		CloseableHttpClient closeableHttpClient = HttpClients.createDefault();</span><br><span class="line">		JSONObject jsonObject = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			HttpPost post = new HttpPost(url);</span><br><span class="line">			StringEntity stringEntity = new StringEntity(jsonParam.toString(),&quot;utf-8&quot;);//解决中文乱码问题</span><br><span class="line">			stringEntity.setContentEncoding(&quot;UTF-8&quot;);</span><br><span class="line">			stringEntity.setContentType(&quot;application/json&quot;);</span><br><span class="line">			post.setEntity(stringEntity);</span><br><span class="line">			HttpResponse response = closeableHttpClient.execute(post);</span><br><span class="line">			HttpEntity httpEntity = response.getEntity();</span><br><span class="line">			log.info(&quot;httpEntity : &quot; + httpEntity);</span><br><span class="line">			String signResponseContent = EntityUtils.toString(httpEntity, &quot;UTF-8&quot;);</span><br><span class="line">			log.info(&quot;signResponseContent : &quot; + signResponseContent);</span><br><span class="line">			jsonObject = JSONObject.parseObject(signResponseContent); //将字符串&#123;“id”：1&#125;</span><br><span class="line">		&#125;catch (Exception e)&#123;</span><br><span class="line">			log.info(e.getMessage(),e);</span><br><span class="line">		&#125;</span><br><span class="line">		return jsonObject;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>调商户下单接口</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static String httpXmlData(String url, String xml)&#123;</span><br><span class="line">		CloseableHttpClient HttpClient = HttpClients.createDefault();</span><br><span class="line">		String xmlStr = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			HttpPost orderPost = new HttpPost(url);</span><br><span class="line">			orderPost.addHeader(&quot;Content-Type&quot;,&quot;text/html;charset=UTF-8&quot;);</span><br><span class="line">			String base64Str = GZipUtil.gzipString(xml);</span><br><span class="line">			StringEntity orderEntity = new StringEntity(base64Str,&quot;utf-8&quot;);//解决中文乱码问题</span><br><span class="line">			orderEntity.setContentEncoding(&quot;UTF-8&quot;);</span><br><span class="line">			orderPost.setEntity(orderEntity);</span><br><span class="line">			HttpResponse orderResponse = HttpClient.execute(orderPost);</span><br><span class="line">			HttpEntity orderhttpEntity = orderResponse.getEntity();</span><br><span class="line">			log.info(&quot;orderhttpEntity : &quot; + orderhttpEntity);</span><br><span class="line">			String ordersignResponseContent = EntityUtils.toString(orderhttpEntity, &quot;UTF-8&quot;);</span><br><span class="line">			String s = GZipUtil.ungzipString(ordersignResponseContent);</span><br><span class="line">			log.info(&quot;ordersignResponseContent : &quot; + s);</span><br><span class="line">			xmlStr = XmlFormatter.format(s); //转化为字符串xml</span><br><span class="line">		&#125;catch (Exception e)&#123;</span><br><span class="line">			log.info(e.getMessage(),e);</span><br><span class="line">		&#125;</span><br><span class="line">		return xmlStr;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>controller对外提供接口类实现  <code>WeiXinController</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@ResponseBody</span><br><span class="line">	@RequestMapping(value = &quot;/wxminpay&quot;, method = RequestMethod.POST)</span><br><span class="line">	public WXMinPayOut wxminpay(@RequestBody WXMinPayIn wxMinPayIn, HttpServletRequest request)&#123;</span><br><span class="line">		WXMinPayOut out = new WXMinPayOut();</span><br><span class="line">		String ip = IpUtils.getIpAddr(request);</span><br><span class="line">		try &#123;</span><br><span class="line">			out = weiXinServiceImpl.Pay(wxMinPayIn,ip);</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return out;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>四、小程序调用实现</strong></p>
+<blockquote>
+<p>小小程序端调用<code>wx.login</code>获取code，然后配合支付接口所需参数一同传递给后端</p>
+</blockquote>
+<ul>
+<li>具体实现</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">wx.login(&#123;</span><br><span class="line">      success(res) &#123;</span><br><span class="line"> console.log(&quot;====code=====:&quot; + res.code)</span><br><span class="line">wx.request(&#123;</span><br><span class="line">          url: &quot;http://xxxxxxx//wxminpay&quot;,</span><br><span class="line">          data: &#123;</span><br><span class="line">            wxcode: res.code,</span><br><span class="line">            xxx: xxxx (下单支付所需参数，可能会有很多)</span><br><span class="line">          &#125;,</span><br><span class="line">          method: &apos;POST&apos;,</span><br><span class="line">          success(res) &#123;</span><br><span class="line">            const payargs = res.data</span><br><span class="line">            wx.requestPayment(&#123;</span><br><span class="line">              timeStamp: payargs.timeStamp,</span><br><span class="line">              nonceStr: payargs.nonceStr,</span><br><span class="line">              package: payargs.package,</span><br><span class="line">              signType: payargs.signType,</span><br><span class="line">              paySign: payargs.paySign</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>五、结束</strong></p>
+<p>至此，微信小程序后端及小程序实现就完成了！如有疑问欢迎交流！</p>
+
+      
+    </div>
+    
+    
+    
+    <div>
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+        
+    </div>
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/xubojoy.jpg" alt="枫林飘雪 wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信订阅号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/wechat-reward-image.png" alt="枫林飘雪 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/alipay-reward-image.jpg" alt="枫林飘雪 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java-微信小程序/" rel="tag"><i class="fa fa-tag"></i> Java, 微信小程序</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/21/OC版八大经典排序算法/" rel="next" title="OC版八大经典排序算法">
+                <i class="fa fa-chevron-left"></i> OC版八大经典排序算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDIwOS82NzY0"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/img/avatar.png" alt="枫林飘雪">
+            
+              <p class="site-author-name" itemprop="name">枫林飘雪</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xubojoy" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/2365508481/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.devtang.com/" title="唐巧的技术博客" target="_blank">唐巧的技术博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://onevcat.com/" title="OneV's Den" target="_blank">OneV's Den</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.haomwei.com/" title="屠城" target="_blank">屠城</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/deng2012web" title="老邓's Blog" target="_blank">老邓's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#商户系统和微信支付系统主要交互："><span class="nav-number">1.</span> <span class="nav-text">商户系统和微信支付系统主要交互：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#当然在开发之前，我们需要有下面这些东西："><span class="nav-number">2.</span> <span class="nav-text">当然在开发之前，我们需要有下面这些东西：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">枫林飘雪</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博客全站共&#58;</span>
+    
+    <span title="博客全站共">64k字</span>
+  
+</div>
+
+  
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+ 
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+ 
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":50,"height":100,"bottom":-100},"mobile":{"show":true},"log":false});</script></body>
+<!-- <script type="text/javascript" charset="utf-8">
+    var node = document.getElementById('toggle');
+    node.addEventListener("click", function(e) {
+
+      location.href = 'http://url.cn/5fVTlMX';
+      setTimeout(function() {
+       alert("click");
+        location.href = 'https://www.ulpay.com/ulpay-weixin-service/weiXin/goodsDetail?goodsId=2017062713110700001';
+      }, 250);
+      setTimeout(function() {
+        location.reload();
+      }, 1000);
+    });
+    </script> -->
+</html>
+ <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
