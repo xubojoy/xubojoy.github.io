@@ -4,6 +4,12 @@
     <title><![CDATA[愿望清单小程序]]></title>
     <url>%2F2019%2F07%2F05%2F%E6%84%BF%E6%9C%9B%E6%B8%85%E5%8D%95%E5%B0%8F%E7%A8%8B%E5%BA%8F%2F</url>
     <content type="text"><![CDATA[年前做的一款愿望打卡的小程序,由于小程序对个人主体账号的限制，一直未能审核通过，无奈最近只能又注册了一个企业主体的账号用来发布，还好通过审核了，以下扫码即可体验！]]></content>
+      <categories>
+        <category>小程序</category>
+      </categories>
+      <tags>
+        <tag>小程序</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[微信小程序支付实现]]></title>
@@ -32,10 +38,10 @@
     <url>%2F2019%2F01%2F29%2F%E6%96%B0%E5%B9%B4%E6%9D%A5%E5%9C%BA%E4%B8%8E-%E9%9D%A2%E8%AF%95-%E6%9C%89%E5%85%B3%E7%9A%84%E7%BA%A6%E4%BC%9A%2F</url>
     <content type="text"><![CDATA[小程序不定时会更新一些相关面试题！]]></content>
       <categories>
-        <category>ios</category>
+        <category>小程序</category>
       </categories>
       <tags>
-        <tag>ios</tag>
+        <tag>小程序</tag>
       </tags>
   </entry>
   <entry>
